@@ -3,7 +3,7 @@ name: Deploy changed files to FTP
 on:
   push:
     branches:
-      - main  # デフォルトブランチを指定してください
+      - master  # デフォルトブランチを指定してください
 
 jobs:
   ftp-deploy:
