@@ -1,0 +1,29 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - master  # デフォルトブランチ名に合わせて設定。例えば、masterの場合は'master'に変更
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリをクローンするステップ
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # FTPサーバーにファイルをアップロードするステップ
+      - name: Upload files to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  # アップロードしたいフォルダを指定
+          server-dir: /remote/path/  # FTPサーバー上のディレクトリを指定
+          exclude: |
+            .git*
+            README.md
+            /.github/
