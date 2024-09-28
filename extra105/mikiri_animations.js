@@ -25,7 +25,7 @@ function scrollBackground() {
     elem3.style.backgroundPosition = posX3 + "px 0px";
     elem4.style.backgroundPosition = posX4 + "px 0px";
     sky.style.backgroundPosition = skyX + "px 0px";
-    sky.style.backgroundPosition = groundX + "px 0px";
+    ground.style.backgroundPosition = groundX + "px 0px";
 
     requestAnimationFrame(scrollBackground);  // アニメーションを継続
 }
