@@ -32,7 +32,7 @@ function scrollBackground() {
 
 function runCharactor() {
   var i = 0;
-  var elem = document.getElementById("charactor");
+  var elem = document.getElementById("character");
   var img = ["chara/knight/run/Run_01.png", "chara/knight/run/Run_02.png", "chara/knight/run/Run_03.png", "chara/knight/run/Run_04.png", "chara/knight/run/Run_05.png", "chara/knight/run/Run_06.png", "chara/knight/run/Run_07.png", "chara/knight/run/Run_08.png"];
   function updateImage() {
     elem.src = img[i];
