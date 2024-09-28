@@ -1,174 +1,110 @@
 <?php
 session_start();
-include('db.php');
+require_once('db.php');
 
-if (!isset($_SESSION['username'])) {
-    echo json_encode(['error' => 'Not logged in']);
-    exit();
-}
+// エラー表示を無効にし、ログに記録する
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', 'php_errors.log');
 
-$username = $_SESSION['username'];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'];
-
-    switch ($action) {
-        case 'start_match':
-            startMatch($conn, $username);
-            break;
-        case 'check_match':
-            checkMatch($conn, $username);
-            break;
-        case 'get_letter':
-            getLetter($conn, $username, $_POST['match_id']);
-            break;
-        case 'submit_time':
-            submitTime($conn, $username, $_POST['match_id']);
-            break;
-        case 'check_result':
-            checkResult($conn, $username, $_POST['match_id']);
-            break;
-        case 'cancel_match':
-            cancelMatch($conn, $username);
-            break;
-        case 'update_time':
-            updateTime($conn, $username, $_POST['match_id']);
-            break;
-        default:
-            echo json_encode(['error' => 'Invalid action']);
+try {
+    if (!isset($_SESSION['username'])) {
+        throw new Exception('Not logged in');
     }
-}
 
-function startMatch($conn, $username) {
-    $stmt = $conn->prepare("SELECT id FROM setuna_matches WHERE status = 'waiting' AND player1 != ? LIMIT 1");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $username = $_SESSION['username'];
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $match_id = $row['id'];
-        $stmt = $conn->prepare("UPDATE setuna_matches SET player2 = ?, status = 'in_progress' WHERE id = ?");
-        $stmt->bind_param("si", $username, $match_id);
+    if ($_POST['action'] === 'start_match') {
+        // 空いている部屋を探す
+        $stmt = $pdo->prepare("SELECT id FROM matches WHERE player2 IS NULL AND status = 'waiting' LIMIT 1");
         $stmt->execute();
-        echo json_encode(['status' => 'matched', 'match_id' => $match_id]);
+        $room = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($room) {
+            // 空いている部屋に参加
+            $stmt = $pdo->prepare("UPDATE matches SET player2 = ?, status = 'ready' WHERE id = ?");
+            $stmt->execute([$username, $room['id']]);
+            echo json_encode(['status' => 'joined', 'match_id' => $room['id']]);
+        } else {
+            // 新しい部屋を作成
+            $stmt = $pdo->prepare("INSERT INTO matches (player1, status) VALUES (?, 'waiting')");
+            $stmt->execute([$username]);
+            $matchId = $pdo->lastInsertId();
+            echo json_encode(['status' => 'created', 'match_id' => $matchId]);
+        }
+    } elseif ($_POST['action'] === 'check_match') {
+        $matchId = $_POST['match_id'];
+        $stmt = $pdo->prepare("SELECT player1, player2, status FROM matches WHERE id = ?");
+        $stmt->execute([$matchId]);
+        $match = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($match) {
+            if ($match['player2'] !== null) {
+                // player2 が参加したら、ステータスを 'ready' に更新
+                $stmt = $pdo->prepare("UPDATE matches SET status = 'ready' WHERE id = ?");
+                $stmt->execute([$matchId]);
+                echo json_encode(['status' => 'ready', 'match_id' => $matchId]);
+            } else {
+                echo json_encode(['status' => 'waiting']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Match not found']);
+        }
+    } elseif ($_POST['action'] === 'get_letter') {
+        $matchId = $_POST['match_id'];
+        $letter = chr(rand(97, 122)); // a-z のランダムな文字
+
+        $stmt = $pdo->prepare("UPDATE matches SET letter = ?, status = 'active' WHERE id = ?");
+        $stmt->execute([$letter, $matchId]);
+
+        echo json_encode(['status' => 'success', 'letter' => $letter]);
+    } elseif ($_POST['action'] === 'submit_time') {
+        $matchId = $_POST['match_id'];
+        $reactionTime = floatval($_POST['reaction_time']);
+        
+        $stmt = $pdo->prepare("UPDATE matches SET player1_time = CASE WHEN player1 = ? THEN ? ELSE player1_time END, player2_time = CASE WHEN player2 = ? THEN ? ELSE player2_time END WHERE id = ?");
+        $stmt->execute([$username, $reactionTime, $username, $reactionTime, $matchId]);
+
+        echo json_encode(['status' => 'success']);
+    } elseif ($_POST['action'] === 'check_result') {
+        $matchId = $_POST['match_id'];
+        
+        $stmt = $pdo->prepare("SELECT player1, player2, player1_time, player2_time FROM matches WHERE id = ?");
+        $stmt->execute([$matchId]);
+        $match = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($match) {
+            $winner = 'draw';
+            $yourTime = ($match['player1'] === $username) ? $match['player1_time'] : $match['player2_time'];
+            $opponentTime = ($match['player1'] === $username) ? $match['player2_time'] : $match['player1_time'];
+
+            if ($match['player1_time'] > 0 && $match['player2_time'] > 0) {
+                if ($match['player1_time'] < $match['player2_time']) {
+                    $winner = $match['player1'];
+                } elseif ($match['player2_time'] < $match['player1_time']) {
+                    $winner = $match['player2'];
+                }
+
+                $stmt = $pdo->prepare("UPDATE matches SET status = 'completed' WHERE id = ?");
+                $stmt->execute([$matchId]);
+
+                echo json_encode([
+                    'status' => 'completed',
+                    'winner' => $winner,
+                    'your_time' => floatval($yourTime),
+                    'opponent_time' => floatval($opponentTime)
+                ]);
+            } else {
+                echo json_encode(['status' => 'waiting']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Match not found']);
+        }
     } else {
-        $stmt = $conn->prepare("INSERT INTO setuna_matches (player1, status) VALUES (?, 'waiting')");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        echo json_encode(['status' => 'waiting']);
+        throw new Exception('Invalid action');
     }
-}
-
-function checkMatch($conn, $username) {
-    $stmt = $conn->prepare("SELECT id FROM setuna_matches WHERE (player1 = ? OR player2 = ?) AND status = 'in_progress'");
-    $stmt->bind_param("ss", $username, $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        echo json_encode(['status' => 'matched', 'match_id' => $row['id']]);
-    } else {
-        echo json_encode(['status' => 'waiting']);
-    }
-}
-
-function getLetter($conn, $username, $match_id) {
-    $stmt = $conn->prepare("SELECT letter FROM setuna_matches WHERE id = ?");
-    $stmt->bind_param("i", $match_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    if (!$row['letter']) {
-        $letter = chr(rand(97, 122));
-        $stmt = $conn->prepare("UPDATE setuna_matches SET letter = ?, start_time = NOW() + INTERVAL 3 SECOND WHERE id = ?");
-        $stmt->bind_param("si", $letter, $match_id);
-        $stmt->execute();
-    } else {
-        $letter = $row['letter'];
-    }
-
-    echo json_encode(['letter' => $letter]);
-}
-
-function submitTime($conn, $username, $match_id) {
-    $stmt = $conn->prepare("SELECT start_time, letter, player1, player2, player1_time, player2_time FROM setuna_matches WHERE id = ?");
-    $stmt->bind_param("i", $match_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $start_time = strtotime($row['start_time']);
-    $current_time = microtime(true);
-    $reaction_time = max(0, $current_time - $start_time);
-
-    if ($username === $row['player1']) {
-        $stmt = $conn->prepare("UPDATE setuna_matches SET player1_time = ? WHERE id = ? AND player1_time IS NULL");
-        $stmt->bind_param("di", $reaction_time, $match_id);
-    } elseif ($username === $row['player2']) {
-        $stmt = $conn->prepare("UPDATE setuna_matches SET player2_time = ? WHERE id = ? AND player2_time IS NULL");
-        $stmt->bind_param("di", $reaction_time, $match_id);
-    }
-    $stmt->execute();
-
-    echo json_encode(['your_time' => number_format($reaction_time, 5), 'letter' => $row['letter']]);
-}
-
-function checkResult($conn, $username, $match_id) {
-    $stmt = $conn->prepare("SELECT player1, player2, player1_time, player2_time, status FROM setuna_matches WHERE id = ?");
-    $stmt->bind_param("i", $match_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    if ($row['player1_time'] !== null && $row['player2_time'] !== null) {
-        $winner = determineWinner($row['player1_time'], $row['player2_time'], $row['player1'], $row['player2']);
-        $stmt = $conn->prepare("UPDATE setuna_matches SET status = 'completed', winner = ? WHERE id = ?");
-        $stmt->bind_param("si", $winner, $match_id);
-        $stmt->execute();
-        $opponent_time = $username === $row['player1'] ? $row['player2_time'] : $row['player1_time'];
-        echo json_encode(['status' => 'completed', 'winner' => $winner, 'opponent_time' => number_format($opponent_time, 5)]);
-    } else {
-        echo json_encode(['status' => 'in_progress']);
-    }
-}
-
-function determineWinner($time1, $time2, $player1, $player2) {
-    if ($time1 < $time2) {
-        return $player1;
-    } elseif ($time2 < $time1) {
-        return $player2;
-    } else {
-        return 'draw';
-    }
-}
-
-function cancelMatch($conn, $username) {
-    $stmt = $conn->prepare("DELETE FROM setuna_matches WHERE (player1 = ? OR player2 = ?) AND status = 'waiting'");
-    $stmt->bind_param("ss", $username, $username);
-    $stmt->execute();
-    echo json_encode(['status' => 'cancelled']);
-}
-
-function updateTime($conn, $username, $match_id) {
-    $stmt = $conn->prepare("SELECT start_time, player1, player2, player1_time, player2_time FROM setuna_matches WHERE id = ?");
-    $stmt->bind_param("i", $match_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $start_time = strtotime($row['start_time']);
-    $current_time = microtime(true);
-    $elapsed_time = max(0, $current_time - $start_time);
-
-    if ($username === $row['player1'] && $row['player1_time'] === null) {
-        $stmt = $conn->prepare("UPDATE setuna_matches SET player1_time = ? WHERE id = ? AND player1_time IS NULL");
-        $stmt->bind_param("di", $elapsed_time, $match_id);
-    } elseif ($username === $row['player2'] && $row['player2_time'] === null) {
-        $stmt = $conn->prepare("UPDATE setuna_matches SET player2_time = ? WHERE id = ? AND player2_time IS NULL");
-        $stmt->bind_param("di", $elapsed_time, $match_id);
-    }
-    $stmt->execute();
-
-    echo json_encode(['status' => 'updated']);
+} catch (Exception $e) {
+    error_log($e->getMessage());
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
