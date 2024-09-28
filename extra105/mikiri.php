@@ -35,6 +35,7 @@ $username = $_SESSION['username'];
     <div id="background_3" style="background-image:url(asset/forest_3.png)">
     <div id="background_2" style="background-image:url(asset/forest_2.png)">
     <div id="background_1" style="background-image:url(asset/forest_1.png)">
+        <img src="chara/knight/run/Run_01.png" id="charactor" style = "width:500px"></div>
     <div id="ground" style="background-image:url(asset/ground_big.png)">
         <div id="game-container">
             <h1>刹那の見切り - キーボード版 test</h1>
@@ -79,7 +80,6 @@ $username = $_SESSION['username'];
                 <img src="keyboard/hyphen.png" id="hyphen" alt="hypen" style="display:none;height:auto">
                 <img src="keyboard/leter.png" alt="leter" style = "height:auto">
             </div>
-            <img src="chara/knight/run/Run_01.png" id="charactor" style = "width:1000px"></div>
             <script src="mikiri_animations.js"></script>
             <script>
             $(document).ready(function() {
