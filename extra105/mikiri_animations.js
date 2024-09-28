@@ -13,11 +13,11 @@ function scrollBackground() {
     var sky = document.getElementById("sky");
     var ground = document.getElementById("ground");
 
-    posX1 -= 1;  // 背景を左に1ピクセルずつ移動
+    posX1 -= 2.5;  // 背景を左に1ピクセルずつ移動
     posX2 -= 2;
-    posX3 -= 3;
-    posX4 -= 4;
-    skyX -= 5;
+    posX3 -= 1.5;
+    posX4 -= 1;
+    skyX -=  0.5;
     //groundX -= 1;
 
     elem1.style.backgroundPosition = posX1 + "px 0px";  // 背景の位置を更新
