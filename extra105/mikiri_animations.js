@@ -45,4 +45,5 @@ function runCharactor() {
 // ページ読み込み後に背景スクロールを開始
 window.onload = function() {
   requestAnimationFrame(scrollBackground);
+  requestAnimationFrame(runCharactor);
 };
