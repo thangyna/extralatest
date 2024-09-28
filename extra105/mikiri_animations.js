@@ -1,3 +1,4 @@
+console.log('mikiri_animations.js loaded');
 $(document).ready(function() {
     function animateBackground() {
         $('.background').each(function(index, element) {
