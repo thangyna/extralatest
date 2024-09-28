@@ -75,7 +75,7 @@ $username = $_SESSION['username'];
             <img src="keyboard/hyphen.png" id="hyphen" alt="hypen" style="display:none;height:auto">
             <img src="keyboard/leter.png" alt="leter" style = "height:auto">
         </div>
-
+        <script src="mikiri_animations.js"></script>
         <script>
         $(document).ready(function() {
             let matchId = null;
