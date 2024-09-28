@@ -48,6 +48,7 @@ $username = $_SESSION['username'];
             <div id="letter-display"></div>
             <div id="result"></div>
             <script src="mikiri_button.js"></script>
+            <div id="charactor" src="chara/knight/Run_01.png"></div>
             <div class="keyboard-container">
                 <img src="keyboard/keyboard.png" id="keyboard" alt="キーボード" style = "height:auto;">
                 <img src="keyboard/A.png" id="A" alt="A" style = "display:none;height:auto;">
