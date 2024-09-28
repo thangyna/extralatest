@@ -72,7 +72,7 @@ body, html {
 /* キャラクター */
 #character {
     position: absolute;
-    bottom: -40px;
+    bottom: -20px;
     left: 30%;
     width: 500px;
     transform: translateX(-50%);
@@ -83,7 +83,7 @@ body, html {
 .keyboard-container {
     position: absolute; /* 変更 */
     bottom: 0; /* 画面下部に配置 */
-    left: 30%; /* 横方向中央揃え */
+    left: 50%; /* 横方向中央揃え */
     transform: translateX(-50%); /* 中央揃えのために位置を調整 */
     width: 50%; /* コンテナの幅を指定 */
     height: 41vh; /* コンテナの高さを指定 */
