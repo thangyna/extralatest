@@ -35,7 +35,6 @@ $username = $_SESSION['username'];
     <div id="background_3" style="background-image:url(asset/forest_3.png)">
     <div id="background_2" style="background-image:url(asset/forest_2.png)">
     <div id="background_1" style="background-image:url(asset/forest_1.png)">
-        <img src="chara/knight/run/Run_01.png" id="charactor" style = "width:500px"></div>
     <div id="ground" style="background-image:url(asset/ground_big.png)">
         <div id="game-container">
             <h1>刹那の見切り - キーボード版 test</h1>
@@ -49,6 +48,7 @@ $username = $_SESSION['username'];
             <div id="letter-display"></div>
             <div id="result"></div>
             <script src="mikiri_button.js"></script>
+            <img src="chara/knight/run/Run_01.png" id="charactor" style = "width:500px"></div>
             <div class="keyboard-container">
                 <img src="keyboard/keyboard.png" id="keyboard" alt="キーボード" style = "height:auto;">
                 <img src="keyboard/A.png" id="A" alt="A" style = "display:none;height:auto;">
