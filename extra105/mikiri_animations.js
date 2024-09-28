@@ -1,3 +1,10 @@
+var posX1 = 0;  // 背景の位置
+var posX2 = 0;
+var posX3 = 0;
+var posX4 = 0;
+var skyX = 0;
+var groundX = 0;
+
 function scrollBackground() {
     var elem1 = document.getElementById("background_1");
     var elem2 = document.getElementById("background_2");
