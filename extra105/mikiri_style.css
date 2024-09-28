@@ -23,9 +23,8 @@ body, html {
 }
 
 /* 地面 */
-.ground {
+#ground {
     height: 100vh;
-    background-image: url('asset/ground_big.png');
     background-size: 43vh;
     background-position: bottom;
     background-repeat: repeat-x;

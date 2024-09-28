@@ -35,7 +35,7 @@ $username = $_SESSION['username'];
     <div id="background" style="background-image:url(asset/forest_3.png)">
     <div id="background" style="background-image:url(asset/forest_2.png)">
     <div id="background" style="background-image:url(asset/forest_1.png)">
-    <div class="ground">
+    <div id="ground" style="background-image:url(asset/ground_big.png)">
         <h1>刹那の見切り - キーボード版</h1>
         <button id="playButton">
             <img id="playButtonImage" src="button/play.png" alt="プレイ">
