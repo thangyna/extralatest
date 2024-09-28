@@ -1,7 +1,13 @@
+@font-face {
+    font-family: "Pixeled";
+    src: url('/fonts/Pixeled.tff') format('tff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* サイトセッティング */
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: "Pixeled", sans-serif;
     background-color: #f4f4f4;
 }
 
