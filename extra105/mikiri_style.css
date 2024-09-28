@@ -74,6 +74,7 @@ body, html {
     position: absolute;
     bottom: -40;
     left: 50%;
+    width: 500px;
     transform: translateX(-50%);
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }
