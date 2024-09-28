@@ -3,7 +3,7 @@ var posX2 = 0;
 var posX3 = 0;
 var posX4 = 0;
 var skyX = 0;
-var groundX = 0;
+//var groundX = 0;
 
 function scrollBackground() {
     var elem1 = document.getElementById("background_1");
@@ -18,14 +18,14 @@ function scrollBackground() {
     posX3 -= 3;
     posX4 -= 4;
     skyX -= 5;
-    groundX -= 1;
+    //groundX -= 1;
 
     elem1.style.backgroundPosition = posX1 + "px 0px";  // 背景の位置を更新
     elem2.style.backgroundPosition = posX2 + "px 0px";
     elem3.style.backgroundPosition = posX3 + "px 0px";
     elem4.style.backgroundPosition = posX4 + "px 0px";
     sky.style.backgroundPosition = skyX + "px 0px";
-    ground.style.backgroundPosition = groundX + "px 0px";
+    //ground.style.backgroundPosition = groundX + "px 0px";
 
     requestAnimationFrame(scrollBackground);  // アニメーションを継続
 }
