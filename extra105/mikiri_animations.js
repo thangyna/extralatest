@@ -1,5 +1,3 @@
-var posX = 0;
-
 function scrollBackground() {
     var elem1 = document.getElementById("background_1");
     var elem2 = document.getElementById("background_2");
