@@ -56,11 +56,11 @@ body, html {
 
 /* 地面 */
 #ground {
-    height: 100vh;
-    background-size: 43vh;
-    background-position: bottom;
-    background-repeat: repeat-x;
-    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+    position: absolute; /* 絶対位置に設定 */
+    bottom: 0; /* 下端に配置 */
+    width: 100%; /* 幅を100%に設定 */
+    height: 50px; /* 高さを適宜設定 */
+    background: url('path/to/ground-image.png') repeat-x; /* 背景画像を設定 */
 }
 
 /* キーボード */
