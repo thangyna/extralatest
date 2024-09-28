@@ -72,7 +72,7 @@ body, html {
 /* キャラクター */
 #character {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 30%;
     width: 500px;
     transform: translateX(-50%);
