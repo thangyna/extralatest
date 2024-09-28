@@ -1,15 +1,15 @@
-console.log('mikiri_animations.js loaded');
-$(document).ready(function() {
-    function animateBackground() {
-        $('.background').each(function(index, element) {
-            $(element).animate({
-                left: '+=100px'
-            }, 5000, function() {
-                $(element).css('left', '-100px');
-                animateBackground();
-            });
-        });
-    }
+var posX = 0;
 
-    animateBackground();
-});
+function scrollBackground() {
+  var elem = document.getElementById("background");
+  posX -= 1;  // 背景を左に1ピクセルずつ移動
+
+  elem.style.backgroundPosition = posX + "px 0px";  // 背景の位置を更新
+
+  requestAnimationFrame(scrollBackground);  // アニメーションを継続
+}
+
+// ページ読み込み後に背景スクロールを開始
+window.onload = function() {
+  requestAnimationFrame(scrollBackground);
+};
