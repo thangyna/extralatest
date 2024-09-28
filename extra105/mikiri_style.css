@@ -72,8 +72,8 @@ body, html {
 /* キャラクター */
 #character {
     position: absolute;
-    bottom: -40;
-    left: 50%;
+    bottom: -40px;
+    left: 30%;
     width: 500px;
     transform: translateX(-50%);
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
