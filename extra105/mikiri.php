@@ -30,11 +30,11 @@ $username = $_SESSION['username'];
 </head>
 <body>
     <div class="sky-container">
-    <div id="background" style="background-image:url(asset/sky.png)">
-    <div id="background" style="background-image:url(asset/forest_4.png)">
-    <div id="background" style="background-image:url(asset/forest_3.png)">
-    <div id="background" style="background-image:url(asset/forest_2.png)">
-    <div id="background" style="background-image:url(asset/forest_1.png)">
+    <div id="sky" style="background-image:url(asset/sky.png)">
+    <div id="background_4" style="background-image:url(asset/forest_4.png)">
+    <div id="background_3" style="background-image:url(asset/forest_3.png)">
+    <div id="background_2" style="background-image:url(asset/forest_2.png)">
+    <div id="background_1" style="background-image:url(asset/forest_1.png)">
     <div id="ground" style="background-image:url(asset/ground_big.png)">
         <h1>刹那の見切り - キーボード版</h1>
         <button id="playButton">

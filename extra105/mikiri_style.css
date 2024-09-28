@@ -13,7 +13,39 @@ body, html {
 }
 
 /* 背景画像を設定 */
-#background {
+#sky {
+    height: 100vh; /* ビューポートの高さに合わせる */
+    background-size: 70vh;
+    background-position: top; /* 中央に画像を配置 */
+    background-repeat: repeat-x; /* 繰り返しなし */
+    height : 100vh;
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+}
+#background_1 {
+    height: 100vh; /* ビューポートの高さに合わせる */
+    background-size: 70vh;
+    background-position: top; /* 中央に画像を配置 */
+    background-repeat: repeat-x; /* 繰り返しなし */
+    height : 100vh;
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+}
+#background_2 {
+    height: 100vh; /* ビューポートの高さに合わせる */
+    background-size: 70vh;
+    background-position: top; /* 中央に画像を配置 */
+    background-repeat: repeat-x; /* 繰り返しなし */
+    height : 100vh;
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+}
+#background_3 {
+    height: 100vh; /* ビューポートの高さに合わせる */
+    background-size: 70vh;
+    background-position: top; /* 中央に画像を配置 */
+    background-repeat: repeat-x; /* 繰り返しなし */
+    height : 100vh;
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+}
+#background_4 {
     height: 100vh; /* ビューポートの高さに合わせる */
     background-size: 70vh;
     background-position: top; /* 中央に画像を配置 */
