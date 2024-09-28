@@ -34,11 +34,12 @@ function runCharactor() {
   var i = 0;
   var elem = document.getElementById("charactor");
   var img = ["chara/knight/run/Run_01.png", "chara/knight/run/Run_02.png", "chara/knight/run/Run_03.png", "chara/knight/run/Run_04.png", "chara/knight/run/Run_05.png", "chara/knight/run/Run_06.png", "chara/knight/run/Run_07.png", "chara/knight/run/Run_08.png"];
-  for (i = 0; i < img.length; i++) {
-    setTimeout(function() {
-      elem.src = img[i];
-    }, 1000);
+  function updateImage() {
+    elem.src = img[i];
+    i = (i + 1) % img.length;  // Loop back to the first image
   }
+
+  setInterval(updateImage, 100);  // Change image every 100ms (10 frames per second)
 }
 
 // ページ読み込み後に背景スクロールを開始
