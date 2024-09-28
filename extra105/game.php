@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+require_once('db.php');  // PDO接続を含むファイルを読み込む
 
 // タイムゾーンを日本時間に設定
 date_default_timezone_set('Asia/Tokyo');
@@ -12,13 +12,16 @@ $today = date('Y-m-d');
 $sql_ranking = "
     SELECT username, MAX(score) AS score
     FROM game_results
-    WHERE DATE(recorded_at) = '$today'
+    WHERE DATE(recorded_at) = :today
     GROUP BY username
     ORDER BY score DESC
     LIMIT 5
 ";
 
-$result_ranking = $conn->query($sql_ranking);
+$stmt = $pdo->prepare($sql_ranking);
+$stmt->execute(['today' => $today]);
+$ranking_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,8 +91,8 @@ $result_ranking = $conn->query($sql_ranking);
         <h3>今日のランキング</h3>        
         <ol>                    
             <?php               
-            if ($result_ranking->num_rows > 0) {
-                while ($row = $result_ranking->fetch_assoc()) {
+            if (count($ranking_results) > 0) {
+                foreach ($ranking_results as $row) {
                     // スコアにカンマを追加
                     echo "<li>" . htmlspecialchars($row['username']) . ": " . number_format($row['score']) . "</li>";
                 }               
