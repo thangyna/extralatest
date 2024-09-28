@@ -13,10 +13,34 @@ $username = $_SESSION['username'];
 <head>
     <title>モード選択画面</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .header {
+            position: relative;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .page-title {
+            font-size: inherit;
+            color: inherit;
+            font-weight: bold;
+            margin: 0;
+            text-align: left;
+        }
+        .welcome-message {
+            font-weight: bold;
+            margin: 0;
+        }
+        .mypage-button {
+            align-self: center;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-        <h2>ようこそ、<?php echo htmlspecialchars($username); ?> さん</h2>
+        <h2 class="page-title">トップページ</h2>
+        <h2 class="welcome-message">ようこそ、<?php echo htmlspecialchars($username); ?> さん</h2>
         <a href="mypage.php" class="mypage-button">マイページ</a>
     </div>
     <h2>モード選択</h2>

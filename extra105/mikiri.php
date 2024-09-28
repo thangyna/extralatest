@@ -19,13 +19,41 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" type="text/css" href="mikiri_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'DotGothic16';
+            src: url('DotGothic16-Regular.ttf') format('truetype');
+        }
+
         * {
             box-sizing: border-box;
+            font-family: 'DotGothic16', monospace;
         }
+
         body {
             overflow: hidden;
             background-color: #73A2AD;
         }
+
+        #user-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* フォントサイズの調整 */
+        h1 {
+            font-size: 28px;
+        }
+
+        #game-status, #letter-display, #result {
+            font-size: 18px;
+        }
+
+        /* その他の要素のフォントサイズも必要に応じて調整 */
     </style>
 </head>
 <body>
@@ -38,11 +66,15 @@ $username = $_SESSION['username'];
     <div id="ground" style="background-image:url(asset/ground_big.png)">
         <div id="game-container">
             <h1>刹那の見切り - キーボード版 test</h1>
+            <div id="user-info">ユーザー名: <?php echo htmlspecialchars($username); ?></div>
             <button id="playButton">
                 <img id="playButtonImage" src="button/play.png" alt="プレイ">
             </button>
             <button id="quitButton">
                 <img id="quitButtonImage" src="button/quit.png" alt="終了">
+            </button>
+            <button id="cancelButton" style="display: none;">
+                <img id="cancelButtonImage" src="button/cancel.png" alt="キャンセル">
             </button>
             <div id="game-status"></div>
             <div id="letter-display"></div>
@@ -86,6 +118,8 @@ $username = $_SESSION['username'];
                 let matchId = null;
                 let gameStarted = false;
                 let startTime;
+                let opponent = null;
+                let username = "<?php echo $username; ?>"; // PHPの変数をJavaScriptで使用できるようにする
 
                 $('#playButton').click(function() {
                     startMatching();
@@ -97,9 +131,14 @@ $username = $_SESSION['username'];
                     window.location.href = 'toppage.php';
                 });
 
+                $('#cancelButton').click(function() {
+                    cancelMatching();
+                });
+
                 function startMatching() {
                     $('#playButton').hide();
                     $('#quitButton').hide();
+                    $('#cancelButton').show();
                     $('#game-status').text('マッチング中...');
 
                     $.ajax({
@@ -108,13 +147,16 @@ $username = $_SESSION['username'];
                         data: { action: 'start_match' },
                         dataType: 'json',
                         success: function(data) {
+                            console.log('Start match response:', data); // デバッグ用ログ
                             if (data.status === 'joined' || data.status === 'created') {
                                 matchId = data.match_id;
                                 waitForOpponent(matchId);
                             } else {
+                                console.error('Unexpected response:', data); // デバッグ用ログ
                                 $('#game-status').text('エラーが発生しました。もう一度お試しください。');
                                 $('#playButton').show();
                                 $('#quitButton').show();
+                                $('#cancelButton').hide();
                             }
                         },
                         error: function(xhr, status, error) {
@@ -122,8 +164,35 @@ $username = $_SESSION['username'];
                             $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
                             $('#playButton').show();
                             $('#quitButton').show();
+                            $('#cancelButton').hide();
                         }
                     });
+                }
+
+                function cancelMatching() {
+                    if (matchId) {
+                        $.ajax({
+                            url: 'match.php',
+                            method: 'POST',
+                            data: { action: 'cancel_match', match_id: matchId },
+                            dataType: 'json',
+                            success: function(data) {
+                                if (data.status === 'cancelled') {
+                                    $('#game-status').text('マッチングをキャンセルしました。');
+                                    $('#playButton').show();
+                                    $('#quitButton').show();
+                                    $('#cancelButton').hide();
+                                    matchId = null;
+                                } else {
+                                    $('#game-status').text('キャンセルに失敗しました。');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Ajax error:', status, error);
+                                $('#game-status').text('通信エラーが発生しました。');
+                            }
+                        });
+                    }
                 }
 
                 function waitForOpponent(id) {
@@ -135,13 +204,25 @@ $username = $_SESSION['username'];
                         dataType: 'json',
                         success: function(data) {
                             if (data.status === 'ready') {
-                                startGame(id);
+                                $('#cancelButton').hide();
+                                opponent = data.opponent;
+                                if (opponent === username) {
+                                    $('#game-status').text('エラーが発生しました。もう一度お試しください。');
+                                    $('#playButton').show();
+                                    $('#quitButton').show();
+                                    return;
+                                }
+                                $('#game-status').html(`${username} vs ${opponent}<br>対戦相手が見つかりました。`);
+                                setTimeout(function() {
+                                    startGame(id);
+                                }, 3000); // 3秒間表示してからゲームを開始
                             } else if (data.status === 'waiting') {
                                 setTimeout(function() { waitForOpponent(id); }, 1000);
                             } else {
                                 $('#game-status').text('エラーが発生しました。もう一度お試しください。');
                                 $('#playButton').show();
                                 $('#quitButton').show();
+                                $('#cancelButton').hide();
                             }
                         },
                         error: function(xhr, status, error) {
@@ -149,12 +230,13 @@ $username = $_SESSION['username'];
                             $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
                             $('#playButton').show();
                             $('#quitButton').show();
+                            $('#cancelButton').hide();
                         }
                     });
                 }
 
                 function startGame(id) {
-                    $('#game-status').text('対戦相手が見つかりました。ゲームを開始します。');
+                    $('#game-status').append('<br>ゲームを開始します。');
                     
                     $.ajax({
                         url: 'match.php',
@@ -164,7 +246,7 @@ $username = $_SESSION['username'];
                         success: function(data) {
                             if (data.status === 'success' && data.letter) {
                                 setTimeout(function() {
-                                    $('#game-status').text('いざ勝負');
+                                    $('#game-status').append('<br>いざ勝負');
                                     $('#letter-display').text(data.letter.toUpperCase()).css('font-size', '72px');
                                     startTime = new Date().getTime();
                                     gameStarted = true;

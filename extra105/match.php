@@ -16,9 +16,9 @@ try {
     $username = $_SESSION['username'];
 
     if ($_POST['action'] === 'start_match') {
-        // 空いている部屋を探す
-        $stmt = $pdo->prepare("SELECT id FROM matches WHERE player2 IS NULL AND status = 'waiting' LIMIT 1");
-        $stmt->execute();
+        // 空いている部屋を探す（自分以外のプレイヤーの部屋）
+        $stmt = $pdo->prepare("SELECT id FROM matches WHERE player2 IS NULL AND status = 'waiting' AND player1 != ? LIMIT 1");
+        $stmt->execute([$username]);
         $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($room) {
@@ -44,7 +44,8 @@ try {
                 // player2 が参加したら、ステータスを 'ready' に更新
                 $stmt = $pdo->prepare("UPDATE matches SET status = 'ready' WHERE id = ?");
                 $stmt->execute([$matchId]);
-                echo json_encode(['status' => 'ready', 'match_id' => $matchId]);
+                $opponent = ($match['player1'] === $username) ? $match['player2'] : $match['player1'];
+                echo json_encode(['status' => 'ready', 'match_id' => $matchId, 'opponent' => $opponent]);
             } else {
                 echo json_encode(['status' => 'waiting']);
             }
@@ -100,6 +101,20 @@ try {
             }
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Match not found']);
+        }
+    } elseif ($_POST['action'] === 'cancel_match') {
+        $matchId = $_POST['match_id'];
+        
+        $stmt = $pdo->prepare("SELECT player1, player2, status FROM matches WHERE id = ?");
+        $stmt->execute([$matchId]);
+        $match = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($match && $match['status'] === 'waiting' && $match['player1'] === $username) {
+            $stmt = $pdo->prepare("DELETE FROM matches WHERE id = ?");
+            $stmt->execute([$matchId]);
+            echo json_encode(['status' => 'cancelled']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Cannot cancel match']);
         }
     } else {
         throw new Exception('Invalid action');
