@@ -23,7 +23,7 @@ $username = $_SESSION['username'];
     <div class="mode-buttons">
         <!-- 各モードへのボタン -->
         <button onclick="location.href='game.php'">タイピング</button>
-        <button onclick="location.href='setunanomikiri.php'">刹那の見切り - キーボード版</button>
+        <button onclick="location.href='mikiri.php'">刹那の見切り - キーボード版</button>
 
         <!-- ボタンを追加したい場合は以下にコピー -->
         <!--
