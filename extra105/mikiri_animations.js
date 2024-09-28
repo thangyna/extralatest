@@ -39,6 +39,7 @@ function runCharactor() {
   if (i >= img.length) {
     i = 0;
   }
+  console.log("run img:"+i);
   requestAnimationFrame(runCharactor);
 }
 
