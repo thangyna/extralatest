@@ -10,7 +10,7 @@ $username = $_SESSION['username'];
 <html>
 <head>
     <title>刹那の見切り - キーボード版</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="/mikiri_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
