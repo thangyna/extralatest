@@ -8,7 +8,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     echo "running on localhost";
 }
 else {
-    $username = 'root';
+    $username = 'cf760008_aioi';
     $password = 'makoto66';
     $dbname = 'cf760008_typing';
     echo "running on server";
