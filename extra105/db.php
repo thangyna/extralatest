@@ -5,13 +5,11 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $password = 'obrien'; // or your password
     $dbname = 'typing_game';
     $conn = new mysqli($host, $username, $password, $dbname);
-    echo "running on localhost";
 }
 else {
     $username = 'cf760008_aioi';
     $password = 'makoto66';
     $dbname = 'cf760008_typing';
-    echo "running on server";
 }
 
 try {
