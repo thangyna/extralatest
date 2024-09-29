@@ -45,14 +45,40 @@ function animateCharactor() {
     var img = characterImages[characterState][i];
     chara.src = img;
     i = (i + 1) % characterImages[characterState].length;
+    switch (characterState) {
+      case 'run':
+        break;
+      case 'attack':
+        // 攻撃アニメーションの途中で、キャラクターを右に移動させる
+        if (i === 4)
+          moveCharacter("80%", "0.1");
+        // ヒットストップ
+        if (i === characterImages[characterState].length - 1) {
+          //await sleep(1000);  // 1秒待つ
+        }
+        // 攻撃アニメーションが終わったら、ステートを 'run' に戻す
+        if (i === 0) {
+          setAnimationState('run');
+          moveCharacter("30%", "5")
+        }
+        break;
+      }
   }
 
   setInterval(updateImage, 100);  // Change image every 100ms (10 frames per second)
 }
 
+// キャラクターのアニメーションステートを設定する関数
 function setAnimationState(state) {
   characterState = state;
   i = 0;
+}
+
+// キャラクターを移動させる関数
+function moveCharacter(where, speed) {
+  var character = document.getElementById("character");
+  character.style.transition = "left " + speed +"s";  // 1秒かけて移動
+  character.style.left = where;
 }
 
 // ページ読み込み後に背景スクロールを開始
