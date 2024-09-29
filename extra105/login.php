@@ -41,10 +41,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <p><?php echo $error; ?></p>
     <a href="register.php">アカウント作成</a>
-    <script>
-        if ($_SERVER['HTTP_HOST'] != 'localhost') {
-            console.log('running on localhost');
-        }
-    </script>
 </body>
 </html>

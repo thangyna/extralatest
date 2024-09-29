@@ -19,3 +19,12 @@ try {
     die("Could not connect to the database $dbname :" . $e->getMessage());
 }
 ?>
+
+<DOCTYPE html>
+<html>
+    <script>
+        if ($_SERVER['HTTP_HOST'] != 'localhost') {
+            console.log('running on localhost');
+        }
+    </script>
+<html>
