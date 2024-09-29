@@ -76,15 +76,16 @@ try {
         $match = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($match) {
-            $winner = 'draw';
             $yourTime = ($match['player1'] === $username) ? $match['player1_time'] : $match['player2_time'];
             $opponentTime = ($match['player1'] === $username) ? $match['player2_time'] : $match['player1_time'];
 
             if ($match['player1_time'] > 0 && $match['player2_time'] > 0) {
-                if ($match['player1_time'] < $match['player2_time']) {
-                    $winner = $match['player1'];
-                } elseif ($match['player2_time'] < $match['player1_time']) {
-                    $winner = $match['player2'];
+                if ($yourTime < $opponentTime) {
+                    $winner = $username;
+                } elseif ($opponentTime < $yourTime) {
+                    $winner = ($match['player1'] === $username) ? $match['player2'] : $match['player1'];
+                } else {
+                    $winner = 'draw';
                 }
 
                 $stmt = $pdo->prepare("UPDATE matches SET status = 'completed' WHERE id = ?");
@@ -95,7 +96,7 @@ try {
                     'winner' => $winner,
                     'your_time' => floatval($yourTime),
                     'opponent_time' => floatval($opponentTime),
-                    'you_won' => ($yourTime < $opponentTime)
+                    'you_won' => ($yourTime <= $opponentTime)
                 ]);
             } else {
                 echo json_encode(['status' => 'waiting']);

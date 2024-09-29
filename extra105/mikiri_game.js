@@ -165,8 +165,8 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 if (data.status === 'success' && data.letter) {
+                    $('#game-status').append('<br>いざ勝負');
                     setTimeout(function() {
-                        $('#game-status').append('<br>いざ勝負');
                         $('#letter-display').text(data.letter.toUpperCase()).css('font-size', '72px');
                         startTime = new Date().getTime();
                         gameStarted = true;
@@ -252,30 +252,28 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 if (data.status === 'completed') {
-                    if (data.winner === '<?php echo $username; ?>') {
-                        $('#result').append('<br>あなたの勝ち！');
-                    } else if (data.winner === 'draw') {
-                        $('#result').append('<br>引き分け！');
+                    let resultMessage = ''
+                    if (data.you_won) {
+                        resultMessage = '勝利！'
+                    } else if (data.your_time === data.opponent_time) {
+                        resultMessage = '引き分け！'
                     } else {
-                        $('#result').append('<br>あなたの負け...');
+                        resultMessage = '敗北...'
                     }
-                    if (data.opponent_time !== null) {
-                        const opponentTime = parseFloat(data.opponent_time);
-                        $('#result').append(`<br>相手の反応時間: ${opponentTime.toFixed(4)}秒`);
-                    } else {
-                        $('#result').append('<br>相手の反応時間: まだ記録されていません');
-                    }
-                    $('#playButton').show().text('もう一度マッチング');
-                    $('#quitButton').show();
+                    $('#result').html(`結果: ${resultMessage}<br>あなたの時間: ${data.your_time.toFixed(3)}秒<br>相手の時間: ${data.opponent_time.toFixed(3)}秒`)
+                    $('#playButton').show().text('もう一度マッチング')
+                    $('#quitButton').show()
+                } else if (data.status === 'waiting') {
+                    setTimeout(checkGameResult, 1000)
                 } else {
-                    setTimeout(checkGameResult, 1000);
+                    $('#result').text('エラーが発生しました。')
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Ajax error:', status, error);
-                $('#result').text('結果の取得中にエラーが発生しました。');
+                console.error('Ajax error:', status, error)
+                $('#result').text('結果の取得中にエラーが発生しました。')
             }
-        });
+        })
     }
 });
 
