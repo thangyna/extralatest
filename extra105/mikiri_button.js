@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.addEventListener('mousedown', () => {
         changeImage('play');
         // ここから関数を呼ぶ
+        setAnimationState('attack');
     });
     // マウスのボタンが離されたときの処理
     playButton.addEventListener('mouseup', () => resetImage('play'));
