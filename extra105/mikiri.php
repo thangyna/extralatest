@@ -21,7 +21,7 @@ $username = $_SESSION['username'];
     <style>
         @font-face {
             font-family: 'DotGothic16';
-            src: url('DotGothic16-Regular.ttf') format('truetype');
+            src: url('fonts/DotGothic16-Regular.ttf') format('truetype');
         }
 
         * {
@@ -74,13 +74,13 @@ $username = $_SESSION['username'];
                 <img id="quitButtonImage" src="button/quit.png" alt="終了">
             </button>
             <button id="cancelButton" style="display: none;">
-                <img id="cancelButtonImage" src="button/cancel.png" alt="キャンセル">
+                <img id="cancelButtonImage" src="button/mini/green_x_up.png" alt="キャンセル">
             </button>
             <div id="game-status"></div>
             <div id="letter-display"></div>
             <div id="result"></div>
             <script src="mikiri_button.js"></script>
-            <img src="chara/knight/run/Run_01.png" id="character" style="top:(50%-250px)"></div>
+            <img src="chara/knight/run/Run_0.png" id="character"></div>
             <div class="keyboard-container">
                 <img src="keyboard/keyboard.png" id="keyboard" alt="キーボード" style = "height:auto;">
                 <img src="keyboard/A.png" id="A" alt="A" style = "display:none;height:auto;">
@@ -113,248 +113,7 @@ $username = $_SESSION['username'];
                 <img src="keyboard/leter.png" alt="leter" style = "height:auto">
             </div>
             <script src="mikiri_animations.js"></script>
-            <script>
-            $(document).ready(function() {
-                let matchId = null;
-                let gameStarted = false;
-                let startTime;
-                let opponent = null;
-                let username = "<?php echo $username; ?>"; // PHPの変数をJavaScriptで使用できるようにする
-
-                $('#playButton').click(function() {
-                    startMatching();
-                    $('#result').text('');
-                    $('#letter-display').text('');
-                });
-
-                $('#quitButton').click(function() {
-                    window.location.href = 'toppage.php';
-                });
-
-                $('#cancelButton').click(function() {
-                    cancelMatching();
-                });
-
-                function startMatching() {
-                    $('#playButton').hide();
-                    $('#quitButton').hide();
-                    $('#cancelButton').show();
-                    $('#game-status').text('マッチング中...');
-
-                    $.ajax({
-                        url: 'match.php',
-                        method: 'POST',
-                        data: { action: 'start_match' },
-                        dataType: 'json',
-                        success: function(data) {
-                            console.log('Start match response:', data); // デバッグ用ログ
-                            if (data.status === 'joined' || data.status === 'created') {
-                                matchId = data.match_id;
-                                waitForOpponent(matchId);
-                            } else {
-                                console.error('Unexpected response:', data); // デバッグ用ログ
-                                $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                                $('#playButton').show();
-                                $('#quitButton').show();
-                                $('#cancelButton').hide();
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Ajax error:', status, error);
-                            $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
-                            $('#playButton').show();
-                            $('#quitButton').show();
-                            $('#cancelButton').hide();
-                        }
-                    });
-                }
-
-                function cancelMatching() {
-                    if (matchId) {
-                        $.ajax({
-                            url: 'match.php',
-                            method: 'POST',
-                            data: { action: 'cancel_match', match_id: matchId },
-                            dataType: 'json',
-                            success: function(data) {
-                                if (data.status === 'cancelled') {
-                                    $('#game-status').text('マッチングをキャンセルしました。');
-                                    $('#playButton').show();
-                                    $('#quitButton').show();
-                                    $('#cancelButton').hide();
-                                    matchId = null;
-                                } else {
-                                    $('#game-status').text('キャンセルに失敗しました。');
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('Ajax error:', status, error);
-                                $('#game-status').text('通信エラーが発生しました。');
-                            }
-                        });
-                    }
-                }
-
-                function waitForOpponent(id) {
-                    $('#game-status').text('対戦相手を待っています...');
-                    $.ajax({
-                        url: 'match.php',
-                        method: 'POST',
-                        data: { action: 'check_match', match_id: id },
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.status === 'ready') {
-                                $('#cancelButton').hide();
-                                opponent = data.opponent;
-                                if (opponent === username) {
-                                    $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                                    $('#playButton').show();
-                                    $('#quitButton').show();
-                                    return;
-                                }
-                                $('#game-status').html(`${username} vs ${opponent}<br>対戦相手が見つかりました。`);
-                                setTimeout(function() {
-                                    startGame(id);
-                                }, 3000); // 3秒間表示してからゲームを開始
-                            } else if (data.status === 'waiting') {
-                                setTimeout(function() { waitForOpponent(id); }, 1000);
-                            } else {
-                                $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                                $('#playButton').show();
-                                $('#quitButton').show();
-                                $('#cancelButton').hide();
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Ajax error:', status, error);
-                            $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
-                            $('#playButton').show();
-                            $('#quitButton').show();
-                            $('#cancelButton').hide();
-                        }
-                    });
-                }
-
-                function startGame(id) {
-                    $('#game-status').append('<br>ゲームを開始します。');
-                    
-                    $.ajax({
-                        url: 'match.php',
-                        method: 'POST',
-                        data: { action: 'get_letter', match_id: id },
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.status === 'success' && data.letter) {
-                                setTimeout(function() {
-                                    $('#game-status').append('<br>いざ勝負');
-                                    $('#letter-display').text(data.letter.toUpperCase()).css('font-size', '72px');
-                                    startTime = new Date().getTime();
-                                    gameStarted = true;
-                                    listenForKeyPress();
-                                }, 3000);
-                            } else {
-                                console.error('Failed to get letter:', data);
-                                $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Ajax error:', status, error);
-                            $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
-                        }
-                    });
-                }
-
-                function listenForKeyPress() {
-                    $(document).on('keypress', function(e) {
-                        if (gameStarted) {
-                            const pressedKey = String.fromCharCode(e.which).toLowerCase();
-                            const displayedLetter = $('#letter-display').text().toLowerCase();
-
-                            if (pressedKey === displayedLetter) {
-                                gameStarted = false;
-                                const endTime = new Date().getTime();
-                                const reactionTime = (endTime - startTime) / 1000;
-
-                                console.log('Sending reaction time:', reactionTime);
-
-                                $.ajax({
-                                    url: 'match.php',
-                                    method: 'POST',
-                                    data: { 
-                                        action: 'submit_time', 
-                                        match_id: matchId,
-                                        reaction_time: reactionTime
-                                    },
-                                    dataType: 'json',
-                                    success: function(data) {
-                                        console.log('Server response:', data);
-                                        if (data.status === 'success') {
-                                            $('#result').text(`あなたの反応時間: ${reactionTime.toFixed(4)}秒`);
-                                            $('#letter-display').text('');
-                                            checkGameResult();
-                                        } else {
-                                            console.error('Error:', data.message);
-                                            $('#result').text('エラーが発生しました。もう一度お試しください。');
-                                        }
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.error('Ajax error:', status, error);
-                                        $('#result').text('通信エラーが発生しました。もう一度お試しください。');
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-
-                document.addEventListener('visibilitychange', function() {
-                    if (!document.hidden && gameStarted) {
-                        $.ajax({
-                            url: 'match.php',
-                            method: 'POST',
-                            data: { action: 'update_time', match_id: matchId },
-                            success: function(response) {
-                                console.log('Time updated');
-                            }
-                        });
-                    }
-                });
-
-                function checkGameResult() {
-                    $.ajax({
-                        url: 'match.php',
-                        method: 'POST',
-                        data: { action: 'check_result', match_id: matchId },
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.status === 'completed') {
-                                if (data.winner === '<?php echo $username; ?>') {
-                                    $('#result').append('<br>あなたの勝ち！');
-                                } else if (data.winner === 'draw') {
-                                    $('#result').append('<br>引き分け！');
-                                } else {
-                                    $('#result').append('<br>あなたの負け...');
-                                }
-                                if (data.opponent_time !== null) {
-                                    const opponentTime = parseFloat(data.opponent_time);
-                                    $('#result').append(`<br>相手の反応時間: ${opponentTime.toFixed(4)}秒`);
-                                } else {
-                                    $('#result').append('<br>相手の反応時間: まだ記録されていません');
-                                }
-                                $('#playButton').show().text('もう一度マッチング');
-                                $('#quitButton').show();
-                            } else {
-                                setTimeout(checkGameResult, 1000);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Ajax error:', status, error);
-                            $('#result').text('結果の取得中にエラーが発生しました。');
-                        }
-                    });
-                }
-            });
-            </script>
+            <script src="mikiri_game.js"></script>
         </div>
     </div>
     </div>

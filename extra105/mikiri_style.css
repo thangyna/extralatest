@@ -1,13 +1,6 @@
-@font-face {
-    font-family: "Pixeled";
-    src: url('/fonts/Pixeled.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
 /* サイトセッティング */
 body {
     text-align: center;
-    font-family: "Pixeled", sans-serif;
     background-color: #f4f4f4;
 }
 
@@ -72,7 +65,7 @@ body, html {
 /* キャラクター */
 #character {
     position: absolute;
-    top: (50% - 270px);
+    top: 24.3%;
     left: 30%;
     width: 500px;
     transform: translateX(-50%);
@@ -126,14 +119,9 @@ button {
     display: block;
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }
-
-/* ユーザー名の表示 */
-#user-info {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
+#cancelButtonImage {
+    height: 200px; 
+    height: auto;
+    display: block;
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }

@@ -1,14 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.getElementById('playButton');
     const quitButton = document.getElementById('quitButton');
+    const cancelButton = document.getElementById('cancelButton');
     const playButtonImage = document.getElementById('playButtonImage');
     const quitButtonImage = document.getElementById('quitButtonImage');
+    const cancelButtonImage = document.getElementById('cancelButtonImage');
 
     function changeImage(button) {
         if (button === 'play') {
             playButtonImage.src = 'button/play_down.png';
         } else if (button === 'quit') {
             quitButtonImage.src = 'button/quit_down.png';
+        } else if (button === 'cancel') {
+            cancelButtonImage.src = 'button/mini/green_x_down.png';
         }
     }
 
@@ -17,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             playButtonImage.src = 'button/play.png';
         } else if (button === 'quit') {
             quitButtonImage.src = 'button/quit.png';
+        } else if (button === 'cancel') {
+            cancelButtonImage.src = 'button/green_x_up.png';
         }
     }
     

@@ -4,6 +4,16 @@ var posX3 = 0;
 var posX4 = 0;
 var skyX = 0;
 
+
+// current img frame
+var i = 0;
+const chara = document.getElementById("character");
+var characterState = 'run';  // 初期ステートを 'run' に設定
+const characterImages = {
+  run: ["chara/knight/run/Run_0.png", "chara/knight/run/Run_1.png", "chara/knight/run/Run_2.png", "chara/knight/run/Run_3.png", "chara/knight/run/Run_4.png", "chara/knight/run/Run_5.png", "chara/knight/run/Run_6.png", "chara/knight/run/Run_7.png"],
+  attack: ["chara/knight/attack/Attack_0.png", "chara/knight/attack/Attack_1.png", "chara/knight/attack/Attack_2.png", "chara/knight/attack/Attack_3.png", "chara/knight/attack/Attack_4.png", "chara/knight/attack/Attack_5.png", "chara/knight/attack/Attack_6.png"]
+};
+
 /*--------------------------------------------------
   背景をスクロールする関数
 --------------------------------------------------*/
@@ -30,20 +40,23 @@ function scrollBackground() {
   requestAnimationFrame(scrollBackground);  // アニメーションを継続
 }
 
-function runCharactor() {
-  var i = 0;
-  var elem = document.getElementById("character");
-  var img = ["chara/knight/run/Run_01.png", "chara/knight/run/Run_02.png", "chara/knight/run/Run_03.png", "chara/knight/run/Run_04.png", "chara/knight/run/Run_05.png", "chara/knight/run/Run_06.png", "chara/knight/run/Run_07.png", "chara/knight/run/Run_08.png"];
+function animateCharactor() {
   function updateImage() {
-    elem.src = img[i];
-    i = (i + 1) % img.length;  // Loop back to the first image
+    var img = characterImages[characterState][i];
+    chara.src = img;
+    i = (i + 1) % characterImages[characterState].length;
   }
 
   setInterval(updateImage, 100);  // Change image every 100ms (10 frames per second)
 }
 
+function setAnimationState(state) {
+  characterState = state;
+  i = 0;
+}
+
 // ページ読み込み後に背景スクロールを開始
 window.onload = function() {
   requestAnimationFrame(scrollBackground);
-  requestAnimationFrame(runCharactor);
+  requestAnimationFrame(animateCharactor);
 };
