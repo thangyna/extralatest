@@ -10,6 +10,7 @@ else {
     $username = 'cf760008_aioi';
     $password = 'makoto66';
     $dbname = 'cf760008_typing';
+    $conn = new mysqli($host, $username, $password, $dbname);
 }
 
 try {
