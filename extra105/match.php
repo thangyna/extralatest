@@ -94,7 +94,8 @@ try {
                     'status' => 'completed',
                     'winner' => $winner,
                     'your_time' => floatval($yourTime),
-                    'opponent_time' => floatval($opponentTime)
+                    'opponent_time' => floatval($opponentTime),
+                    'you_won' => ($yourTime < $opponentTime)
                 ]);
             } else {
                 echo json_encode(['status' => 'waiting']);

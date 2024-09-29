@@ -278,3 +278,34 @@ $(document).ready(function() {
         });
     }
 });
+
+function checkResult(matchId) {
+    $.ajax({
+        url: 'match.php',
+        method: 'POST',
+        data: { action: 'check_result', match_id: matchId },
+        dataType: 'json',
+        success: function(data) {
+            if (data.status === 'completed') {
+                let resultMessage = '';
+                if (data.you_won) {
+                    resultMessage = '勝利！';
+                } else if (data.your_time === data.opponent_time) {
+                    resultMessage = '引き分け！';
+                } else {
+                    resultMessage = '敗北...';
+                }
+                $('#result').html(`結果: ${resultMessage}<br>あなたの時間: ${data.your_time.toFixed(3)}秒<br>相手の時間: ${data.opponent_time.toFixed(3)}秒`);
+                gameEnded = true;
+            } else if (data.status === 'waiting') {
+                setTimeout(function() { checkResult(matchId); }, 1000);
+            } else {
+                $('#result').text('エラーが発生しました。');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Ajax error:', status, error);
+            $('#result').text('通信エラーが発生しました。');
+        }
+    });
+}
