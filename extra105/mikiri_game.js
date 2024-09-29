@@ -192,6 +192,7 @@ $(document).ready(function() {
                 
                 // キーボードのハイライトを表示
                 key[displayedLetter].style.display = 'block';
+                setAnimationState('attack');
 
                 if (pressedKey === displayedLetter) {
                     gameStarted = false;
