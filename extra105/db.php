@@ -5,6 +5,11 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $password = 'obrien'; // or your password
     $dbname = 'cf760008_typing';
 }
+elseif ($_SERVER['HTTP_HOST'] == 'localhost:8080') {
+    $username = 'root';
+    $password = 'makoto66'; // or your password
+    $dbname = 'cf760008_typing';
+}
 else {
     $username = 'cf760008_aioi';
     $password = 'makoto66';
