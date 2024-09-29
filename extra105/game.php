@@ -27,12 +27,26 @@ $ranking_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 <head>
     <title>タイピングゲーム</title>
-    
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .header {
+            position: relative;
+            padding-top: 10px;
+        }
+        .page-title {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: inherit;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-        <span>ログイン中: <?php echo $_SESSION['username']; ?></span>
+        <div class="page-title">タイピングゲームページ</div>
+        <span style="margin-left: 200px;">ログイン中: <?php echo $_SESSION['username']; ?></span>
         <a href="mypage.php">マイページ</a>
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
             <a href="admin.php">管理者ページ</a>
