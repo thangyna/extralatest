@@ -18,3 +18,7 @@
 [28-Sep-2024 10:29:02 Europe/Berlin] Received reaction time: 1.685 for match ID: 3
 [28-Sep-2024 10:29:12 Europe/Berlin] Received reaction time: 1.523 for match ID: 3
 [28-Sep-2024 10:30:14 Europe/Berlin] Received reaction time: 0.882 for match ID: 3
+[29-Sep-2024 04:17:30 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'typing_game.matches' doesn't exist
+[29-Sep-2024 04:17:31 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'typing_game.matches' doesn't exist
+[29-Sep-2024 04:17:31 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'typing_game.matches' doesn't exist
+[29-Sep-2024 04:17:33 Europe/Berlin] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'typing_game.matches' doesn't exist
