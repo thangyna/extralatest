@@ -1,3 +1,34 @@
+// キーボードの表示
+const keyboard = document.getElementById('keyboard');
+const key = {
+    "a": document.getElementById("A"),
+    "b": document.getElementById("B"),
+    "c": document.getElementById("C"),
+    "d": document.getElementById("D"),
+    "e": document.getElementById("E"),
+    "f": document.getElementById("F"),
+    "g": document.getElementById("G"),
+    "h": document.getElementById("H"),
+    "i": document.getElementById("I"),
+    "j": document.getElementById("J"),
+    "k": document.getElementById("K"),
+    "l": document.getElementById("L"),
+    "m": document.getElementById("M"),
+    "n": document.getElementById("N"),
+    "o": document.getElementById("O"),
+    "p": document.getElementById("P"),
+    "q": document.getElementById("Q"),
+    "r": document.getElementById("R"),
+    "s": document.getElementById("S"),
+    "t": document.getElementById("T"),
+    "u": document.getElementById("U"),
+    "v": document.getElementById("V"),
+    "w": document.getElementById("W"),
+    "x": document.getElementById("X"),
+    "y": document.getElementById("Y"),
+    "z": document.getElementById("Z"),
+    "-": document.getElementById("hyphen")
+};
 
 $(document).ready(function() {
     let matchId = null;
@@ -122,6 +153,10 @@ $(document).ready(function() {
 
     function startGame(id) {
         $('#game-status').append('<br>ゲームを開始します。');
+        // キーボードのハイライトを非表示
+        for (_key in key) {
+            key[_key].style.display = 'none';
+        }
         
         $.ajax({
             url: 'match.php',
@@ -154,6 +189,9 @@ $(document).ready(function() {
             if (gameStarted) {
                 const pressedKey = String.fromCharCode(e.which).toLowerCase();
                 const displayedLetter = $('#letter-display').text().toLowerCase();
+                
+                // キーボードのハイライトを表示
+                key[displayedLetter].style.display = 'block';
 
                 if (pressedKey === displayedLetter) {
                     gameStarted = false;
