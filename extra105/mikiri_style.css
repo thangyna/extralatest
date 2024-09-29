@@ -120,8 +120,8 @@ button {
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }
 #cancelButtonImage {
-    height: 200px; 
-    height: auto;
+    height: 50px;
+    width: auto;
     display: block;
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }
