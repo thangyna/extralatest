@@ -5,6 +5,7 @@ var posX4 = 0;
 var skyX = 0;
 
 //maximum2
+//the holmon
 // current img frame
 var i = 0;
 var isPlaying = true;
