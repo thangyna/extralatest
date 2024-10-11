@@ -4,7 +4,7 @@ var posX3 = 0;
 var posX4 = 0;
 var skyX = 0;
 
-//maximum holmon
+//maximum2
 // current img frame
 var i = 0;
 var isPlaying = true;
