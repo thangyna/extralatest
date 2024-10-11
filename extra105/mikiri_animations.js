@@ -49,6 +49,7 @@ function animateCharactor() {
     if (isPlaying) {
       i = (i + 1) % characterImages[characterState].length;
       console.log("img update" + i);
+      // is this ok?????????????
     }
     switch (characterState) {
       case 'run':
