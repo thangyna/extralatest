@@ -46,7 +46,9 @@ function animateCharactor() {
   function updateImage() {
     var img = characterImages[characterState][i];
     chara.src = img;
-    i = (i + 1) % characterImages[characterState].length;
+    if (isPlaying) {
+      i = (i + 1) % characterImages[characterState].length;
+    }
     switch (characterState) {
       case 'run':
         break;
