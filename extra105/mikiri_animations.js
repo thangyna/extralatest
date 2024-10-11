@@ -8,10 +8,11 @@ var skyX = 0;
 // current img frame
 var i = 0;
 const chara = document.getElementById("character");
-var characterState = 'run';  // 初期ステートを 'run' に設定
+var characterState = 'death';  // 初期ステートを 'run' に設定
 const characterImages = {
   run: ["chara/knight/run/Run_0.png", "chara/knight/run/Run_1.png", "chara/knight/run/Run_2.png", "chara/knight/run/Run_3.png", "chara/knight/run/Run_4.png", "chara/knight/run/Run_5.png", "chara/knight/run/Run_6.png", "chara/knight/run/Run_7.png"],
-  attack: ["chara/knight/attack/Attack_0.png", "chara/knight/attack/Attack_1.png", "chara/knight/attack/Attack_2.png", "chara/knight/attack/Attack_3.png", "chara/knight/attack/Attack_4.png", "chara/knight/attack/Attack_5.png", "chara/knight/attack/Attack_6.png"]
+  attack: ["chara/knight/attack/Attack_0.png", "chara/knight/attack/Attack_1.png", "chara/knight/attack/Attack_2.png", "chara/knight/attack/Attack_3.png", "chara/knight/attack/Attack_4.png", "chara/knight/attack/Attack_5.png", "chara/knight/attack/Attack_6.png"],
+  death: ["chara/knight/death/Death_01.png", "chara/knight/death/Death_02.png", "chara/knight/death/Death_02.png","chara/knight/death/Death_03.png","chara/knight/death/Death_04.png","chara/knight/death/Death_05.png","chara/knight/death/Death_06.png","chara/knight/death/Death_07.png","chara/knight/death/Death_10.png","chara/knight/death/Death_11.png"]
 };
 
 /*--------------------------------------------------
@@ -62,6 +63,8 @@ function animateCharactor() {
           moveCharacter("30%", "5")
         }
         break;
+      case 'death':
+        break;
       }
   }
 
@@ -77,7 +80,7 @@ function setAnimationState(state) {
 // キャラクターを移動させる関数
 function moveCharacter(where, speed) {
   var character = document.getElementById("character");
-  character.style.transition = "left " + speed +"s";  // 1秒かけて移動
+  character.style.transition = "left " + speed + "s";  // 1秒かけて移動
   character.style.left = where;
 }
 
