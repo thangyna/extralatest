@@ -48,6 +48,7 @@ function animateCharactor() {
     chara.src = img;
     if (isPlaying) {
       i = (i + 1) % characterImages[characterState].length;
+      console.log("img update" + i);
     }
     switch (characterState) {
       case 'run':
@@ -67,7 +68,7 @@ function animateCharactor() {
         }
         break;
       case 'death':
-        if (i == characterImages['death'].length) {
+        if (i === characterImages['death'].length) {
           console.log("stop game");
           isPlaying = false;
         }
