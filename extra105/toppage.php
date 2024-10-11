@@ -52,6 +52,7 @@ $username = $_SESSION['username'];
         <!-- ボタンを追加したい場合は以下にコピー -->
         <!--
         <button onclick="location.href='ここにURLを入力'">ここにモードの名前を入力</button>
+        <button onclick="location.href='ここにURLを入力'">ここにモードの名前を入力</button>2
         -->
     </div>
 </body>
