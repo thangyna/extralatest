@@ -67,7 +67,7 @@ function animateCharactor() {
         }
         break;
       case 'death':
-        if (i == characterImages[death].length) {
+        if (i == characterImages['death'].length) {
           console.log("stop game");
           isPlaying = false;
         }
