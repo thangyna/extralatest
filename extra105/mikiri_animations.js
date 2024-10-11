@@ -7,6 +7,7 @@ var skyX = 0;
 //maximum holmon
 // current img frame
 var i = 0;
+var isPlaying = true;
 const chara = document.getElementById("character");
 var characterState = 'death';  // 初期ステートを 'run' に設定
 const characterImages = {
@@ -64,6 +65,9 @@ function animateCharactor() {
         }
         break;
       case 'death':
+        if (i == characterImages[death].length) {
+          isPlaying = false;
+        }
         break;
       }
   }
