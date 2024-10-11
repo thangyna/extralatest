@@ -8,13 +8,15 @@ var skyX = 0;
 //the holmon
 // current img frame
 var i = 0;
+var imageFrame = 100;
 var isPlaying = true;
 const chara = document.getElementById("character");
-var characterState = 'death';  // 初期ステートを 'run' に設定
+var characterState = 'run';  // 初期ステートを 'run' に設定
+
 const characterImages = {
   run: ["chara/knight/run/Run_0.png", "chara/knight/run/Run_1.png", "chara/knight/run/Run_2.png", "chara/knight/run/Run_3.png", "chara/knight/run/Run_4.png", "chara/knight/run/Run_5.png", "chara/knight/run/Run_6.png", "chara/knight/run/Run_7.png"],
   attack: ["chara/knight/attack/Attack_0.png", "chara/knight/attack/Attack_1.png", "chara/knight/attack/Attack_2.png", "chara/knight/attack/Attack_3.png", "chara/knight/attack/Attack_4.png", "chara/knight/attack/Attack_5.png", "chara/knight/attack/Attack_6.png"],
-  death: ["chara/knight/death/Death_01.png", "chara/knight/death/Death_02.png", "chara/knight/death/Death_02.png","chara/knight/death/Death_03.png","chara/knight/death/Death_04.png","chara/knight/death/Death_05.png","chara/knight/death/Death_06.png","chara/knight/death/Death_07.png","chara/knight/death/Death_10.png","chara/knight/death/Death_11.png"]
+  death: ["chara/knight/death/Death_01.png", "chara/knight/death/Death_02.png", "chara/knight/death/Death_03.png","chara/knight/death/Death_04.png","chara/knight/death/Death_05.png","chara/knight/death/Death_06.png","chara/knight/death/Death_07.png","chara/knight/death/Death_08.png","chara/knight/death/Death_09.png","chara/knight/death/Death_10.png","chara/knight/death/Death_11.png"]
 };
 
 /*--------------------------------------------------
@@ -43,24 +45,29 @@ function scrollBackground() {
   requestAnimationFrame(scrollBackground);  // アニメーションを継続
 }
 
+function isLastFrame(i) {
+  return i === characterImages[characterState].length -1
+}
+
 function animateCharactor() {
   function updateImage() {
     var img = characterImages[characterState][i];
     chara.src = img;
     if (isPlaying) {
       i = (i + 1) % characterImages[characterState].length;
-      console.log("img update" + i);
-      // is this ok?????????????
     }
     switch (characterState) {
       case 'run':
+        if (isLastFrame(i)) {
+          setAnimationState('death');
+        }
         break;
       case 'attack':
         // 攻撃アニメーションの途中で、キャラクターを右に移動させる
         if (i === 4)
           moveCharacter("80%", "0.1");
         // ヒットストップ
-        if (i === characterImages[characterState].length - 1) {
+        if (isLastFrame(i)) {
           //await sleep(1000);  // 1秒待つ
         }
         // 攻撃アニメーションが終わったら、ステートを 'run' に戻す
@@ -70,15 +77,14 @@ function animateCharactor() {
         }
         break;
       case 'death':
-        if (i === characterImages['death'].length) {
-          console.log("stop game");
+        if (isLastFrame(i)) {
           isPlaying = false;
         }
         break;
       }
   }
-
-  setInterval(updateImage, 100);  // Change image every 100ms (10 frames per second)
+  console.log(imageFrame);
+  setInterval(updateImage, imageFrame);  // Change image every 100ms (10 frames per second)
 }
 
 // キャラクターのアニメーションステートを設定する関数
