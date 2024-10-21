@@ -13,13 +13,16 @@ jobs:
       # リポジトリをクローンするステップ
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # 完全な履歴を取得
 
       # 変更されたファイルを検出するステップ
       - name: Get changed files
         id: changes
         run: |
-          git fetch --all  # すべてのブランチをフェッチ
-          changed_files=$(git diff --name-only HEAD~1 HEAD)  # 直前のコミットとの差分を取得
+          previous_commit=$(git rev-parse HEAD~1)  # 直前のコミットSHAを取得
+          current_commit=$(git rev-parse HEAD)  # 現在のコミットSHAを取得
+          changed_files=$(git diff --name-only $previous_commit $current_commit)  # 差分ファイルを取得
           echo "CHANGED_FILES=$changed_files" >> $GITHUB_ENV  # 環境変数に保存
 
       # 変更があったファイルのみをFTPサーバーにアップロード
