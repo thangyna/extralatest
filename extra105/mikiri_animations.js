@@ -4,7 +4,7 @@ var posX3 = 0;
 var posX4 = 0;
 var skyX = 0;
 
-//maji sorry
+//maji
 //the holmon
 // current img frame
 var i = 0;
