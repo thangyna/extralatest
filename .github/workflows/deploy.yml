@@ -15,7 +15,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Upload files to FTP server
+    - name: Upload files to FTP server (Master)
       if: github.ref == 'refs/heads/master'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -24,6 +24,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
+        method: git-ftp
 
     - name: Upload files to FTP server for Miya
       if: github.ref == 'refs/heads/Miya'
@@ -34,6 +35,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
+        method: git-ftp
 
     - name: Upload files to FTP server for Fuji
       if: github.ref == 'refs/heads/Fuji'
@@ -44,3 +46,4 @@ jobs:
         password: ${{ secrets.FTP_PASS2 }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
+        method: git-ftp
