@@ -23,6 +23,7 @@ jobs:
         ftp-username: ${{ secrets.FTP_USERNAME }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
+        server-dir: ./
 
     - name: Upload files to FTP server for Miya
       if: github.ref == 'refs/heads/Miya'
@@ -32,6 +33,7 @@ jobs:
         ftp-username: ${{ secrets.FTP_USER2 }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
+        server-dir: ./
 
     - name: Upload files to FTP server for Fuji
       if: github.ref == 'refs/heads/Fuji'
@@ -41,3 +43,4 @@ jobs:
         ftp-username: ${{ secrets.USER3 }}
         ftp-password: ${{ secrets.FTP_PASS2 }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
+        server-dir: ./
