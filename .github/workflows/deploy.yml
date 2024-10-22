@@ -19,9 +19,9 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
 
@@ -29,9 +29,9 @@ jobs:
       if: github.ref == 'refs/heads/Miya'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USER2 }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER2 }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
 
@@ -39,8 +39,8 @@ jobs:
       if: github.ref == 'refs/heads/Fuji'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.USER3 }}
-        ftp-password: ${{ secrets.FTP_PASS2 }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.USER3 }}
+        password: ${{ secrets.FTP_PASS2 }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
