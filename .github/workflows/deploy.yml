@@ -15,15 +15,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Get list of changed files
-      id: changed-files
-      run: |
-        git fetch origin ${{ github.ref }}
-        git diff --name-only --diff-filter=ACMRT origin/${{ github.ref }} > changed_files.txt
-        echo "Changed files:"
-        cat changed_files.txt
-
-    - name: Upload changed files to FTP server (Master)
+    - name: Upload changed files to FTP server (master)
       if: github.ref == 'refs/heads/master'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -32,9 +24,9 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
-        transfer-only: 'changed_files.txt'
+        method: sync  # 差分アップロードを有効にする
 
-    - name: Upload changed files to FTP server for Miya
+    - name: Upload changed files to FTP server (Miya)
       if: github.ref == 'refs/heads/Miya'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -43,9 +35,9 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
-        transfer-only: 'changed_files.txt'
+        method: sync  # 差分アップロードを有効にする
 
-    - name: Upload changed files to FTP server for Fuji
+    - name: Upload changed files to FTP server (Fuji)
       if: github.ref == 'refs/heads/Fuji'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -54,4 +46,4 @@ jobs:
         password: ${{ secrets.FTP_PASS2 }}
         local-dir: ./extra105/  # アップロードしたいプロジェクト内のディレクトリを指定
         server-dir: ./
-        transfer-only: 'changed_files.txt'
+        method: sync  # 差分アップロードを有効にする
