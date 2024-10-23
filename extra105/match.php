@@ -70,7 +70,7 @@ try {
         echo json_encode(['status' => 'success']);
     } elseif ($_POST['action'] === 'check_result') {
         $matchId = $_POST['match_id'];
-        
+
         $stmt = $pdo->prepare("SELECT player1, player2, player1_time, player2_time FROM matches WHERE id = ?");
         $stmt->execute([$matchId]);
         $match = $stmt->fetch(PDO::FETCH_ASSOC);

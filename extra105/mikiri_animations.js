@@ -58,9 +58,6 @@ function animateCharactor() {
     }
     switch (characterState) {
       case 'run':
-        if (isLastFrame(i)) {
-          setAnimationState('death');
-        }
         break;
       case 'attack':
         // 攻撃アニメーションの途中で、キャラクターを右に移動させる
