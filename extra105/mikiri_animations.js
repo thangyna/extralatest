@@ -1,3 +1,4 @@
+/*==================================================以下変数==================================================*/
 // 背景座標
 var pos_elem1 = 0;
 var pos_elem2 = 0;
@@ -47,6 +48,8 @@ const characterImages = {
   ]
 };
 
+
+/*==================================================以下関数==================================================*/
 
 //---------------------------------------------------------------------------------------------------- 
 //  背景をスクロールする関数
@@ -99,7 +102,16 @@ function animateCharactor() {
   setInterval(updateImage, imageFrame);  // Change image every 100ms (10 frames per second)
 }
 
+// キャラクターを移動させる関数
+function moveCharacter(where, speed) {
+  var character = document.getElementById("character");
+  character.style.transition = "left " + speed + "s";  // 1秒かけて移動
+  character.style.left = where;
+}
 
+//----------------------------------------------------------------------------------------------------
+//  ステートにおけるアニメーション処理
+//----------------------------------------------------------------------------------------------------
 function animation_run() {
 
 }
@@ -116,13 +128,6 @@ function animation_death() {
   if (i === characterImages[characterState].length - 1) {
     isPlaying = false;
   }
-}
-
-// キャラクターを移動させる関数
-function moveCharacter(where, speed) {
-  var character = document.getElementById("character");
-  character.style.transition = "left " + speed + "s";  // 1秒かけて移動
-  character.style.left = where;
 }
 
 //----------------------------------------------------------------------------------------------------
