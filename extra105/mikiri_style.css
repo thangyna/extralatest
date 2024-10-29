@@ -72,6 +72,15 @@ body, html {
     image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
 }
 
+#enemy {
+    position: absolute;
+    top: 330px;
+    right: 30%;
+    width: 180px;
+    transform: translateX(-50%);
+    image-rendering: pixelated; /* ドット絵をぼやけずに表示 */
+}
+
 /* キーボード */
 .keyboard-container {
     position: absolute; /* 変更 */
