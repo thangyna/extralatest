@@ -994,3 +994,123 @@ Array
 
 Original IP: 118.6.186.75
 Saved IP: 118.6.186.75
+Array
+(
+    [score] => 1463940
+    [correct_chars] => 272
+    [mistakes] => 30
+    [accuracy] => 90.07
+    [typing_speed] => 272
+    [top_mistakes] => o:5,n:4,u:4,a:3,s:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 481666
+    [correct_chars] => 85
+    [mistakes] => 5
+    [accuracy] => 94.44
+    [typing_speed] => 85
+    [top_mistakes] => n:2,j:1,a:1,o:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 600888
+    [correct_chars] => 104
+    [mistakes] => 4
+    [accuracy] => 96.30
+    [typing_speed] => 104
+    [top_mistakes] => u:2,t:1,r:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 187459
+    [correct_chars] => 34
+    [mistakes] => 3
+    [accuracy] => 91.89
+    [typing_speed] => 34
+    [top_mistakes] => n:1,o:1,u:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 111292
+    [correct_chars] => 40
+    [mistakes] => 2
+    [accuracy] => 95.24
+    [typing_speed] => 40
+    [top_mistakes] => i:1,h:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1

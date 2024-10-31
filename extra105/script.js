@@ -2,7 +2,8 @@
 let isPlaying = false;
 let doRecord = true;
 let countdown = 3;
-let timeLimit = 60;  // 制限時間60秒
+let timeLimitStart = 10;
+let timeLimit;  // 制限時間60秒
 let timer;
 
 // ゲームプレイ関連
@@ -102,6 +103,7 @@ function startGame() {
         if (countdown <= 0) {
             clearInterval(countdownInterval);
             countdownText.innerText = "";
+            alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
             startTypingGame();
         }
     }, 1000);
@@ -109,7 +111,7 @@ function startGame() {
 
 // メインゲームを開始
 function startTypingGame() {
-    timeLimit = 60;
+    timeLimit = timeLimitStart;
     timerText.innerText = timeLimit;
     // プレイヤーデータの初期化
     currentPosition = 0;
@@ -122,18 +124,18 @@ function startTypingGame() {
     timer = setInterval(() => {
         timeLimit--;
         timerText.innerText = timeLimit;
-        alterTime(-100 / 60); // タイムリミットのゲージ
+        alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
         // タイムリミットが 0 になった場合
-        if (timeLimit < 1) {
+        if (timeLimit <= 0) {
             clearInterval(timer);
             timeLimit = 0;
             if (doRecord) { // doRecord が true の場合、ゲームの結果を保存する
                 let accuracy = calculateAccuracy(correctChars, mistakes);
-                let typingSpeed = calculateTypingSpeed(correctChars, 60);
+                let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
                 let topMistakes = getTopMistakes(mistakesCount);
                 saveGameResults(score, correctChars, mistakes);
                 alert("ゲーム終了！\nスコア: " + score + "\n正しく打てた文字数: " + correctChars + "\n間違った文字数: " + mistakes +
-                      "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/分\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
+                      "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +"\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
                 setNextGame();
             }
             else { // doRecord が false の場合、次のゲームを開始する
@@ -150,14 +152,13 @@ function setNextGame() {
     // ウェブサイトの画面を設定
     startButton.innerText = "スタート";
     countdownText.innerText = "入力されたデータは収集される場合があります";
-    timerText.innerText = "60";
     japaneseWord.innerText = "前回のスコア: " + score;
     kanaWord.innerText = "スタート/エンターキーで開始";
 
     // ゲームの初期化
     isPlaying = false;
     doRecord = true;
-    timerText.innerText = timeLimit;
+    timerText.innerText = timeLimitStart;
     alterTime(100); // タイムリミットのゲージを満タンにする
     score = 0;
     typeSpeed = 0;
