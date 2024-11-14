@@ -2,7 +2,7 @@
 let isPlaying = false;
 let doRecord = true;
 let countdown = 3;
-let timeLimitStart = 30;
+let timeLimitStart = 60;
 let timeLimit;  // 制限時間60秒
 let timer;
 
