@@ -29,6 +29,10 @@ const currentFrame = {
     knight: 0,
     bandit: 0
 }
+const frameToChange = {
+    knight: 100,
+    bandit: 50
+}
 const chara = {
     knight: {
         run: [],
@@ -86,7 +90,7 @@ function scrollBackground() {
 //  キャラクターアニメーション
 //----------------------------------------------------------------------------------------------------
 function animateCharactor(_chara, _state) {
-    var frameSpeed = 100; // time to take change frame (micro second)
+    var frameSpeed = frameToChange[_chara]; // time to take change frame (micro second)
 
     // 画像を更新
     function updateImage() {
