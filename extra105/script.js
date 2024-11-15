@@ -387,7 +387,7 @@ document.addEventListener("keypress", function (event) {
             startGame();
         }
     }
-    if (key === "Esc") {
+    if (key === "Escape") {
         // プレイ中の場合
         if (isPlaying) {
             doRecord = false;
