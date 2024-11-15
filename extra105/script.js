@@ -388,6 +388,7 @@ document.addEventListener("keypress", function (event) {
         }
     }
     if (key === "Escape") {
+        console.log("esc");
         // プレイ中の場合
         if (isPlaying) {
             doRecord = false;
