@@ -387,15 +387,6 @@ document.addEventListener("keypress", function (event) {
             startGame();
         }
     }
-    if (key === "Escape") {
-        console.log("esc");
-        // プレイ中の場合
-        if (isPlaying) {
-            doRecord = false;
-            timeLimit = 0;
-            // ゲームを強制終了
-        }
-    }
 });
 
 startButton.addEventListener("click", function () {

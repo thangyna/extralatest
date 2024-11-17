@@ -1114,3 +1114,15 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => 0
+    [top_mistakes] => Enter:1
+)
+
+Original IP: ::1
+Saved IP: ::1
