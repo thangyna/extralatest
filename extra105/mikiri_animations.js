@@ -35,7 +35,7 @@ const currentFrame = {
 }
 const frameToChange = {
     knight: 100,
-    bandit: 50
+    bandit: 200
 }
 const chara = {
     knight: {
@@ -106,7 +106,7 @@ function animateCharactor(_chara, _state) {
         if (isPlaying) {
             currentFrame[_chara] = (currentFrame[_chara] + 1) % chara[_chara][_state].length;
         }
-        console.log("chara: " + _chara + "   state: " + _state);
+        //console.log("chara: " + _chara + "   state: " + _state);
     }
     setInterval(() => updateImage(_chara, _state), frameSpeed);  // Change image every 100ms (10 frames per second)
 }
@@ -121,7 +121,7 @@ function moveCharacter(where, speed) {
 //----------------------------------------------------------------------------------------------------
 //  ステートを設定
 //----------------------------------------------------------------------------------------------------
-function setAnimation_state(state) {
+function setAnimationState(state) {
     character_state = state;
     currentFrame = 0;
 }

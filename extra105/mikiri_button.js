@@ -1,3 +1,4 @@
+/*============================== 以下ボタンが押されたときのアニメーション ==============================*/
 document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.getElementById('playButton');
     const quitButton = document.getElementById('quitButton');
@@ -30,8 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // マウスのボタンが押されたときの処理
     playButton.addEventListener('mousedown', () => {
         changeImage('play');
-        // ここから関数を呼ぶ
-        setAnimationState('attack');
     });
     // マウスのボタンが離されたときの処理
     playButton.addEventListener('mouseup', () => resetImage('play'));

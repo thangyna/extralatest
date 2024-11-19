@@ -79,7 +79,6 @@ $username = $_SESSION['username'];
             <div id="game-status"></div>
             <div id="letter-display"></div>
             <div id="result"></div>
-            <script src="mikiri_button.js"></script>
             <img src="chara/knight/run/run_0.png" id="character"></div>
             <img src="chara/bandit/run/run_0.png" id="enemy"></div>
             <div class="keyboard-container">
@@ -114,6 +113,7 @@ $username = $_SESSION['username'];
                 <img src="keyboard/leter.png" alt="leter" style = "height:auto">
             </div>
             <script src="mikiri_animations.js"></script>
+            <script src="mikiri_button.js"></script>
             <script src="mikiri_game.js"></script>
         </div>
     </div>
