@@ -129,22 +129,23 @@ function startTypingGame() {
         if (timeLimit <= 0) {
             clearInterval(timer);
             timeLimit = 0;
-            if (doRecord) { // doRecord が true の場合、ゲームの結果を保存する
-                let accuracy = calculateAccuracy(correctChars, mistakes);
-                let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
-                let topMistakes = getTopMistakes(mistakesCount);
-                saveGameResults(score, correctChars, mistakes);
-                alert("ゲーム終了！\nスコア: " + score + "\n正しく打てた文字数: " + correctChars + "\n間違った文字数: " + mistakes +
-                      "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +"\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
-                setNextGame();
-            }
-            else { // doRecord が false の場合、次のゲームを開始する
-                setNextGame();
-            }
+            endGame(true);
         }
     }, 1000);
 }
 
+// ゲームを終了
+function endGame(_doRecord) {
+    if(_doRecord) {
+        let accuracy = calculateAccuracy(correctChars, mistakes);
+        let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
+        let topMistakes = getTopMistakes(mistakesCount);
+        saveGameResults(score, correctChars, mistakes);
+        alert("ゲーム終了！\nスコア: " + score + "\n正しく打てた文字数: " + correctChars + "\n間違った文字数: " + mistakes +
+                "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +"\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
+    }
+    setNextGame();
+}
 // 次のゲームをセット
 function setNextGame() {
     // 問題リストを読み込む
@@ -400,7 +401,7 @@ document.addEventListener("keypress", function (event) {
 
 startButton.addEventListener("click", function () {
     if (isPlaying) {
-        doRecord = false;
+        endGame(false);
         timeLimit = 0;
     }
     else {
