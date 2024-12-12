@@ -2998,3 +2998,63 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 11724000
+    [correct_chars] => 1954
+    [mistakes] => 0
+    [accuracy] => 100.00
+    [typing_speed] => 1954
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1459092
+    [correct_chars] => 271
+    [mistakes] => 31
+    [accuracy] => 89.74
+    [typing_speed] => 271
+    [top_mistakes] => k:8,a:4,o:4,n:2,t:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1433163
+    [correct_chars] => 265
+    [mistakes] => 29
+    [accuracy] => 90.14
+    [typing_speed] => 265
+    [top_mistakes] => n:7,u:3,a:3,t:3,k:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1434243
+    [correct_chars] => 266
+    [mistakes] => 30
+    [accuracy] => 89.86
+    [typing_speed] => 266
+    [top_mistakes] => a:5,k:4,o:4,u:3,t:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1255706
+    [correct_chars] => 217
+    [mistakes] => 8
+    [accuracy] => 96.44
+    [typing_speed] => 217
+    [top_mistakes] => o:3,u:3,r:1,t:1
+)
+
+Original IP: ::1
+Saved IP: ::1

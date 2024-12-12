@@ -68,6 +68,7 @@ $ranking_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p id="japaneseWord"></p>
         <p id="kanaWord" style="color: gray;"></p>
         <p id="romajiWord" style="color: gray;"></p>
+        <p id="nextWord"></p>
         <div class="image-container">
             <img src="keyboard/keyboard.png" id="keyboard" alt="キーボード" style = "height:auto;">
             <img src="keyboard/A.png" id="A" alt="A" style = "display:none;height:auto;">

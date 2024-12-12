@@ -50,6 +50,12 @@ input[type="submit"], #startButton {
     font-weight: bold;
 }
 
+#nextWord {
+    font-size: 18px;
+    font-weight: bold;
+    color: lightgray;
+}
+
 #romajiWord {
     font-size: 18px;
 }

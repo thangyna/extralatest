@@ -24,6 +24,7 @@ let shuffledWords = [];  // シャッフルされた問題のリスト
 const startButton = document.getElementById('startButton');
 const countdownText = document.getElementById('countdown');
 const japaneseWord = document.getElementById('japaneseWord');
+const nextWord = document.getElementById('nextWord');
 const kanaWord = document.getElementById('kanaWord');
 const romajiWord = document.getElementById('romajiWord');
 const scoreNumText = document.getElementById('scoreNum');  // Add this line
@@ -119,6 +120,7 @@ function startTypingGame() {
     // プレイヤーデータの初期化
     currentPosition = 0;
     currentRomajiIndex = 0;
+    nextWord.style.display = "block";
     setNextWord();  // ゲーム開始時に問題を表示
 
     /*------------------------------------------------
@@ -140,6 +142,7 @@ function endGame(_doRecord) {
     console.log("endGame");
     clearInterval(timer);
     timeLimit = 0;
+    nextWord.style.display = "none";
     if(_doRecord) {
         let accuracy = calculateAccuracy(correctChars, mistakes);
         let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
@@ -275,7 +278,7 @@ function calculateScore(_correctChars, _mistakes, _currentTime) {
 
 // 次の問題をセット
 function setNextWord() {
-    if (wordIndex >= shuffledWords.length) {
+    if (wordIndex-1 >= shuffledWords.length) {
         // すべての問題が出題されたら再度シャッフル
         shuffledWords = shuffleArray(words.slice());
         wordIndex = 0;
@@ -288,6 +291,7 @@ function setNextWord() {
     currentRomajiIndex = 0;
     japaneseWord.innerText = currentWord;  // 問題文を表示
     kanaWord.innerHTML = currentKana;
+    nextWord.innerText = shuffledWords[wordIndex+1].japanese;
     currentPosition = 0;
     keyHistory = "";
     nextChar = currentRomaji[currentRomajiIndex][0];  // Change this line
