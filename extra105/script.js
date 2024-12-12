@@ -379,10 +379,6 @@ function updateRomajiWord(_romaji) {
 ------------------------------------------------*/
 document.addEventListener("keypress", function (event) {
     let key = event.key;
-    // プレイ中の場合
-    if (isPlaying) {
-        processInput(event.key);
-    }
     // エンターキーが押された場合
     if (key === "Enter") {
         // プレイ中の場合
@@ -393,6 +389,10 @@ document.addEventListener("keypress", function (event) {
             endGame(false);
             startGame();
         }
+    }
+    // プレイ中の場合
+    else if (isPlaying) {
+        processInput(event.key);
     }
 });
 
