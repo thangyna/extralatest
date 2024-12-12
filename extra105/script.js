@@ -2,6 +2,7 @@
 let isPlaying = false;
 let doRecord = true;
 let countdown = 3;
+let countdownTimer;
 let timeLimitStart = 60;
 let timeLimit;  // 制限時間60秒
 let timer;
@@ -70,6 +71,7 @@ let timeBarPar = 100                                        // 残り時間 初�
 ------------------------------------------------*/
 // スタートのフラグ
 function startGame() {
+    console.log("startGame");
     if (isPlaying) 
         return;
 
@@ -96,12 +98,12 @@ function startGame() {
     wordIndex = 0;
 
     // 3秒のカウントダウン
-    let countdownInterval = setInterval(() => {
+    countdownTimer = setInterval(() => {
         countdown--;
         countdownText.innerText = countdown;
 
         if (countdown <= 0) {
-            clearInterval(countdownInterval);
+            clearInterval(countdownTimer);
             countdownText.innerText = "";
             alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
             startTypingGame();
@@ -111,13 +113,14 @@ function startGame() {
 
 // メインゲームを開始
 function startTypingGame() {
+    console.log("startTypingGame");
     timeLimit = timeLimitStart;
     timerText.innerText = timeLimit;
     // プレイヤーデータの初期化
     currentPosition = 0;
     currentRomajiIndex = 0;
     setNextWord();  // ゲーム開始時に問題を表示
-    
+
     /*------------------------------------------------
         タイムリミット処理
     ------------------------------------------------*/
@@ -134,6 +137,7 @@ function startTypingGame() {
 
 // ゲームを終了
 function endGame(_doRecord) {
+    console.log("endGame");
     clearInterval(timer);
     timeLimit = 0;
     if(_doRecord) {
@@ -144,10 +148,12 @@ function endGame(_doRecord) {
         alert("ゲーム終了！\nスコア: " + score + "\n正しく打てた文字数: " + correctChars + "\n間違った文字数: " + mistakes +
                 "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +"\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
     }
+    isPlaying = false;
     setNextGame();
 }
 // 次のゲームをセット
 function setNextGame() {
+    console.log("setNextGame");
     // 問題リストを読み込む
     loadWords();
     // ウェブサイトの画面を設定
@@ -159,6 +165,7 @@ function setNextGame() {
     // ゲームの初期化
     isPlaying = false;
     doRecord = true;
+    clearInterval(countdownTimer);
     timerText.innerText = timeLimitStart;
     alterTime(100); // タイムリミットのゲージを満タンにする
     score = 0;
@@ -299,7 +306,7 @@ function setNextWord() {
 
     wordIndex++;
     
-    console.log("New word set:", currentWord, currentRomaji);  // Add this line for debugging
+    //console.log("New word set:", currentWord, currentRomaji);  // Add this line for debugging
 }
 
 /*------------------------------------------------
@@ -383,6 +390,7 @@ document.addEventListener("keypress", function (event) {
             endGame(false);
         }
         else {
+            endGame(false);
             startGame();
         }
     }
@@ -393,6 +401,7 @@ startButton.addEventListener("click", function () {
         endGame(false);
     }
     else {
+        endGame(false);
         startGame();
     }
 });

@@ -36,6 +36,9 @@ const playButton = document.getElementById('playButton');
 const quitButton = document.getElementById('quitButton');
 const cancelButton = document.getElementById('cancelButton');
 
+// テキストの宣言
+const gameStatus = document.getElementById('game-status');
+
 // サーバ、ユーザ管理及びマッチ管理
 let matchId = null;
 let gameStarted = false;
@@ -66,17 +69,17 @@ function startMatching() {
             } else {
                 console.error('Unexpected response:', data); // デバッグ用ログ
                 $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                $('#playButton').show();
-                $('#quitButton').show();
-                $('#cancelButton').hide();
+                playButton.show();
+                quitButton.show();
+                cancelButton.hide();
             }
         },
         error: function(xhr, status, error) {
             console.error('Ajax error:', status, error);
             $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
-            $('#playButton').show();
-            $('#quitButton').show();
-            $('#cancelButton').hide();
+            playButton.show();
+            quitButton.show();
+            cancelButton.hide();
         }
     });
 }
@@ -94,9 +97,9 @@ function cancelMatching() {
             success: function(data) {
                 if (data.status === 'cancelled') {
                     $('#game-status').text('マッチングをキャンセルしました。');
-                    $('#playButton').show();
-                    $('#quitButton').show();
-                    $('#cancelButton').hide();
+                    playButton.show();
+                    quitButton.show();
+                    cancelButton.hide();
                     matchId = null;
                 } else {
                     $('#game-status').text('キャンセルに失敗しました。');
@@ -126,8 +129,8 @@ function waitForOpponent(id) {
                 opponent = data.opponent;
                 if (opponent === username) {
                     $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                    $('#playButton').show();
-                    $('#quitButton').show();
+                    playButton.show();
+                    quitButton.show();
                     return;
                 }
                 $('#game-status').html(`${username} vs ${opponent}<br>対戦相手が見つかりました。`);
@@ -138,17 +141,17 @@ function waitForOpponent(id) {
                 setTimeout(function() { waitForOpponent(id); }, 1000);
             } else {
                 $('#game-status').text('エラーが発生しました。もう一度お試しください。');
-                $('#playButton').show();
-                $('#quitButton').show();
-                $('#cancelButton').hide();
+                playButton.show();
+                quitButton.show();
+                cancelButton.hide();
             }
         },
         error: function(xhr, status, error) {
             console.error('Ajax error:', status, error);
             $('#game-status').text('通信エラーが発生しました。もう一度お試しください。');
-            $('#playButton').show();
-            $('#quitButton').show();
-            $('#cancelButton').hide();
+            playButton.show();
+            quitButton.show();
+            cancelButton.hide();
         }
     });
 }
@@ -269,8 +272,8 @@ function checkGameResult() {
                     resultMessage = '敗北...'
                 }
                 $('#result').html(`結果: ${resultMessage}<br>あなたの時間: ${data.your_time.toFixed(3)}秒<br>相手の時間: ${data.opponent_time.toFixed(3)}秒`)
-                $('#playButton').show().text('もう一度マッチング')
-                $('#quitButton').show()
+                playButton.show().text('もう一度マッチング')
+                quitButton.show()
             } else if (data.status === 'waiting') {
                 setTimeout(checkGameResult, 1000)
             } else {
