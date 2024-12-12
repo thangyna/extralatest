@@ -127,8 +127,6 @@ function startTypingGame() {
         alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
         // タイムリミットが 0 になった場合
         if (timeLimit <= 0) {
-            clearInterval(timer);
-            timeLimit = 0;
             endGame(true);
         }
     }, 1000);
@@ -136,6 +134,8 @@ function startTypingGame() {
 
 // ゲームを終了
 function endGame(_doRecord) {
+    clearInterval(timer);
+    timeLimit = 0;
     if(_doRecord) {
         let accuracy = calculateAccuracy(correctChars, mistakes);
         let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
@@ -380,21 +380,10 @@ document.addEventListener("keypress", function (event) {
     if (key === "Enter") {
         // プレイ中の場合
         if (isPlaying) {
-            doRecord = false;
-            timeLimit = 0;
-            // ゲームを強制終了
+            endGame(false);
         }
         else {
             startGame();
-        }
-    }
-    if (key === "Escape") {
-        console.log("esc");
-        // プレイ中の場合
-        if (isPlaying) {
-            doRecord = false;
-            timeLimit = 0;
-            // ゲームを強制終了
         }
     }
 });
@@ -402,7 +391,6 @@ document.addEventListener("keypress", function (event) {
 startButton.addEventListener("click", function () {
     if (isPlaying) {
         endGame(false);
-        timeLimit = 0;
     }
     else {
         startGame();
