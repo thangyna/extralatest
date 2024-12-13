@@ -115,7 +115,7 @@ $conn->close();
         </label>
     </div>
 
-    <div id="chartContainer" style="width: 80%;">
+    <div id="chartContainer" style="width: 80%; margin: 0 auto;">
         <canvas id="myChart"></canvas>
     </div>
 
@@ -138,7 +138,7 @@ $conn->close();
             }]
         },
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 x: {
                     title: {
