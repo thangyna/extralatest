@@ -153,6 +153,11 @@ $conn->close();
                         text: '<?php echo ucfirst($metric); ?>'
                     }
                 }
+            },
+            hover: {
+                mode: 'nearest',
+                intercect: true,
+                animatoinDuration: 0
             }
         }
     });
