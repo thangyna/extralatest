@@ -321,7 +321,7 @@ function calculateAccuracy(correctChars, mistakes) {
 }
 
 function calculateTypingSpeed(correctChars, timeLimit) {
-    return Math.round(correctChars / (60 - timeLimit) * 60);
+    return Math.round(correctChars / timeLimit);
 }
 
 function getTopMistakes(mistakesObj) {
