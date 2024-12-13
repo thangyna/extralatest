@@ -115,7 +115,7 @@ $conn->close();
         </label>
     </div>
 
-    <div id="chartContainer" style="width: 80%; margin: 0 auto;">
+    <div id="chartContainer" style="width: 80%;">
         <canvas id="myChart"></canvas>
     </div>
 
