@@ -1,4 +1,3 @@
-/*majide koredeiketeru?*/
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -40,6 +39,7 @@ input[type="submit"], #startButton {
     width: 100%; /* 画像をコンテナに合わせる */
     height: 100%;
 }
+
 
 #gameArea {
     margin-top: 50px;

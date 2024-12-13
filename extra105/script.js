@@ -176,6 +176,7 @@ function setNextGame() {
     correctivity = 0;
     mistakes = 0;
     nextChar = "";
+    mistakesCount = {};
     for (_key in key) {
         if (key[_key]) {  // Add this null check
             key[_key].style.display = "none";

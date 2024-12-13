@@ -3058,3 +3058,27 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 65396
+    [correct_chars] => 177
+    [mistakes] => 27
+    [accuracy] => 86.76
+    [typing_speed] => 177
+    [top_mistakes] => k:11,o:4,r:3,t:2,a:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1584200
+    [correct_chars] => 268
+    [mistakes] => 3
+    [accuracy] => 98.89
+    [typing_speed] => Infinity
+    [top_mistakes] => a:2,h:1
+)
+
+Original IP: ::1
+Saved IP: ::1
