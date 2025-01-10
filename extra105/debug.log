@@ -3082,3 +3082,39 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1589112
+    [correct_chars] => 288
+    [mistakes] => 24
+    [accuracy] => 92.31
+    [typing_speed] => Infinity
+    [top_mistakes] => i:5,a:3,e:3,t:3,n:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 21924
+    [correct_chars] => 130
+    [mistakes] => 9
+    [accuracy] => 93.53
+    [typing_speed] => Infinity
+    [top_mistakes] => i:2,s:2,n:2,a:1,j:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1813518
+    [correct_chars] => 311
+    [mistakes] => 9
+    [accuracy] => 97.19
+    [typing_speed] => Infinity
+    [top_mistakes] => a:3,y:2,t:2,j:1,n:1
+)
+
+Original IP: ::1
+Saved IP: ::1

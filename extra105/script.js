@@ -279,8 +279,9 @@ function calculateScore(_correctChars, _mistakes, _currentTime) {
 
 // 次の問題をセット
 function setNextWord() {
-    if (wordIndex-1 >= shuffledWords.length) {
+    if (wordIndex+1 >= shuffledWords.length) {
         // すべての問題が出題されたら再度シャッフル
+        console.log("問題をシャッフル");
         shuffledWords = shuffleArray(words.slice());
         wordIndex = 0;
     }
