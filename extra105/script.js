@@ -279,13 +279,6 @@ function calculateScore(_correctChars, _mistakes, _currentTime) {
 
 // 次の問題をセット
 function setNextWord() {
-    if (wordIndex+1 >= shuffledWords.length) {
-        // すべての問題が出題されたら再度シャッフル
-        console.log("問題をシャッフル");
-        shuffledWords = shuffleArray(words.slice());
-        wordIndex = 0;
-    }
-
     let wordData = shuffledWords[wordIndex];
     currentWord = wordData.japanese;
     currentRomaji = wordData.romaji;
@@ -293,6 +286,18 @@ function setNextWord() {
     currentRomajiIndex = 0;
     japaneseWord.innerText = currentWord;  // 問題文を表示
     kanaWord.innerHTML = currentKana;
+
+    if (wordIndex+1 >= shuffledWords.length) {
+        // すべての問題が出題されたら再度シャッフル
+        console.log("問題をシャッフル");
+        shuffledWords = shuffleArray(words.slice());
+        wordIndex = 0;
+        // もし問題がかぶれば次の問題を出す
+        if (currentWord == shuffledWords[wordIndex+1].japanese) {
+            wordIndex++;
+        }
+    }
+
     nextWord.innerText = shuffledWords[wordIndex+1].japanese;
     currentPosition = 0;
     keyHistory = "";

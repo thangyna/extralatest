@@ -3118,3 +3118,39 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1855824
+    [correct_chars] => 336
+    [mistakes] => 29
+    [accuracy] => 92.05
+    [typing_speed] => Infinity
+    [top_mistakes] => n:8,i:5,s:3,a:3,u:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1411180
+    [correct_chars] => 243
+    [mistakes] => 7
+    [accuracy] => 97.20
+    [typing_speed] => Infinity
+    [top_mistakes] => c:4,a:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1535351
+    [correct_chars] => 271
+    [mistakes] => 16
+    [accuracy] => 94.43
+    [typing_speed] => Infinity
+    [top_mistakes] => a:8,c:7,g:1
+)
+
+Original IP: ::1
+Saved IP: ::1
