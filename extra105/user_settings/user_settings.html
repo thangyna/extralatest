@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="ユーザ, 設定, PHP, HTML">
+    <meta name="author" content="ergodic">
+    <title>ユーザ設定</title>
+    <link rel="stylesheet" href="user_settings.css">
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header">
+        <h2 class="page-title">ユーザ設定</h2>
+        <span id="username">ログイン中:</span>
+        <a href="../typing/typing_game.html">ゲームに戻る</a>
+        <a href="../admin.php" id="admin">管理者ページ</a>
+        <a href="../mypage.php">マイページ</a>
+        <a href="../logout.php">ログアウト</a>
+    </div><br>
+    <form action="user_settings.php" method="post">
+        <!-- 最低スコア -->
+        <div class="tooltip">
+            <input type="checkbox" name="useMinScore" id="useMinScore">
+            <label for="useMinScore">最低スコアを使用</label>
+            <span class="tooltiptext">
+                <strong>最低スコア</strong><br>
+                これにチェックを入れた場合、スコアが指定した値を下回った時
+                <span class="attention">データを記録しなくなります。</span>
+                <br>
+                <em>これにより、グラフに外れ値が表示されるのを防ぎ、
+                <span class="point">グラフの視認性が向上します。</span>
+                </em>
+            </span>
+            <input type="number" name="minScore" id="minScore">
+        </div><br><br>
+
+        <!-- キーボードの表示 -->
+        <div class="tooltip">
+            <input type="checkbox" name="showKeyboard" id="showKeyboard">
+            <label for="showKeyboard">キーボードを表示</label>
+            <span class="tooltiptext">
+                <strong>キーボードの表示</strong><br>
+                このチェックをはずすと、プレイ中にキーボードを
+                <span class="attention">隠します。</span>
+            </span>
+        </div><br><br>
+        
+        <input type="submit" value="更新">
+    </form>
+
+    <!-- JavaScript -->
+    <script src="user_settings.js"></script>
+    <script src="tooltip.js"></script>
+</body>
+
+</html>

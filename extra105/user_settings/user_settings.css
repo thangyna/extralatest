@@ -1,0 +1,70 @@
+/*------------------------------------------------
+    ユーザー設定画面のcss
+------------------------------------------------*/
+
+/* 設定の追加説明（ツールチップ）*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px;
+    background-color: gray;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* ツールチップの位置 */
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ツールチップのリッチテキスト */
+.tooltip .tooltiptext strong {
+    font-weight: bold; /* 太字 */
+}
+.tooltip .tooltiptext em {
+    font-style: italic; /* 斜体 */
+}
+.tooltip .tooltiptext .attention {
+    color: orange; /* 警告色 */
+}
+.tooltip .tooltiptext .point {
+    color: cyan; /* 注目色 */
+}
+
+/* ユーザー設定画面のヘッダ */
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.header a:hover {
+    text-decoration: underline;
+}
+.page-title {
+    font-size: inherit;
+    color: inherit;
+    font-weight: bold;
+    margin: 0;
+    margin-right:auto;
+    text-align: left;
+}
