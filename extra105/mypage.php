@@ -183,10 +183,11 @@ $conn->close();
 <body>
     <div class="header">
         <span>ログイン中: <?php echo $_SESSION['username']; ?></span>
-        <a href="game.php">ゲームに戻る</a>
+        <a href="typing/typing_game.html">ゲームに戻る</a>
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
             <a href="admin.php">管理者ページ</a>
         <?php endif; ?>
+        <a href="user_settings/user_settings.html">ユーザ設定</a>
         <a href="logout.php">ログアウト</a>
     </div>
 

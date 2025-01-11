@@ -46,10 +46,7 @@ $username = $_SESSION['username'];
     <h2>モード選択</h2>
     <div class="mode-buttons">
         <!-- 各モードへのボタン -->
-        <button onclick="location.href='game.php'">タイピング</button>
-<!--
-        <button onclick="location.href='mikiri.php'">刹那の見切り - キーボード版</button>
--->
+        <button onclick="location.href='typing/typing_game.html'">タイピング</button>
 
         <!-- ボタンを追加したい場合は以下にコピー -->
         <!--
@@ -57,6 +54,7 @@ $username = $_SESSION['username'];
         <button onclick="location.href='ここにURLを入力'">ここにモードの名前を入力</button>2
         -->
     </div>
-    <p>間違えた文字が正しくリザルトに表示されるように変更しました</p>
+    <p>問題が正しく表示されなくなる問題を修正しました。</p>
+    <p>ユーザ設定を追加しました。</p>
 </body>
 </html>

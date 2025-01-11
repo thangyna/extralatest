@@ -4,7 +4,7 @@ let doRecord = true;
 let countdown = 3;
 let countdownTimer;
 let timeLimitStart = 60;
-let timeLimit;  // 制限時間60秒
+let timeLimit;
 let timer;
 
 // ゲームプレイ関連
@@ -19,6 +19,9 @@ let mistakesCount = {};
 let words = [];
 let wordIndex = 0;  // 現在の問題のインデックス
 let shuffledWords = [];  // シャッフルされた問題のリスト
+
+// ユーザ設定
+let minScore = 1000;
 
 // ウェブサイトのビジュアライズ関連
 const startButton = document.getElementById('startButton');
@@ -120,6 +123,7 @@ function startTypingGame() {
     // プレイヤーデータの初期化
     currentPosition = 0;
     currentRomajiIndex = 0;
+    romajiWord.style.display = "block";
     nextWord.style.display = "block";
     setNextWord();  // ゲーム開始時に問題を表示
 
@@ -142,7 +146,6 @@ function endGame(_doRecord) {
     console.log("endGame");
     clearInterval(timer);
     timeLimit = 0;
-    nextWord.style.display = "none";
     if(_doRecord) {
         let accuracy = calculateAccuracy(correctChars, mistakes);
         let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
@@ -165,6 +168,8 @@ function setNextGame() {
     japaneseWord.innerText = "前回のスコア: " + score;
     kanaWord.innerText = "スタート/エンターキーで開始";
 
+    nextWord.style.display = "none";
+    romajiWord.style.display = "none";
     // ゲームの初期化
     isPlaying = false;
     doRecord = true;
@@ -340,16 +345,22 @@ function getTopMistakes(mistakesObj) {
 }
 
 function saveGameResults(_score, _correctChars, _mistakes) {
+    // 記録されるスコアが小さすぎるときの処理
+    if (_score < minScore) {
+        alert("スコアの最小値を下回ったため、ユーザデータに記録しません。 マイページから設定可能です。");
+        console.log("最少スコア:" + minScore + " スコア:" + _score);
+        return;
+    }
+
     let accuracy = calculateAccuracy(_correctChars, _mistakes);
     let typingSpeed = calculateTypingSpeed(_correctChars, timeLimit);
     let topMistakes = getTopMistakes(mistakesCount);
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "save_results.php", true);
+    xhr.open("POST", "../save_results.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     // リクエストが完了した際の処理
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200)
-{
+        if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
         }
     };
@@ -417,7 +428,9 @@ startButton.addEventListener("click", function () {
     }
 });
 
-// Add this event listener at the end of your script
+/*------------------------------------------------
+    初期化
+------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', function() {
-    setNextGame();  // Initialize the game after the DOM is fully loaded
+    setNextGame();
 });

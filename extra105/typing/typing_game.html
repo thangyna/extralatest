@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="ユーザ, 設定, PHP, HTML">
+    <meta name="author" content="ztmy">
+    <title>タイピングゲーム</title>
+    <link rel="stylesheet" type="text/css" href="typing.css">
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header">
+        <h2 class="page-title">タイピングゲーム</h2>
+        <span id="username">ログイン中:</span>
+        <a href="../admin.php" id="admin">管理者ページ</a>
+        <a href="../mypage.php">マイページ</a>
+        <a href="../logout.php">ログアウト</a>
+        <a href="../feedback.php">フィードバック</a>
+        <a href="../toppage.php">トップページ</a>
+    </div>
+
+    <h2>タイピングゲーム</h2>
+    <!-- ゲームエリア -->
+    <div id="gameArea">
+        <p id="countdown"></p>
+        <p>残り時間: <span id="timer">60</span> 秒</p>
+        <div id="time-frame">
+            <div id="time-bar"></div>
+        </div>
+        <p id="japaneseWord"></p>
+        <p id="kanaWord" style="color: gray;"></p>
+        <p id="romajiWord" style="color: gray;"></p>
+        <p id="nextWord"></p>
+        <div class="keyboard-container" id="keyboard-container">
+            <img src="../keyboard/keyboard.png" id="keyboard" alt="キーボード" style="height:auto;">
+            <img src="../keyboard/A.png" id="A" alt="A" style="display:none;height:auto;">
+            <img src="../keyboard/B.png" id="B" alt="B" style="display:none;height:auto;">
+            <img src="../keyboard/C.png" id="C" alt="C" style="display:none;height:auto;">
+            <img src="../keyboard/D.png" id="D" alt="D" style="display:none;height:auto;">
+            <img src="../keyboard/E.png" id="E" alt="E" style="display:none;height:auto;">
+            <img src="../keyboard/F.png" id="F" alt="F" style="display:none;height:auto;">
+            <img src="../keyboard/G.png" id="G" alt="G" style="display:none;height:auto;">
+            <img src="../keyboard/H.png" id="H" alt="H" style="display:none;height:auto;">
+            <img src="../keyboard/I.png" id="I" alt="I" style="display:none;height:auto;">
+            <img src="../keyboard/J.png" id="J" alt="J" style="display:none;height:auto;">
+            <img src="../keyboard/K.png" id="K" alt="K" style="display:none;height:auto;">
+            <img src="../keyboard/L.png" id="L" alt="L" style="display:none;height:auto;">
+            <img src="../keyboard/M.png" id="M" alt="M" style="display:none;height:auto;">
+            <img src="../keyboard/N.png" id="N" alt="N" style="display:none;height:auto;">
+            <img src="../keyboard/O.png" id="O" alt="O" style="display:none;height:auto;">
+            <img src="../keyboard/P.png" id="P" alt="P" style="display:none;height:auto;">
+            <img src="../keyboard/Q.png" id="Q" alt="Q" style="display:none;height:auto;">
+            <img src="../keyboard/R.png" id="R" alt="R" style="display:none;height:auto;">
+            <img src="../keyboard/S.png" id="S" alt="S" style="display:none;height:auto;">
+            <img src="../keyboard/T.png" id="T" alt="T" style="display:none;height:auto;">
+            <img src="../keyboard/U.png" id="U" alt="U" style="display:none;height:auto;">
+            <img src="../keyboard/V.png" id="V" alt="V" style="display:none;height:auto;">
+            <img src="../keyboard/W.png" id="W" alt="W" style="display:none;height:auto;">
+            <img src="../keyboard/X.png" id="X" alt="X" style="display:none;height:auto;">
+            <img src="../keyboard/Y.png" id="Y" alt="Y" style="display:none;height:auto;">
+            <img src="../keyboard/Z.png" id="Z" alt="Z" style="display:none;height:auto;">
+            <img src="../keyboard/hyphen.png" id="hyphen" alt="hypen" style="display:none;height:auto">
+            <img src="../keyboard/leter.png" alt="leter" style="height:auto">
+        </div>
+        <button id="startButton">スタート</button>
+    </div>
+
+    <!-- ランキング -->
+    <div id="ranking" style="float: left; margin-right: 20px;">
+        <h3>今日のランキング</h3>
+        <ol id="rankings"></ol>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="set_keyboard_size.js"></script>
+    <script src="typing.js"></script>
+    <script src="typing_game.js" defer></script>
+</body>
+
+</html>
