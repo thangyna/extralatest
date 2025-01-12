@@ -3334,3 +3334,27 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1558440
+    [correct_chars] => 281
+    [mistakes] => 23
+    [accuracy] => 92.43
+    [typing_speed] => Infinity
+    [top_mistakes] => o:4,t:3,u:3,a:2,s:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1700166
+    [correct_chars] => 303
+    [mistakes] => 21
+    [accuracy] => 93.52
+    [typing_speed] => Infinity
+    [top_mistakes] => a:3,k:3,i:3,r:2,u:2
+)
+
+Original IP: ::1
+Saved IP: ::1

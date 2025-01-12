@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="ユーザ, PHP, HTML">
+    <meta name="author" content="ergodic">
+    <title>プロフィール</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header">
+        <h2 class="page-title" id="page-title">プロフィール</h2>
+        <span id="username">ログイン中:unknown</span>
+        <a href="../typing/typing_game.html">ゲームに戻る</a>
+        <a href="../admin.php" id="admin">管理者ページ</a>
+        <a href="../mypage.php">マイページ</a>
+        <a href="../logout.php">ログアウト</a>
+    </div><br>
+    <div>
+        <h1 id="titleUsername">unknown</h1>
+        <div id="level-frame">
+            <div id="level-bar"></div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="tooltip.js"></script>
+    <script src="profile.js"></script>
+    <script src="level.js"></script>
+</body>
+
+</html>
