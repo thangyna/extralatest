@@ -183,8 +183,8 @@ function setNextGame() {
     nextChar = "";
     mistakesCount = {};
     for (_key in key) {
-        if (key[_key]) {  // Add this null check
-            key[_key].style.display = "none";
+        if (key[_key]) {
+            key[_key].classList.remove("highlight");
         }
     }
 }
@@ -257,12 +257,12 @@ function processInput(_inputChar) {
             return;  // Add this line to exit the function after setting next word
         }
         for (_key in key) {
-            if (key[_key]) {  // Add this null check
-                key[_key].style.display = "none";
+            if (key[_key]) {
+                key[_key].classList.remove("highlight");
             }
         }
-        if (key[nextChar]) {  // Add this null check
-            key[nextChar].style.display = "block";
+        if (key[nextChar]) {
+            key[nextChar].classList.add("highlight");
         }
     }
     
@@ -311,11 +311,11 @@ function setNextWord() {
     // キーボード表示をリセット
     for (let _key in key) {
         if (key[_key]) {
-            key[_key].style.display = "none";
+            key[_key].classList.remove("highlight");
         }
     }
     if (key[nextChar]) {
-        key[nextChar].style.display = "block";
+        key[nextChar].classList.add("highlight");
     }
     
     updateRomajiWord(currentRomaji[currentRomajiIndex]);

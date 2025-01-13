@@ -32,29 +32,132 @@ body {
 }
 
 /* ボタン入力 */
-input[type="text"], input[type="password"], #inputField {
-    padding: 10px;
-    width: 200px;
-}
 input[type="submit"], #startButton {
     padding: 10px 20px;
 }
 
 /* キーボードのスタイル */
-.keyboard-container {
-    position: relative;
-    width: 50%; /* コンテナの幅を指定 */
-    height: 40vh; /* コンテナの高さを指定 */
-    margin: 0 auto;
-    background-color: gray;
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
-.keyboard-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* 画像をコンテナに合わせる */
-    height: 100%;
+.row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
+.key {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.05s; /* アニメーションを追加 */
+}
+.key.highlight {
+    background-color: #d1e7ff;
+    border-color: #007bff;
+    transform: scale(1.1); /* Add scale animation */
+}
+.tab {
+    width: 63px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.backspace {
+    width: 85px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.caps {
+    width: 70px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.enter {
+    width: 102px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.shift {
+    width: 102px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.rightShift {
+    width: 117px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+.space {
+    width: 240px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    user-select: none;
+}
+
 
 /* ゲーム画面のスタイル */
 #gameArea {

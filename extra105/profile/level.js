@@ -71,8 +71,20 @@ function alterLevel(_levelBarPar) {
     levelの計算
 ------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("level.js: DOMContentLoaded");
-    setInterval(() => {
-        addExp(50);
-    }, 1000);
+    /*------------------------------------------------
+        データを取得してフォームに反映
+    ------------------------------------------------*/
+    fetch('user_settings.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log("username:" + data.username);
+            console.log("exp:" + data.exp);
+            /*------------------------------------------------
+                最少スコアの初期状態
+            ------------------------------------------------*/
+            if (!useMinScoreCheckbox.checked) {
+                minScoreInput.disabled = true;
+                minScoreInput.style.backgroundColor = '#e0e0e0';
+            }
+        });
 });

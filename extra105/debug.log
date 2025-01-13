@@ -3358,3 +3358,39 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1643645
+    [correct_chars] => 298
+    [mistakes] => 25
+    [accuracy] => 92.26
+    [typing_speed] => Infinity
+    [top_mistakes] => u:5,k:4,e:4,a:3,r:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1289299
+    [correct_chars] => 235
+    [mistakes] => 22
+    [accuracy] => 91.44
+    [typing_speed] => Infinity
+    [top_mistakes] => o:4,u:4,g:2,k:2,e:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1650942
+    [correct_chars] => 294
+    [mistakes] => 19
+    [accuracy] => 93.93
+    [typing_speed] => Infinity
+    [top_mistakes] => e:4,r:3,u:2,a:2,g:2
+)
+
+Original IP: ::1
+Saved IP: ::1
