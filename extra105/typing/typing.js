@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // フォームにデータを反映
             document.getElementById('username').textContent = "ログイン中:" + data.username;
             document.getElementById('admin').style.display = data.admin ? '' : 'none';
-            document.getElementById('keyboard-container').style.display = data.showKeyboard ? '' : 'none';
+            document.getElementById('keyboard').style.display = data.showKeyboard ? '' : 'none';
         });
 });
