@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(html => {
             document.getElementById('header-container').innerHTML = html;
             document.getElementById('page-title').textContent = document.title;
+            
             // ユーザーメニューの表示切り替え 
-            const user = document.getElementById('user');
             user.addEventListener('click', function () {
                 user.classList.toggle('active');
             });

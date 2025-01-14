@@ -3406,3 +3406,15 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1840563
+    [correct_chars] => 330
+    [mistakes] => 25
+    [accuracy] => 92.96
+    [typing_speed] => Infinity
+    [top_mistakes] => u:5,r:4,o:3,a:3,t:3
+)
+
+Original IP: ::1
+Saved IP: ::1
