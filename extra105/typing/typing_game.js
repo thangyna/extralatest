@@ -21,7 +21,6 @@ let wordIndex = 0;  // 現在の問題のインデックス
 let shuffledWords = [];  // シャッフルされた問題のリスト
 
 // ユーザ設定
-let minScore = 0;
 let useHeighlight = true;
 
 // ウェブサイトのビジュアライズ関連
@@ -348,13 +347,6 @@ function getTopMistakes(mistakesObj) {
 }
 
 function saveGameResults(_score, _correctChars, _mistakes) {
-    // 記録されるスコアが小さすぎるときの処理
-    if (_score < minScore) {
-        alert("スコアの最小値を下回ったため、ユーザデータに記録しません。 マイページから設定可能です。");
-        console.log("最少スコア:" + minScore + " スコア:" + _score);
-        return;
-    }
-
     let accuracy = calculateAccuracy(_correctChars, _mistakes);
     let typingSpeed = calculateTypingSpeed(_correctChars, timeLimit);
     let topMistakes = getTopMistakes(mistakesCount);
@@ -446,8 +438,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch ("../user_settings/user_settings.php")
         .then(response => response.json())
         .then(data => {
-            // 最少スコアを使用
-            minScore = data.minScore;
             // ハイライトを使用
             useHeighlight = data.missHighlight;
         });
