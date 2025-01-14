@@ -116,10 +116,10 @@ body {
     border-radius: 5px;
     transition: visibility 0.3s, opacity 0.1s;
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 50%; /* 変更: ユーザー名を囲っている円の中心から出現 */
+    left: 50%; /* 変更: ユーザー名を囲っている円の中心から出現 */
+    transform: translate(-50%, 0); /* 変更: 中心から下にかけて出現 */
     margin-top: 10px;
-    margin-left: -55px;
 }
 
 .user-menu p {
@@ -143,4 +143,5 @@ body {
 .user.active .user-menu {
     visibility: visible;
     opacity: 1;
+    transform: translate(-50%, 10px); /* 変更: メニューが下にスライドして出現 */
 }
