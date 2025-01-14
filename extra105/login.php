@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['admin'] = $user['admin'];
-        header('Location: toppage.php'); // toppage.phpからgame.phpに変更
+        header('Location: typing/typing_game.html'); // toppage.phpからgame.phpに変更
         exit();
     } else {
         $error = 'ユーザー名またはパスワードが間違っています。';

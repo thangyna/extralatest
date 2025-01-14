@@ -21,7 +21,8 @@ let wordIndex = 0;  // 現在の問題のインデックス
 let shuffledWords = [];  // シャッフルされた問題のリスト
 
 // ユーザ設定
-let minScore = 1000;
+let minScore = 0;
+let useHeighlight = true;
 
 // ウェブサイトのビジュアライズ関連
 const startButton = document.getElementById('startButton');
@@ -36,32 +37,32 @@ const mistakesNumText = document.getElementById('mistakesNum');  // Add this lin
 // キーボードの表示
 const keyboard = document.getElementById('keyboard');
 const key = {
-    "a": document.getElementById("A"),
-    "b": document.getElementById("B"),
-    "c": document.getElementById("C"),
-    "d": document.getElementById("D"),
-    "e": document.getElementById("E"),
-    "f": document.getElementById("F"),
-    "g": document.getElementById("G"),
-    "h": document.getElementById("H"),
-    "i": document.getElementById("I"),
-    "j": document.getElementById("J"),
-    "k": document.getElementById("K"),
-    "l": document.getElementById("L"),
-    "m": document.getElementById("M"),
-    "n": document.getElementById("N"),
-    "o": document.getElementById("O"),
-    "p": document.getElementById("P"),
-    "q": document.getElementById("Q"),
-    "r": document.getElementById("R"),
-    "s": document.getElementById("S"),
-    "t": document.getElementById("T"),
-    "u": document.getElementById("U"),
-    "v": document.getElementById("V"),
-    "w": document.getElementById("W"),
-    "x": document.getElementById("X"),
-    "y": document.getElementById("Y"),
-    "z": document.getElementById("Z"),
+    "a": document.getElementById("a"),
+    "b": document.getElementById("b"),
+    "c": document.getElementById("c"),
+    "d": document.getElementById("d"),
+    "e": document.getElementById("e"),
+    "f": document.getElementById("f"),
+    "g": document.getElementById("g"),
+    "h": document.getElementById("h"),
+    "i": document.getElementById("i"),
+    "j": document.getElementById("j"),
+    "k": document.getElementById("k"),
+    "l": document.getElementById("l"),
+    "m": document.getElementById("m"),
+    "n": document.getElementById("n"),
+    "o": document.getElementById("o"),
+    "p": document.getElementById("p"),
+    "q": document.getElementById("q"),
+    "r": document.getElementById("r"),
+    "s": document.getElementById("s"),
+    "t": document.getElementById("t"),
+    "u": document.getElementById("u"),
+    "v": document.getElementById("v"),
+    "w": document.getElementById("w"),
+    "x": document.getElementById("x"),
+    "y": document.getElementById("y"),
+    "z": document.getElementById("z"),
     "-": document.getElementById("hyphen")
 };
 // タイムリミットバー
@@ -164,7 +165,7 @@ function setNextGame() {
     loadWords();
     // ウェブサイトの画面を設定
     startButton.innerText = "スタート";
-    countdownText.innerText = "入力されたデータは収集される場合があります";
+    countdownText.innerText = "";
     japaneseWord.innerText = "前回のスコア: " + score;
     kanaWord.innerText = "スタート/エンターキーで開始";
 
@@ -232,7 +233,7 @@ function processInput(_inputChar) {
     // 入力文字が正しくない場合
     if (!isCorrect) {
         mistakes++;
-        mistakesCount[_inputChar] = (mistakesCount[_inputChar] || 0) + 1;
+        mistakesCount[nextChar] = (mistakesCount[nextChar] || 0) + 1;
         // ミス時にローマ字ワードをハイライト
         romajiWord.style.backgroundColor = "orange";
         setTimeout(() => {
@@ -242,6 +243,8 @@ function processInput(_inputChar) {
         if (mistakesNumText) {  // Add this check
             mistakesNumText.innerText = mistakes;
         }
+        // ミスしたキーをハイライト
+        highlightMistakeKey(nextChar);
     } else { // 入力文字が正しい場合
         correctChars++;
         // 正解時にハイライトをキャンセル
@@ -396,6 +399,13 @@ function updateRomajiWord(_romaji) {
     romajiWord.innerHTML = `<span id="highlightedText" style="color: blue;">${highlightedText}</span>${remainingText}`;
 }
 
+// ミスしたキーのハイライト
+function highlightMistakeKey(_key) {
+    if (!useHeighlight)
+        return;
+    key[_key].style.backgroundColor = `rgba(255, 0, 0, ${mistakesCount[_key] * 10 / 255})`;
+    console.log(key[_key].style.backgroundColor);
+}
 /*------------------------------------------------
     キー、ボタン入力の処理
 ------------------------------------------------*/
@@ -433,4 +443,12 @@ startButton.addEventListener("click", function () {
 ------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', function() {
     setNextGame();
+    fetch ("../user_settings/user_settings.php")
+        .then(response => response.json())
+        .then(data => {
+            // 最少スコアを使用
+            minScore = data.minScore;
+            // ハイライトを使用
+            useHeighlight = data.missHighlight;
+        });
 });

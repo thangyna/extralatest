@@ -80,11 +80,28 @@ body {
     cursor: pointer;
     position: relative;
     user-select: none;
-    transition: border-color 0.2s; /* 枠線と影のアニメーションを追加 */
+    transition: border-color 0.2s, background-color 0.2s; /* 枠線と影のアニメーションを追加 */
+}
+
+.user img {
+    width: 15px; /* 画像の幅を調整 */
+    height: 15px; /* 画像の高さを調整 */
+    vertical-align: middle; /* 画像をテキストの中央に揃える */
+    margin-left: 5px; /* 画像とテキストの間隔を調整 */
+    transition: 0.2s;
+}
+
+.user:hover {
+    border-color: #ccc;
 }
 
 .user.active {
-    border-color: #ccc;
+    border-color: #a3a3a3;
+}
+
+.user.active img {
+    transform: rotate(180deg);
+    transition: 0.2s;
 }
 
 .user-menu {

@@ -27,5 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             document.getElementById('username').textContent = data.username;
+            console.log("username:" + data.username);
+            console.log("admin:" + data.admin);
+            console.log("useMinScore:" + data.useMinScore);
+            console.log("minScore:" + data.minScore);
+            console.log("showKeyboard:" + data.showKeyboard);
+            console.log("missHighlight:" + data.missHighlight);
+            // console.log("exp:" + data.exp);
         });
 });

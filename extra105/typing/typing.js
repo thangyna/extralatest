@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             // フォームにデータを反映
-            document.getElementById('admin').style.display = data.admin ? '' : 'none';
             document.getElementById('keyboard').style.display = data.showKeyboard ? '' : 'none';
         });
 });

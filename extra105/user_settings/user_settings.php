@@ -90,6 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createSaveSql($username, "showKeyboard", "i", 0);
     }
 
+    if (isset($_POST["missHighlight"])){
+        createSaveSql($username, "missHighlight", "i", $_POST["missHighlight"] == "on");
+    }
+    else {
+        createSaveSql($username, "missHighlight", "i", 0);
+    }
+
     // デバッグモードの使用に応じてリダイレクト
     if (!$debug) {
         header("Location: " . $whereToRedirect);
@@ -98,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // データの取得, 出力
-$settings = createLoadSql($username, "username, admin, useMinScore, minScore, showKeyboard, exp");
+$settings = createLoadSql($username, "username, admin, useMinScore, minScore, showKeyboard, exp, missHighlight");
 header('Content-Type: application/json');
 echo json_encode($settings);
 ?>
