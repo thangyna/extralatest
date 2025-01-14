@@ -36,12 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('../user_settings/user_settings.php')
         .then(response => response.json())
         .then(data => {
-            // ログ
-            console.log("username:" + data.username);
-            console.log("admin:" + data.admin);
-            console.log("showKeyboard:" + data.showKeyboard);
             // フォームにデータを反映
-            document.getElementById('username').textContent = "ログイン中:" + data.username;
             document.getElementById('admin').style.display = data.admin ? '' : 'none';
             document.getElementById('keyboard').style.display = data.showKeyboard ? '' : 'none';
         });

@@ -42,29 +42,3 @@
 .tooltip .tooltiptext .point {
     color: cyan; /* 注目色 */
 }
-
-/* ユーザー設定画面のヘッダ */
-.header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-.header a {
-    color: white;
-    text-decoration: none;
-    margin-left: 10px;
-}
-.header a:hover {
-    text-decoration: underline;
-}
-.page-title {
-    font-size: inherit;
-    color: inherit;
-    font-weight: bold;
-    margin: 0;
-    margin-right:auto;
-    text-align: left;
-}

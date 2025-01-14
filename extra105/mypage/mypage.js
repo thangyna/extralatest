@@ -2,15 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     /*------------------------------------------------
         データを取得してフォームに反映
     ------------------------------------------------*/
-    fetch('../user_settings/user_settings.php')
-        .then(response => response.json())
-        .then(data => {
-            // フォームにデータを反映
-            // header
-            document.getElementById('username').textContent = "ログイン中:" + data.username;
-            document.getElementById('admin').style.display = data.admin ? '' : 'none';
-        });
-
     fetch('mypage.php')
         .then(response => response.json())
         .then(data => {

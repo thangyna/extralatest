@@ -6,21 +6,16 @@
     <meta name="author" content="thangyna">
     <title>マイページ</title>
     <link rel="stylesheet" href="mypage.css">
+    <link rel="stylesheet" href="../header/header.css"> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script src="mypage.js" defer></script>
     <script src="switch.js" defer></script>
+    <script src="../header/header.js" defer></script>
 </head>
 <body>
     <!-- ヘッダー -->
-    <div class="header">
-        <h1 class="page-title">マイページ</h1>
-        <span id="username">ログイン中:</span>
-        <a href="../typing/typing_game.html">ゲームに戻る</a>
-        <a href="../admin.php" id="admin">管理者ページ</a>
-        <a href="../mypage.php">マイページ</a>
-        <a href="../logout.php">ログアウト</a>
-    </div>
+    <div id="header-container"></div>
     <h3 id="chartTitle">タイピング成績</h3>
     <label class="switch">
         <input type="checkbox" id="switch" checked>

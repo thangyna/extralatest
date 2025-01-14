@@ -1,0 +1,109 @@
+body {
+    background-color: #F6F8FA;
+    margin: 0;
+}
+
+.header {
+    background-color: white;
+    color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 65px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: large;
+    color: inherit;
+    font-weight: bold;
+    margin: 0;
+    margin-right:auto;
+    text-align: left;
+    z-index: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    padding: 5px 30px;
+}
+
+.nav-link {
+    color: rgb(32, 32, 32);
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    justify-content: center;
+
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+    transition: background-color 0.2s, border-color 0.2s, transform 0.05s; /* アニメーションを追加 */
+}
+
+.nav-link:hover {
+    background-color: #f2f2f2;
+}
+
+.user {
+    color: rgb(32, 32, 32);
+    font-size: large;
+    padding: 5px 10px;
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: border-color 0.2s; /* 枠線と影のアニメーションを追加 */
+}
+
+.user.active {
+    border-color: #ccc;
+}
+
+.user-menu {
+    background-color: white;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 1px 4px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* 角を丸くする */
+    transition: visibility 0.3s, opacity 0.1s; /* アニメーションを追加 */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    margin-left: -100px;
+}
+
+.user-menu p {
+    margin: 10px;
+}
+
+.user-menu a {
+    display: block; /* ブロック要素にする */
+    padding: 10px; /* パディングを追加 */
+    margin: 10px 0; /* 上下のマージンを追加 */
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.2s; /* 背景色のアニメーションを追加 */
+}
+
+.user-menu a:hover {
+    background-color: #f2f2f2;
+}
+
+.user.active .user-menu {
+    visibility: visible;
+    opacity: 1;
+}

@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             // フォームにデータを反映
-            // header
-            document.getElementById('username').textContent = "ログイン中:" + data.username;
-            document.getElementById('admin').style.display = data.admin ? '' : 'none';
             // body
             document.getElementById('useMinScore').checked = data.useMinScore;
             document.getElementById('minScore').value = data.minScore;

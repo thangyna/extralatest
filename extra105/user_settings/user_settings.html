@@ -7,21 +7,20 @@
     <meta name="author" content="ergodic">
     <title>ユーザ設定</title>
     <link rel="stylesheet" href="user_settings.css">
+    <link rel="stylesheet" href="../header/header.css">
     <!-- JavaScript -->
     <script src="user_settings.js" defer></script>
     <script src="tooltip.js" defer></script>
+    <script src="../header/header.js" defer></script>
 </head>
 
 <body>
     <!-- ヘッダー -->
-    <div class="header">
-        <h2 class="page-title">ユーザ設定</h2>
-        <span id="username">ログイン中:</span>
-        <a href="../typing/typing_game.html">ゲームに戻る</a>
-        <a href="../admin.php" id="admin">管理者ページ</a>
-        <a href="../mypage.php">マイページ</a>
-        <a href="../logout.php">ログアウト</a>
-    </div><br>
+    <div id="header-container"></div>
+    <br>
+    <br>
+    <br>
+    <br>
     <form action="user_settings.php" method="post">
         <!-- 最低スコア -->
         <div class="tooltip">

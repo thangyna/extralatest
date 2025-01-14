@@ -69,9 +69,6 @@ $username = getUserInfo();
 
 // データの更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
     // 最低スコアの使用
     if (isset($_POST["useMinScore"])){
         createSaveSql($username, "useMinScore", "i", $_POST["useMinScore"] == "on");
