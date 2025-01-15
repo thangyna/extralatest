@@ -8,6 +8,7 @@ body {
     top: 0;
     width: 100%;
     height: 65px;
+    margin-bottom: 10px;
 }
 
 .header {
@@ -22,6 +23,10 @@ body {
     align-items: center;
     padding: 0 20px;
     z-index: 1000;
+}
+
+.below-header {
+    margin-top: 88px;
 }
 
 .page-title {

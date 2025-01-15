@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="フィードバック, PHP, HTML">
+    <meta name="author" content="thangyna">
+    <title>フィードバック</title>
+    <link rel="stylesheet" href="feedback.css">
+    <link rel="stylesheet" href="../header/header.css">
+    <script src="../header/header.js" defer></script>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div id="header-container"></div>
+    <div class="feedback below-header">
+        <form id="feedbackForm" action="feedback.php" method="post">
+            <h3>ご意見をお聞かせください</h3>
+            <form action="feedback.php" method="post">
+                <div class="message-container">
+                    <textarea class="message" name="message" required></textarea>
+                </div>
+                <div class="confirm-container">
+                    <button type="submit" class="confirm">送信</button>
+                </div>
+            </form>
+        </form>
+    </div>
+</body>
