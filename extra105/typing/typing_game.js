@@ -323,8 +323,6 @@ function setNextWord() {
     updateRomajiWord(currentRomaji[currentRomajiIndex]);
 
     wordIndex++;
-    
-    //console.log("New word set:", currentWord, currentRomaji);  // Add this line for debugging
 }
 
 /*------------------------------------------------
@@ -398,6 +396,7 @@ function highlightMistakeKey(_key) {
     key[_key].style.backgroundColor = `rgba(255, 0, 0, ${mistakesCount[_key] * 10 / 255})`;
     console.log(key[_key].style.backgroundColor);
 }
+
 /*------------------------------------------------
     キー、ボタン入力の処理
 ------------------------------------------------*/

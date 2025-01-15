@@ -1,3 +1,4 @@
+var minScore = 1000000; // ここで特定の値を設定
 
 document.addEventListener('DOMContentLoaded', function () {
     // トグルスイッチの動作
@@ -16,11 +17,18 @@ document.addEventListener('DOMContentLoaded', function () {
     /*------------------------------------------------
         データを取得してフォームに反映
     ------------------------------------------------*/
+    fetch('../user_settings/user_settings.php')
+        .then(response => response.json())
+        .then(data => {
+            minScore = data.useMinScore ? data.minScore : 0;
+            console.log('Use Min Score:', data.useMinScore);
+            console.log('Min Score:', minScore);
+        });
+
     fetch('mypage.php')
         .then(response => response.json())
         .then(data => {
             // スコアが特定の値以上のデータのみをフィルタリング
-            const minScore = 1000000; // ここで特定の値を設定
             const filteredData = data.records.filter(record => record.score > minScore);
 
             // フィルタリングされたデータを使用してラベルとデータを準備
