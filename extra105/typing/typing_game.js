@@ -97,6 +97,12 @@ function startGame() {
     countdown = 3;
     countdownText.innerText = countdown;
 
+    // キーのミスハイライトをリセット
+    for (_key in key) {
+        if (key[_key])
+            key[_key].style.backgroundColor = "#ffffff";
+    }
+
     // 問題リストをシャッフルしておく
     shuffledWords = shuffleArray(words.slice());
     wordIndex = 0;

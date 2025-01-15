@@ -99,4 +99,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 485);
         }
     });
+
+    /*------------------------------------------------
+        フォームデータを送信
+    ------------------------------------------------*/
+    function sendFormData() {
+        // フォームデータを取得
+        const form = document.getElementById('userSettingsForm');
+        const formData = new FormData(form);
+
+        // フォームデータを送信
+        fetch('user_settings.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            // 必要に応じて、送信後の処理をここに追加
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // フォームの各入力要素にchangeイベントリスナーを追加
+    document.querySelectorAll('#userSettingsForm input').forEach(input => {
+        input.addEventListener('change', sendFormData);
+    });
 });

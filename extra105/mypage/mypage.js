@@ -209,10 +209,21 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // 各キーのミス数の割合を計算
             const mistakesPercentage = {};
+            var maxValue = 0;
+            var multiplier = 1;
+            // ミス数最大のキーがもっとも濃い色になるようにする
             for (const _key in mistakesKey) {
                 mistakesPercentage[_key] = mistakesKey[_key] / totalMistakes;
+                if (key[_key] && mistakesPercentage[_key] > maxValue) {
+                    maxValue = mistakesPercentage[_key];
+                }
+            }
+            multiplier = 1/maxValue;
+            console.log('maxValue:', maxValue);
+            console.log('Multiplier:', multiplier);
+            for (const _key in mistakesKey) {
                 if (key[_key]) {
-                    key[_key].style.backgroundColor = `rgba(255, 0, 0, ${3*Math.sqrt(mistakesPercentage[_key])})`;
+                    key[_key].style.backgroundColor = `rgba(255, 0, 0, ${Math.sqrt(multiplier*mistakesPercentage[_key])})`;
 
                     // ツールチップを作成
                     const tooltip = document.createElement('span');

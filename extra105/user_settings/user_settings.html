@@ -16,9 +16,8 @@
 
 <body>
     <!-- ヘッダー -->
-    <div id="header-container"></div>
-    <br><br><br><br>
-    <div class="settings">
+    <div class="header-container" id="header-container"></div>
+    <div class="settings below-header">
         <form id="userSettingsForm" action="user_settings.php" method="post">
             <!-- 最低スコア -->
             <div class="switch-container">
@@ -54,7 +53,6 @@
                 </div>
             </div><br>
 
-
             <!-- ミスキーのハイライト -->
             <div class="switch-container" id="missHighlight-container">
                 <div class="tooltip" id="missHighlight-tooltip">
@@ -72,10 +70,10 @@
                     </span>
                 </div>
             </div> <br>
-            <button type="submit" class="confirm">保存</button>
-    </div>
-    </form>
 
+            <button type="submit" class="confirm">保存</button>
+        </form>
+    </div>
 </body>
 
 </html>

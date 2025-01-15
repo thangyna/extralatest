@@ -1,19 +1,29 @@
 /*------------------------------------------------
     マイページ画面のcss
 ------------------------------------------------*/
+.mypage {
+    display: flex;
+    flex-direction: colum;
+}
 /* チャートの表示 */
 .charts {
-    width: 80%;
+    width: 90%;
     height: flex;
-    margin: 0 auto;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: 20px;
+    margin-left: 5%;
 }
 .charts canvas {
     width: 100px;
     height: 100px;
+}
+.charts-container {
+    width: 50%;
+}
+.missHighlight-container {
+    width: 50%;
 }
 
 /* キーボードの表示 */
@@ -21,7 +31,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 .row {
     display: flex;
@@ -242,4 +252,8 @@ input:checked + .slider:before {
 .switch-container .tooltip {
     display: flex;
     align-items: center;
+}
+
+.missHighlightTitle {
+    margin-bottom: 10px;
 }

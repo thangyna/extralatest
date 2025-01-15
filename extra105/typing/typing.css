@@ -134,9 +134,6 @@ input[type="submit"], #startButton {
 
 
 /* ゲーム画面のスタイル */
-#gameArea {
-    margin-top: 50px;
-}
 #japaneseWord {
     font-size: 24px;
     font-weight: bold;
