@@ -61,7 +61,7 @@ function createSaveSql($_username, $_col, $_type, $_value) {
     処理の開始
 ------------------------------------------------*/
 // デバッグモードの設定
-$debug = true;
+$debug = false;
 $whereToRedirect = "user_settings.html";
 
 // ユーザ情報の取得
