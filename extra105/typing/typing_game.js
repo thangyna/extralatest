@@ -102,6 +102,14 @@ function startGame() {
     shuffledWords = shuffleArray(words.slice());
     wordIndex = 0;
 
+    // キーのミスハイライトをリセット
+    for (_key in key) {
+        if (key[_key]) {
+            key[_key].style.backgroundColor = "";
+            console.log("キーのハイライトをリセット");
+        }
+    }
+
     // 3秒のカウントダウン
     countdownTimer = setInterval(() => {
         countdown--;
@@ -144,13 +152,6 @@ function startTypingGame() {
 function endGame(_doRecord) {
     console.log("endGame");
 
-    // キーのミスハイライトをリセット
-    for (_key in key) {
-        if (key[_key]) {
-            key[_key].style.backgroundColor = "";
-            console.log("キーのハイライトをリセット");
-        }
-    }
 
     clearInterval(timer);
     timeLimit = 0;
