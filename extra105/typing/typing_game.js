@@ -27,6 +27,7 @@ let useHeighlight = true;
 const startButton = document.getElementById('startButton');
 const countdownText = document.getElementById('countdown');
 const wordArea = document.getElementById('wordArea');
+const missDisplay = document.getElementById('missDisplay');
 const japaneseWord = document.getElementById('japaneseWord');
 const nextWord = document.getElementById('nextWord');
 const kanaWord = document.getElementById('kanaWord');
@@ -97,12 +98,6 @@ function startGame() {
     countdown = 3;
     countdownText.innerText = countdown;
 
-    // キーのミスハイライトをリセット
-    for (_key in key) {
-        if (key[_key])
-            key[_key].style.backgroundColor = "#ffffff";
-    }
-
     // 問題リストをシャッフルしておく
     shuffledWords = shuffleArray(words.slice());
     wordIndex = 0;
@@ -148,6 +143,15 @@ function startTypingGame() {
 // ゲームを終了
 function endGame(_doRecord) {
     console.log("endGame");
+
+    // キーのミスハイライトをリセット
+    for (_key in key) {
+        if (key[_key]) {
+            key[_key].style.backgroundColor = "";
+            console.log("キーのハイライトをリセット");
+        }
+    }
+
     clearInterval(timer);
     timeLimit = 0;
     if(_doRecord) {
@@ -237,10 +241,10 @@ function processInput(_inputChar) {
     if (!isCorrect) {
         mistakes++;
         mistakesCount[nextChar] = (mistakesCount[nextChar] || 0) + 1;
-        // ミス時にローマ字ワードをハイライト
-        romajiWord.style.backgroundColor = "orange";
+        // ミス時に画面を点滅させる
+        missDisplay.style.backgroundColor = "orange";
         setTimeout(() => {
-            romajiWord.style.backgroundColor = "transparent";
+            missDisplay.style.backgroundColor = "transparent";
         }, 100);
 
         if (mistakesNumText) {  // Add this check
@@ -251,7 +255,7 @@ function processInput(_inputChar) {
     } else { // 入力文字が正しい場合
         correctChars++;
         // 正解時にハイライトをキャンセル
-        romajiWord.style.backgroundColor = "transparent";
+        missDisplay.style.backgroundColor = "transparent";
         if (scoreNumText) {  // Add this check
             scoreNumText.innerText = score;
         }
@@ -265,10 +269,12 @@ function processInput(_inputChar) {
         for (_key in key) {
             if (key[_key]) {
                 key[_key].classList.remove("highlight");
+                console.log(key[_key].classList);
             }
         }
         if (key[nextChar]) {
             key[nextChar].classList.add("highlight");
+            console.log(key[nextChar].classList);
         }
     }
     

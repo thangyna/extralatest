@@ -3634,3 +3634,51 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 5494
+    [correct_chars] => 49
+    [mistakes] => 8
+    [accuracy] => 85.96
+    [typing_speed] => Infinity
+    [top_mistakes] => h:4,r:2,n:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 828220
+    [correct_chars] => 150
+    [mistakes] => 13
+    [accuracy] => 92.02
+    [typing_speed] => Infinity
+    [top_mistakes] => e:5,a:2,n:2,r:1,m:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 189
+    [correct_chars] => 3
+    [mistakes] => 2
+    [accuracy] => 60.00
+    [typing_speed] => Infinity
+    [top_mistakes] => r:1,o:1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => NaN
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1

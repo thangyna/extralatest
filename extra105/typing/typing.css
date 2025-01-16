@@ -173,6 +173,15 @@ body {
     transition: height 0.5s ease;
 }
 
+.missDisplay {
+    position: absolute;
+    width: 50%;
+    height: 33%;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    z-index: -1;
+}
+
 #japaneseWord {
     font-size: 24px;
     font-weight: bold;
