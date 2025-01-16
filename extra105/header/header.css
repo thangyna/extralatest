@@ -167,6 +167,7 @@ body {
     height: 100vh;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
     z-index: 900;
+    top: 0;
 
     overflow-y: auto; /* スクロールバーを表示 */
 }
