@@ -26,6 +26,7 @@ let useHeighlight = true;
 // ウェブサイトのビジュアライズ関連
 const startButton = document.getElementById('startButton');
 const countdownText = document.getElementById('countdown');
+const wordArea = document.getElementById('wordArea');
 const japaneseWord = document.getElementById('japaneseWord');
 const nextWord = document.getElementById('nextWord');
 const kanaWord = document.getElementById('kanaWord');
@@ -67,7 +68,6 @@ const key = {
 // タイムリミットバー
 const timerText = document.getElementById('timer')          // タイマー
 const timeBar = document.getElementById('time-bar')         // タイムリミットバー
-timeBar.style.width = "100%"                                // タイムリミット 初期幅
 let timeBarPar = 100                                        // 残り時間 初期値
 
 /*------------------------------------------------
@@ -115,7 +115,7 @@ function startGame() {
         if (countdown <= 0) {
             clearInterval(countdownTimer);
             countdownText.innerText = "";
-            alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
+            animateTimeBar(0);
             startTypingGame();
         }
     }, 1000);
@@ -129,8 +129,7 @@ function startTypingGame() {
     // プレイヤーデータの初期化
     currentPosition = 0;
     currentRomajiIndex = 0;
-    romajiWord.style.display = "block";
-    nextWord.style.display = "block";
+    showWord();
     setNextWord();  // ゲーム開始時に問題を表示
 
     /*------------------------------------------------
@@ -139,7 +138,6 @@ function startTypingGame() {
     timer = setInterval(() => {
         timeLimit--;
         timerText.innerText = timeLimit;
-        alterTime(-100 / timeLimitStart); // タイムリミットのゲージ
         // タイムリミットが 0 になった場合
         if (timeLimit <= 0) {
             endGame(true);
@@ -372,6 +370,7 @@ function saveGameResults(_score, _correctChars, _mistakes) {
     ウェブサイトのビジュアライズ
 ------------------------------------------------*/
 function alterTime(_value) {
+    timeBar.style.transition = "none"
     // timeの値を算出する
     timeBarPar += _value
     if (timeBarPar <= 0) {
@@ -387,12 +386,22 @@ function alterTime(_value) {
     timeBar.style.width = timeBarPar + "%"
 }
 
+function animateTimeBar(_var) {
+    timeBar.style.transition = `width ${timeLimitStart}s linear`
+    timeBar.style.width = _var + "%"
+}
+
 // ローマ字の表示を更新
 function updateRomajiWord(_romaji) {
     let highlightedText = keyHistory;
     let remainingText = _romaji.substring(currentPosition);
     // ハイライトされたテキストと残りのテキストを表示
     romajiWord.innerHTML = `<span id="highlightedText" style="color: blue;">${highlightedText}</span>${remainingText}`;
+}
+
+function showWord() {
+    romajiWord.style.display = "block";    
+    nextWord.style.display = "block";
 }
 
 // ミスしたキーのハイライト

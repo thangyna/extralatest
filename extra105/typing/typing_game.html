@@ -18,16 +18,18 @@
     <!-- ヘッダー -->
     <div class="header-container" id="header-container"></div>
     <!-- ゲームエリア -->
-    <div id="gameArea" class="below-header">
+    <div id="gameArea" class="gameArea">
         <p id="countdown"></p>
         <p>残り時間: <span id="timer">60</span> 秒</p>
         <div id="time-frame">
             <div id="time-bar"></div>
         </div>
-        <p id="japaneseWord"></p>
-        <p id="kanaWord" style="color: gray;"></p>
-        <p id="romajiWord" style="color: gray;"></p>
-        <p id="nextWord"></p>
+        <div class="wordArea" id="wordArea">
+            <span id="japaneseWord"></span>
+            <span id="kanaWord" style="color: gray;"></span>
+            <span id="romajiWord" style="color: gray;"></span>
+            <span id="nextWord"></span>
+        </div>
         <div class="keyboard" id="keyboard">
             <div class="row">
                 <div class="key"></div>
@@ -95,11 +97,11 @@
             </div>
         </div>
         <br>
-        <button id="startButton">スタート</button>
+        <button class="startButton" id="startButton">スタート</button>
     </div>
 
     <!-- ランキング -->
-    <div id="ranking" style="float: left; margin-right: 20px;">
+    <div id="ranking" class="ranking">
         <h3>今日のランキング</h3>
         <ol id="rankings"></ol>
     </div>

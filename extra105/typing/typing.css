@@ -6,8 +6,22 @@ body {
 }
 
 /* ボタン入力 */
-input[type="submit"], #startButton {
-    padding: 10px 20px;
+.startButton {
+    background-color: rgb(59,130,246);
+    color: white;
+    border: none;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+}
+
+.startButton:hover {
+    background-color: rgb(37,99,235);
 }
 
 /* キーボードのスタイル */
@@ -134,34 +148,69 @@ input[type="submit"], #startButton {
 
 
 /* ゲーム画面のスタイル */
+.gameArea {
+    position: fixed;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20vh;
+    z-index: 1;
+}
+
+.ranking {
+    position: fixed;
+    margin-left: 3%;
+    margin-top: 40vh;
+    text-align: left;
+}
+
+.wordArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: height 0.5s ease;
+}
+
 #japaneseWord {
     font-size: 24px;
     font-weight: bold;
+    margin: 20px;
+}
+#kanaWord {
+    font-size: 18px;
+    margin: 10px;
+}
+#romajiWord {
+    font-size: 18px;
+    margin: 10px;
+}
+#highlightedText {
+    color: blue;
+    margin: 10px 0px;
 }
 #nextWord {
     font-size: 18px;
     font-weight: bold;
     color: lightgray;
-}
-#romajiWord {
-    font-size: 18px;
-}
-#highlightedText {
-    color: blue;
+    margin: 5px;
 }
 
 /* タイマーのスタイル */
 #time-frame {
     margin: 0 auto;
-    width: 80%;
-    background-color: rgba(10, 0, 50, 0.6);
+    width: 60%;
+    background-color: #ccc;
     display: flex;
     padding: 3px 3px;
+    border-radius: 16px;
 }
 #time-bar {
-    height: 3px;
-    background-color: rgb(0, 255, 255);
-    transition: 300ms
+    height: 10px;
+    background: linear-gradient(to right, rgb(171, 130, 246), rgb(59,130,246)); /* グラデーションを設定 */
+    transition: 300ms;
+    border-radius: 10px;
 }
 
 /* ランキングのスタイル */
