@@ -1,7 +1,7 @@
-/*------------------------------------------------
-    ヘッダーの表示にかかわる処理
-------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', function () {
+    /*------------------------------------------------
+        ヘッダーの表示にかかわる処理
+    ------------------------------------------------*/
     // headerを適応
     fetch('../header/header.html')
         .then(response => response.text())
@@ -20,6 +20,30 @@ document.addEventListener('DOMContentLoaded', function () {
                     user.classList.remove('active');
                 }
             });
+
+
+            // 通知の表示
+            const notificationButton = document.getElementById('notification-button');
+            const notification = document.getElementById('notification');
+            var enabled = false;
+            notification.style.display = 'none';
+            notificationButton.addEventListener('click', function () {
+                enabled = !enabled;
+                if (enabled) {
+                    notification.style.display = 'block';
+                    notification.style.animation = 'slidein 0.5s';
+                }
+                else {
+                    notification.style.animation = 'slideout 0.5s';
+                    setTimeout(() => {
+                        if (!enabled)
+                            notification.style.display = 'none';
+                    }, 490);
+                }
+            
+
+                
+            });
         });
 
     // ユーザーネームを取得して表示
@@ -34,5 +58,44 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("showKeyboard:" + data.showKeyboard);
             console.log("missHighlight:" + data.missHighlight);
             // console.log("exp:" + data.exp);
+        });
+    
+    /*------------------------------------------------
+        通知の表示にかかわる処理
+    ------------------------------------------------*/
+    // 通知の内容を取得して表示
+    fetch('../header/notification.json')
+        .then(response => response.json())
+        .then(notifications => {
+            // 通知の内容を表示
+            const notificationContainer = document.getElementById('notification');
+            notifications.forEach((notification, index) => {
+                const notificationContent = document.createElement('div');
+                notificationContent.className = 'notification-content';
+
+                const title = document.createElement('h3');
+                title.textContent = notification.title;
+
+                // typeに基づいてタイトルの色を変更
+                switch (notification.type) {
+                    case 'update':
+                        title.style.color = 'rgb(59,130,246)';
+                        break;
+                    default:
+                        title.style.color = 'black';
+                }
+
+                notificationContent.appendChild(title);
+
+                const text = document.createElement('span');
+                text.textContent = notification.text;
+                notificationContent.appendChild(text);
+
+                if (index === 0) {
+                    notificationContent.classList.add('below-header');
+                }
+
+                notificationContainer.appendChild(notificationContent);
+            });
         });
 });

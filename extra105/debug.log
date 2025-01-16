@@ -3514,3 +3514,123 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1881600
+    [correct_chars] => 336
+    [mistakes] => 24
+    [accuracy] => 93.33
+    [typing_speed] => Infinity
+    [top_mistakes] => u:4,i:3,o:3,a:3,n:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1744255
+    [correct_chars] => 313
+    [mistakes] => 24
+    [accuracy] => 92.88
+    [typing_speed] => Infinity
+    [top_mistakes] => g:5,i:4,a:3,k:3,m:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1625472
+    [correct_chars] => 299
+    [mistakes] => 31
+    [accuracy] => 90.61
+    [typing_speed] => Infinity
+    [top_mistakes] => w:5,g:5,a:4,u:4,e:3
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1728664
+    [correct_chars] => 306
+    [mistakes] => 19
+    [accuracy] => 94.15
+    [typing_speed] => Infinity
+    [top_mistakes] => e:4,a:3,w:2,n:2,r:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1735317
+    [correct_chars] => 309
+    [mistakes] => 20
+    [accuracy] => 93.92
+    [typing_speed] => Infinity
+    [top_mistakes] => k:3,t:2,o:2,u:2,h:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => NaN
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => NaN
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => NaN
+    [top_mistakes] => 
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1536304
+    [correct_chars] => 285
+    [mistakes] => 31
+    [accuracy] => 90.19
+    [typing_speed] => Infinity
+    [top_mistakes] => e:12,w:5,o:5,m:2,s:2
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1994419
+    [correct_chars] => 354
+    [mistakes] => 23
+    [accuracy] => 93.90
+    [typing_speed] => Infinity
+    [top_mistakes] => g:8,w:4,k:2,a:2,r:2
+)
+
+Original IP: ::1
+Saved IP: ::1
