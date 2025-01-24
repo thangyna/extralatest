@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('minScore').value = data.minScore;
             document.getElementById('showKeyboard').checked = data.showKeyboard;
             document.getElementById('missHighlight').checked = data.missHighlight;
+            document.getElementById('privacy').checked = data.privacy;
             console.log("data.missHighlight: " + data.missHighlight);
 
             /*------------------------------------------------
@@ -99,6 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 485);
         }
     });
+
+    /*------------------------------------------------
+        公開設定にかかわる処理
+    ------------------------------------------------*/
+    var privacy = document.getElementById("privacy");
 
     /*------------------------------------------------
         フォームデータを送信

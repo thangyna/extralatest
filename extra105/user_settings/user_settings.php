@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // データの取得, 出力
-$settings = createLoadSql($username, "username, admin, useMinScore, minScore, showKeyboard, exp, missHighlight");
+$settings = createLoadSql($username, "username, admin, useMinScore, minScore, showKeyboard, exp, missHighlight, privacy");
 header('Content-Type: application/json');
 echo json_encode($settings);
 ?>
