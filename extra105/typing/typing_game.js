@@ -3,7 +3,7 @@ let isPlaying = false;
 let doRecord = true;
 let countdown = 3;
 let countdownTimer;
-let timeLimitStart = 60;
+let timeLimitStart = 30;
 let timeLimit;
 let timer;
 
@@ -22,6 +22,7 @@ let shuffledWords = [];  // シャッフルされた問題のリスト
 
 // ユーザ設定
 let useHeighlight = true;
+let isDisplay = true;
 
 // ウェブサイトのビジュアライズ関連
 const startButton = document.getElementById('startButton');
@@ -159,13 +160,21 @@ function endGame(_doRecord) {
         let accuracy = calculateAccuracy(correctChars, mistakes);
         let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
         let topMistakes = getTopMistakes(mistakesCount);
-        saveGameResults(score, correctChars, mistakes);
-        alert("ゲーム終了！\nスコア: " + score + "\n正しく打てた文字数: " + correctChars + "\n間違った文字数: " + mistakes +
-                "\n正解率: " + accuracy + "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +"\n間違えやすいキー: " + topMistakes.replace(/,/g, ', '));
+        saveGameResults(score, correctChars, mistakes, isDisplay);
+        alert(
+            "ゲーム終了！\nスコア: " + score +
+            "\n正しく打てた文字数: " + correctChars + 
+            "\n間違った文字数: " + mistakes +
+            "\n正解率: " + accuracy + 
+            "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +
+            "\n間違えやすいキー: " + topMistakes.replace(/,/g, ', ') +
+            "\n公開: " + isDisplay,
+        );
     }
     isPlaying = false;
     setNextGame();
 }
+
 // 次のゲームをセット
 function setNextGame() {
     console.log("setNextGame");
@@ -263,19 +272,19 @@ function processInput(_inputChar) {
 
         // 全ての文字が正しく入力された場合
         if (currentPosition === currentRomaji[currentRomajiIndex].length) {
-            console.log("nextWord");
+            // console.log("nextWord");
             setNextWord();
             return;  // Add this line to exit the function after setting next word
         }
         for (_key in key) {
             if (key[_key]) {
                 key[_key].classList.remove("highlight");
-                console.log(key[_key].classList);
+                // console.log(key[_key].classList);
             }
         }
         if (key[nextChar]) {
             key[nextChar].classList.add("highlight");
-            console.log(key[nextChar].classList);
+            // console.log(key[nextChar].classList);
         }
     }
     
@@ -291,7 +300,7 @@ function calculateScore(_correctChars, _mistakes, _currentTime) {
     // タイプスピード
     typeSpeed = (60 / _currentTime) * _correctChars;
     let _score = typeSpeed * (correctivity * 100);
-    console.log(typeSpeed + "*" + "(" + correctivity + "*" + 100 + ")" )
+    // console.log(typeSpeed + "*" + "(" + correctivity + "*" + 100 + ")" )
     return Math.floor(_score);
 }
 
@@ -355,7 +364,7 @@ function getTopMistakes(mistakesObj) {
         .join(',');
 }
 
-function saveGameResults(_score, _correctChars, _mistakes) {
+function saveGameResults(_score, _correctChars, _mistakes ,_isDisplay) {
     let accuracy = calculateAccuracy(_correctChars, _mistakes);
     let typingSpeed = calculateTypingSpeed(_correctChars, timeLimit);
     let topMistakes = getTopMistakes(mistakesCount);
@@ -369,7 +378,8 @@ function saveGameResults(_score, _correctChars, _mistakes) {
         }
     };
     let params = "score=" + _score + "&correct_chars=" + _correctChars + "&mistakes=" + _mistakes +
-                 "&accuracy=" + accuracy + "&typing_speed=" + typingSpeed + "&top_mistakes=" + encodeURIComponent(topMistakes);
+                 "&accuracy=" + accuracy + "&typing_speed=" + typingSpeed + "&top_mistakes=" + encodeURIComponent(topMistakes) +
+                 "&is_display=" + _isDisplay;
     xhr.send(params);
 }
 
@@ -416,7 +426,7 @@ function highlightMistakeKey(_key) {
     if (!useHeighlight)
         return;
     key[_key].style.backgroundColor = `rgba(255, 0, 0, ${mistakesCount[_key] * 10 / 255})`;
-    console.log(key[_key].style.backgroundColor);
+    // console.log(key[_key].style.backgroundColor);
 }
 
 /*------------------------------------------------
@@ -461,5 +471,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             // ハイライトを使用
             useHeighlight = data.missHighlight;
+            // ランキングに表示するかの設定
+            isDisplay = data.privacy;
+            console.log("data.privacy: " + data.privacy);
+            console.log("isDisplay: " + isDisplay);
         });
 });

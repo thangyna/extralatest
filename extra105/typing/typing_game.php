@@ -33,7 +33,7 @@ function getRanking() {
     $sql = "
         SELECT username, MAX(score) AS score
         FROM game_results
-        WHERE DATE(recorded_at) = :today
+        WHERE DATE(recorded_at) = :today AND isDisplay = 1
         GROUP BY username
         ORDER BY score DESC
         LIMIT 5
