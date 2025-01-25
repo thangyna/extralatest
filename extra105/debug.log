@@ -3908,3 +3908,185 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 2015300
+    [correct_chars] => 372
+    [mistakes] => 40
+    [accuracy] => 90.29
+    [typing_speed] => Infinity
+    [top_mistakes] => e:7,a:6,u:6,i:4,m:3
+    [is_display] => false
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 2100428
+    [correct_chars] => 377
+    [mistakes] => 29
+    [accuracy] => 92.86
+    [typing_speed] => Infinity
+    [top_mistakes] => i:6,g:4,o:3,w:2,k:2
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1957412
+    [correct_chars] => 335
+    [mistakes] => 9
+    [accuracy] => 97.38
+    [typing_speed] => Infinity
+    [top_mistakes] => a:3,o:2,g:2,w:1,z:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1868463
+    [correct_chars] => 344
+    [mistakes] => 36
+    [accuracy] => 90.53
+    [typing_speed] => Infinity
+    [top_mistakes] => m:6,o:6,a:5,i:4,b:4
+    [is_display] => false
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 0
+    [correct_chars] => 0
+    [mistakes] => 0
+    [accuracy] => NaN
+    [typing_speed] => NaN
+    [top_mistakes] => 
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1912168
+    [correct_chars] => 348
+    [mistakes] => 32
+    [accuracy] => 91.58
+    [typing_speed] => Infinity
+    [top_mistakes] => a:8,g:7,u:4,h:3,m:3
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1693476
+    [correct_chars] => 301
+    [mistakes] => 20
+    [accuracy] => 93.77
+    [typing_speed] => Infinity
+    [top_mistakes] => a:7,g:3,i:2,u:2,t:2
+    [is_display] => 0
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1419600
+    [correct_chars] => 273
+    [mistakes] => 42
+    [accuracy] => 86.67
+    [typing_speed] => Infinity
+    [top_mistakes] => r:10,u:5,o:5,z:3,g:3
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1920015
+    [correct_chars] => 351
+    [mistakes] => 34
+    [accuracy] => 91.17
+    [typing_speed] => Infinity
+    [top_mistakes] => b:6,a:5,g:4,m:4,u:3
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1316510
+    [correct_chars] => 229
+    [mistakes] => 10
+    [accuracy] => 95.82
+    [typing_speed] => Infinity
+    [top_mistakes] => o:5,a:2,u:2,m:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1066995
+    [correct_chars] => 190
+    [mistakes] => 13
+    [accuracy] => 93.60
+    [typing_speed] => Infinity
+    [top_mistakes] => n:5,s:2,i:2,g:2,u:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1176000
+    [correct_chars] => 210
+    [mistakes] => 15
+    [accuracy] => 93.33
+    [typing_speed] => Infinity
+    [top_mistakes] => u:4,k:3,r:3,w:2,a:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1180487
+    [correct_chars] => 220
+    [mistakes] => 26
+    [accuracy] => 89.43
+    [typing_speed] => Infinity
+    [top_mistakes] => o:5,a:4,r:3,g:3,i:3
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1498795
+    [correct_chars] => 272
+    [mistakes] => 23
+    [accuracy] => 92.20
+    [typing_speed] => Infinity
+    [top_mistakes] => u:6,r:4,g:4,s:3,d:2
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1

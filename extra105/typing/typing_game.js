@@ -77,7 +77,7 @@ let timeBarPar = 100                                        // 残り時間 初�
 ------------------------------------------------*/
 // スタートのフラグ
 function startGame() {
-    console.log("startGame");
+    console.log("ゲーム開始");
     if (isPlaying) 
         return;
 
@@ -127,7 +127,7 @@ function startGame() {
 
 // メインゲームを開始
 function startTypingGame() {
-    console.log("startTypingGame");
+    console.log("タイピングゲームを開始");
     timeLimit = timeLimitStart;
     timerText.innerText = timeLimit;
     // プレイヤーデータの初期化
@@ -151,8 +151,7 @@ function startTypingGame() {
 
 // ゲームを終了
 function endGame(_doRecord) {
-    console.log("endGame");
-
+    console.log("ゲーム終了");
 
     clearInterval(timer);
     timeLimit = 0;
@@ -161,6 +160,7 @@ function endGame(_doRecord) {
         let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
         let topMistakes = getTopMistakes(mistakesCount);
         saveGameResults(score, correctChars, mistakes, isDisplay);
+        reloadRanking();
         alert(
             "ゲーム終了！\nスコア: " + score +
             "\n正しく打てた文字数: " + correctChars + 
@@ -168,7 +168,7 @@ function endGame(_doRecord) {
             "\n正解率: " + accuracy + 
             "%\n打鍵数: " + typingSpeed + "/"+ timeLimitStart + "秒" +
             "\n間違えやすいキー: " + topMistakes.replace(/,/g, ', ') +
-            "\n公開: " + isDisplay,
+            "\n公開: " + isDisplay
         );
     }
     isPlaying = false;
@@ -177,7 +177,7 @@ function endGame(_doRecord) {
 
 // 次のゲームをセット
 function setNextGame() {
-    console.log("setNextGame");
+    console.log("次のゲームをセット");
     // 問題リストを読み込む
     loadWords();
     // ウェブサイトの画面を設定
@@ -429,6 +429,41 @@ function highlightMistakeKey(_key) {
     // console.log(key[_key].style.backgroundColor);
 }
 
+function reloadRanking() {
+    /*------------------------------------------------
+        ランキングを取得
+    ------------------------------------------------*/
+    console.log("ランキングを更新");
+    fetch('typing_game.php')
+        .then(response => response.json())
+        .then(data => {
+            // フォームにデータを反映
+            // body
+            rankingsList = document.getElementById('rankings');
+            rankingsList.innerHTML = '';
+            // ログ
+            console.log(data);
+
+            /*------------------------------------------------
+                ランキングを表示
+            ------------------------------------------------*/
+            // ランキングがない場合
+            if (data.ranking.length === 0) {
+                const noDataItem = document.createElement('li');
+                noDataItem.textContent = 'ランキングはありません';
+                rankingsList.appendChild(noDataItem);
+            }
+            // ランキングがある場合
+            else {
+                data.ranking.forEach((item, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${item.username}: ${item.score}`;
+                    rankingsList.appendChild(listItem);
+                });
+            }
+        });
+}
+
 /*------------------------------------------------
     キー、ボタン入力の処理
 ------------------------------------------------*/
@@ -466,6 +501,7 @@ startButton.addEventListener("click", function () {
 ------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', function() {
     setNextGame();
+    reloadRanking();
     fetch ("../user_settings/user_settings.php")
         .then(response => response.json())
         .then(data => {

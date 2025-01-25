@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accuracy = floatval($_POST['accuracy']);
     $typing_speed = intval($_POST['typing_speed']);
     $top_mistakes = $_POST['top_mistakes'];
-    $is_display = intval($_POST['is_display']);
+    $is_display = $_POST['is_display'] ? 1 : 0;
     
     // IPアドレスの取得
     $ip_address = $_SERVER['REMOTE_ADDR'];
