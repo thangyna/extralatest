@@ -3,7 +3,7 @@ let isPlaying = false;
 let doRecord = true;
 let countdown = 3;
 let countdownTimer;
-let timeLimitStart = 30;
+let timeLimitStart = 60;
 let timeLimit;
 let timer;
 
