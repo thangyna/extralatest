@@ -3882,3 +3882,29 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 764685
+    [correct_chars] => 136
+    [mistakes] => 8
+    [accuracy] => 94.44
+    [typing_speed] => Infinity
+    [top_mistakes] => i:3,w:2,a:1,r:1,m:1
+    [is_display] => 1
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 867000
+    [correct_chars] => 153
+    [mistakes] => 9
+    [accuracy] => 94.44
+    [typing_speed] => Infinity
+    [top_mistakes] => u:3,r:3,z:2,a:1
+    [is_display] => 1
+)
+
+Original IP: ::1
+Saved IP: ::1
