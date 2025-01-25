@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // ハイライトを使用
             useHeighlight = data.missHighlight;
             // ランキングに表示するかの設定
-            isDisplay = data.privacy;
+            isDisplay = !data.privacy;
             console.log("data.privacy: " + data.privacy);
             console.log("isDisplay: " + isDisplay);
         });
