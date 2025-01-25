@@ -97,6 +97,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createSaveSql($username, "missHighlight", "i", 0);
     }
 
+    if (isset($_POST["privacy"])){
+        createSaveSql($username, "privacy", "i", $_POST["privacy"] == "on");
+    }
+    else {
+        createSaveSql($username, "privacy", "i", 0);
+    }
+
     // デバッグモードの使用に応じてリダイレクト
     if (!$debug) {
         header("Location: " . $whereToRedirect);
