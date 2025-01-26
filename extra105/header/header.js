@@ -92,7 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("minScore:" + data.minScore);
             console.log("showKeyboard:" + data.showKeyboard);
             console.log("missHighlight:" + data.missHighlight);
+            console.log("privacy:" + data.privacy);
+            console.log("convertLayout:" + data.convertLayout);
+            console.log("keyboardLayout:" + data.layout);
             // console.log("exp:" + data.exp);
         });
-
 });

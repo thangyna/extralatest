@@ -99,6 +99,7 @@ input:checked + .slider:before {
 .switch-container {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .switch-container .tooltip {
@@ -134,8 +135,21 @@ input:checked + .slider:before {
     }
 }
 
+.childs {
+    display: flex;
+    padding-left: 20px;
+    flex-direction: column;
+    transition: height 0.5s;
+}
+
 #missHiglight-container {
     display: none;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+#keyboardLayout-container {
+    display: block;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
@@ -187,6 +201,22 @@ input:checked + .slider:before {
 }
 
 .minScore:focus {
+    border-color: rgb(59,130,246);
+    border-width: 2px;
+    outline: none;
+}
+
+.dropdown {
+    background-color: rgb(221, 227, 255);
+    padding: 8px 12px;
+    margin-left: 20px;
+    border-style: solid;
+    border-color: rgb(215, 221, 233);
+    border-width: 1px;
+    border-radius: .5rem;
+}
+
+.dropdown:focus {
     border-color: rgb(59,130,246);
     border-width: 2px;
     outline: none;

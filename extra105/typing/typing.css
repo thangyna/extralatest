@@ -25,6 +25,12 @@ body {
 }
 
 /* キーボードのスタイル */
+.keyboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .keyboard {
     display: flex;
     flex-direction: column;
@@ -48,6 +54,9 @@ body {
     cursor: pointer;
     user-select: none;
     transition: background-color 0.2s, border-color 0.2s, transform 0.05s; /* アニメーションを追加 */
+}
+.key.home {
+    border-color: #007bff;
 }
 .key.highlight {
     background-color: #d1e7ff;
