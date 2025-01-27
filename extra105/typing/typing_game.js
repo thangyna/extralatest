@@ -595,13 +595,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             return _keyCode;
                         switch (keyboardLayout) {
                             case "dvorak":
-                                console.log(_keyCode + "-> Dvorak ->" + toDvorak[_keyCode]);
                                 return toDvorak[_keyCode];
                             case "colemak":
-                                console.log(_keyCode + "-> Colemak ->" + toColemak[_keyCode]);
                                 return toColemak[_keyCode];
                             case "oonishi":
-                                console.log(_keyCode + "-> Oonishi ->" + toOonishi[_keyCode]);
                                 return toOonishi[_keyCode];
                             default:
                                 return _keyCode;
