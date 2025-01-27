@@ -55,6 +55,29 @@
                 </div>
             </div>
 
+            <!-- キーボード配列 -->
+            <div class="switch-container" id="keyboardLayout-container">
+                <div class="tooltip" id="keyboardLayout-tooltip">
+                    <label class="switch">
+                        <input type="checkbox" name="keyboardLayout" id="keyboardLayout">
+                        <span class="slider round"></span>
+                    </label>
+                    <label>キー配列</label>
+                    <span class="tooltiptext">
+                        <strong>キーボードの配列</strong><br>
+                        キーボードの配列を選択できます。<br>
+                        また、有効にした場合、
+                        <span class="point">qwerty配列の入力を変換します。</span>
+                    </span>
+                    <select class="dropdown" name="keyboardLayout-dropdown" id="keyboardLayout-dropdown">
+                        <option value="qwerty">qwerty配列</option>
+                        <option value="dvorak">dvorak配列</option>
+                        <option value="colemak">colemak配列</option>
+                        <option value="oonishi">大西配列</option>
+                    </select>
+                </div>
+            </div>
+
             <!-- キーボードの表示 -->
             <div class="switch-container">
                 <div class="tooltip">
@@ -73,29 +96,6 @@
             </div>
 
             <div class="childs" id="childs-container">
-                <!-- キーボード配列 -->
-                <div class="switch-container" id="keyboardLayout-container">
-                    <div class="tooltip" id="keyboardLayout-tooltip">
-                        <label class="switch">
-                            <input type="checkbox" name="keyboardLayout" id="keyboardLayout">
-                            <span class="slider round"></span>
-                        </label>
-                        <label>キー配列</label>
-                        <span class="tooltiptext">
-                            <strong>キーボードの配列</strong><br>
-                            キーボードの配列を選択できます。<br>
-                            また、有効にした場合、
-                            <span class="point">qwerty配列の入力を変換します。</span>
-                        </span>
-                        <select class="dropdown" name="keyboardLayout-dropdown" id="keyboardLayout-dropdown">
-                            <option value="qwerty">qwerty配列</option>
-                            <option value="dvorak">dvorak配列</option>
-                            <option value="colemak">colemak配列</option>
-                            <option value="oonishi">大西配列</option>
-                        </select>
-                    </div>
-                </div>
-
                 <!-- ミスキーのハイライト -->
                 <div class="switch-container child" id="missHighlight-container">
                     <div class="tooltip" id="missHighlight-tooltip">

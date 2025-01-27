@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // ユーザ設定
             let useHeighlight = data.missHighlight;
             let isDisplay = !data.privacy;
+            let showKeyboard = data.showKeyboard;
             let isConvert = data.convertLayout;
             let keyboardLayout = data.layout;
 
@@ -45,8 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch('keyboards/' + keyboardLayout + '.html')
                 .then(response => response.text())
                 .then(html => {
-                    const keyboardContainer = document.getElementById('keyboard-container');
-                    keyboardContainer.innerHTML = html;
+                    if (showKeyboard) {
+                        const keyboardContainer = document.getElementById('keyboard-container');
+                        keyboardContainer.innerHTML = html;
+                    }
                     // キーボードの表示
                     console.log("キーボードのレイアウト:" + keyboardLayout);
                     let key = {

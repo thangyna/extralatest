@@ -4219,3 +4219,16 @@ Array
 )
 
 Original IP: ::1
+Array
+(
+    [score] => 696774
+    [correct_chars] => 120
+    [mistakes] => 4
+    [accuracy] => 96.77
+    [typing_speed] => Infinity
+    [top_mistakes] => d:2,i:1,k:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1

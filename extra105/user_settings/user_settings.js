@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             // キーボードハイライトの初期状態
             if (showKeyboardCheckbox.checked) {
-                childsContainer.style.height = '100px';
+                childsContainer.style.height = childsContainerHeight + 'px';
                 for (const key in childs) {
                     childs[key].disabled = false;
                 }
@@ -74,16 +74,16 @@ document.addEventListener('DOMContentLoaded', function() {
         キーボードにかかわる処理
     ------------------------------------------------*/
     var childsContainer = document.getElementById('childs-container');
+    var childsContainerHeight = 50;
     var showKeyboardCheckbox = document.getElementById('showKeyboard');
     var childs = {
-        keyboardLayout: document.getElementById('keyboardLayout-tooltip'),
         missHighlight: document.getElementById('missHighlight-tooltip')
     }
 
     // キーボードハイライトのチェックボックスの表示/非表示をチェックボックスの状態に応じて切り替え
     showKeyboardCheckbox.addEventListener('change', function() {
         if (showKeyboardCheckbox.checked) {
-            childsContainer.style.height = '100px';
+            childsContainer.style.height = childsContainerHeight + 'px';
             for (const key in childs) {
                 childs[key].style.display = 'block';
                 childs[key].style.animation = 'openContainer 0.5s'
