@@ -4194,3 +4194,28 @@ Array
 
 Original IP: ::1
 Saved IP: ::1
+Array
+(
+    [score] => 1705609
+    [correct_chars] => 293
+    [mistakes] => 9
+    [accuracy] => 97.02
+    [typing_speed] => Infinity
+    [top_mistakes] => o:3,k:1,a:1,g:1,r:1
+    [is_display] => true
+)
+
+Original IP: ::1
+Saved IP: ::1
+Array
+(
+    [score] => 1846530
+    [correct_chars] => 323
+    [mistakes] => 16
+    [accuracy] => 95.28
+    [typing_speed] => Infinity
+    [top_mistakes] => o:5,b:4,a:3,u:2,e:1
+    [is_display] => true
+)
+
+Original IP: ::1

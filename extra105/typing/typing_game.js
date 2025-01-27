@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     function setNextWord() {
                         let wordData = shuffledWords[wordIndex];
                         currentWord = wordData.japanese;
-                        currentRomaji = wordData.romaji;
+                        currentRomaji = wordData.romaji.sort((a, b) => a.length - b.length);
                         currentKana = wordData.kana;
                         currentRomajiIndex = 0;
                         japaneseWord.innerText = currentWord;  // 問題文を表示
