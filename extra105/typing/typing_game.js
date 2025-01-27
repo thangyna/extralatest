@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const scoreNumText = document.getElementById('scoreNum');  // Add this line
             const mistakesNumText = document.getElementById('mistakesNum');  // Add this line
 
-            fetch('keyboards/' + keyboardLayout + '.html')
+            fetch('../assets/keyboards/' + keyboardLayout + '.html')
                 .then(response => response.text())
                 .then(html => {
                     if (showKeyboard) {
