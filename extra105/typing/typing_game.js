@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let showKeyboard = data.showKeyboard;
             let isConvert = data.convertLayout;
             let keyboardLayout = data.layout;
+            let homeHighlight = data.homeHighlight;
 
             // ウェブサイトのビジュアライズ関連
             const startButton = document.getElementById('startButton');
@@ -49,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (showKeyboard) {
                         const keyboardContainer = document.getElementById('keyboard-container');
                         keyboardContainer.innerHTML = html;
+                        if (!homeHighlight) {
+                            homeKeys = document.getElementsByClassName('home');
+                            for (let homeKey of homeKeys) {
+                                homeKey.style.borderColor = '#ccc';
+                            }
+                        }
                     }
                     // キーボードの表示
                     console.log("キーボードのレイアウト:" + keyboardLayout);

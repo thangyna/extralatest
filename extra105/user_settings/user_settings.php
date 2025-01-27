@@ -120,6 +120,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createSaveSql($username, "layout", "s", $layout);
     }
 
+    if (isset($_POST["homeHighlight"])){
+        createSaveSql($username, "homeHighlight", "i", $_POST["homeHighlight"] == "on");
+    }
+    else {
+        createSaveSql($username, "homeHighlight", "i", 0);
+    }
+
     // デバッグモードの使用に応じてリダイレクト
     if (!$debug) {
         header("Location: " . $whereToRedirect);
@@ -137,7 +144,8 @@ $columns = [
     "missHighlight", 
     "privacy", 
     "convertLayout",
-    "layout"
+    "layout",
+    "homeHighlight",
 ];
 
 // データの取得, 出力

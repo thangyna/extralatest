@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('privacy').checked = data.privacy;
             document.getElementById('keyboardLayout').checked = data.layout;
             document.getElementById('keyboardLayout-dropdown').value = data.layout;
+            document.getElementById('homeHighlight').checked = data.homeHighlight;
 
             /*------------------------------------------------
                 初期状態
@@ -74,10 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
         キーボードにかかわる処理
     ------------------------------------------------*/
     var childsContainer = document.getElementById('childs-container');
-    var childsContainerHeight = 50;
+    var childsContainerHeight = 80;
     var showKeyboardCheckbox = document.getElementById('showKeyboard');
     var childs = {
-        missHighlight: document.getElementById('missHighlight-tooltip')
+        missHighlight: document.getElementById('missHighlight-tooltip'),
+        homeHighlight: document.getElementById('homeHighlight-tooltip'),
     }
 
     // キーボードハイライトのチェックボックスの表示/非表示をチェックボックスの状態に応じて切り替え
