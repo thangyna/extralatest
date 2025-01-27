@@ -89,12 +89,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else {
         createSaveSql($username, "showKeyboard", "i", 0);
     }
-
+    
+    // キーボードのミス時のハイライト
     if (isset($_POST["missHighlight"])){
         createSaveSql($username, "missHighlight", "i", $_POST["missHighlight"] == "on");
     }
     else {
         createSaveSql($username, "missHighlight", "i", 0);
+    }
+
+    // ランキングへの表示
+    if (isset($_POST["privacy"])){
+        createSaveSql($username, "privacy", "i", $_POST["privacy"] == "on");
+    }
+    else {
+        createSaveSql($username, "privacy", "i", 0);
+    }
+
+    // キー変換
+    if (isset($_POST["keyboardLayout"])){
+        createSaveSql($username, "convertLayout", "i", $_POST["keyboardLayout"] == "on");
+    }
+    else {
+        createSaveSql($username, "convertLayout", "i", 0);
+    }
+
+    // キー配列
+    if (isset($_POST["keyboardLayout-dropdown"])) {
+        $layout = $_POST["keyboardLayout-dropdown"];
+        createSaveSql($username, "layout", "s", $layout);
+    }
+
+    if (isset($_POST["homeHighlight"])){
+        createSaveSql($username, "homeHighlight", "i", $_POST["homeHighlight"] == "on");
+    }
+    else {
+        createSaveSql($username, "homeHighlight", "i", 0);
     }
 
     // デバッグモードの使用に応じてリダイレクト
@@ -104,8 +134,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$columns = [
+    "username",
+    "admin", 
+    "useMinScore", 
+    "minScore", 
+    "showKeyboard", 
+    "exp", 
+    "missHighlight", 
+    "privacy", 
+    "convertLayout",
+    "layout",
+    "homeHighlight",
+];
+
 // データの取得, 出力
-$settings = createLoadSql($username, "username, admin, useMinScore, minScore, showKeyboard, exp, missHighlight");
+$settings = createLoadSql( $username, implode(", ", $columns));
 header('Content-Type: application/json');
 echo json_encode($settings);
 ?>

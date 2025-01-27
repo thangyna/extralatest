@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var missHighlightContainer = document.getElementById('missHighlight-container');
     var enabled = true;
-
-    // コンテナの高さを取得して閉じる
-    var initialHeight = missHighlightContainer.offsetHeight;
-    missHighlightContainer.style.setProperty('--initial-height', initialHeight + 'px');
-
     /*------------------------------------------------
         データを取得してフォームに反映
     ------------------------------------------------*/
@@ -18,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('minScore').value = data.minScore;
             document.getElementById('showKeyboard').checked = data.showKeyboard;
             document.getElementById('missHighlight').checked = data.missHighlight;
-            console.log("data.missHighlight: " + data.missHighlight);
+            document.getElementById('privacy').checked = data.privacy;
+            document.getElementById('keyboardLayout').checked = data.layout;
+            document.getElementById('keyboardLayout-dropdown').value = data.layout;
+            document.getElementById('homeHighlight').checked = data.homeHighlight;
 
             /*------------------------------------------------
                 初期状態
@@ -44,11 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             // キーボードハイライトの初期状態
             if (showKeyboardCheckbox.checked) {
-                missHighlight.style.display = 'block';
-                missHighlight.style.animation = 'slideinTop 0.5s';
+                childsContainer.style.height = childsContainerHeight + 'px';
+                for (const key in childs) {
+                    childs[key].disabled = false;
+                }
             }
             else {
-                missHighlight.style.display = 'none';
+                childsContainer.style.height = '0px';
+                for (const key in childs) {
+                    childs[key].style.display = 'none';
+                }
             }
         });
 
@@ -72,33 +74,55 @@ document.addEventListener('DOMContentLoaded', function() {
     /*------------------------------------------------
         キーボードにかかわる処理
     ------------------------------------------------*/
+    var childsContainer = document.getElementById('childs-container');
+    var childsContainerHeight = 80;
     var showKeyboardCheckbox = document.getElementById('showKeyboard');
-    var missHighlight = document.getElementById('missHighlight-tooltip');
+    var childs = {
+        missHighlight: document.getElementById('missHighlight-tooltip'),
+        homeHighlight: document.getElementById('homeHighlight-tooltip'),
+    }
 
     // キーボードハイライトのチェックボックスの表示/非表示をチェックボックスの状態に応じて切り替え
     showKeyboardCheckbox.addEventListener('change', function() {
         if (showKeyboardCheckbox.checked) {
-            missHighlightContainer.style.animation = 'openContainer 0.5s'
-            missHighlight.style.animation = 'slideinTop 0.5s';
-            missHighlight.style.display = 'block';
+            childsContainer.style.height = childsContainerHeight + 'px';
+            for (const key in childs) {
+                childs[key].style.display = 'block';
+                childs[key].style.animation = 'openContainer 0.5s'
+                childs[key].style.animation = 'slideinTop 0.5s';
+            }
             enabled = true;
             setTimeout(() => {
                 if (enabled) {
-                    missHighlight.disabled = false;
+                    for (const key in childs) {
+                        // childs[key].disabled = false;
+                        childs[key].style.opacity = '1';
+                    }
                 }
             }, 485);
         } else {
-            missHighlightContainer.style.animation = 'closeContainer 0.5s'
-            missHighlight.style.animation = 'slideoutTop 0.5s';
+            childsContainer.style.height = '0px';
+            for (const key in childs) {
+                childs[key].style.animation = 'closeContainer 0.5s'
+                childs[key].style.animation = 'slideoutTop 0.5s';
+            }
             enabled = false;
             setTimeout(() => {
                 if (!enabled) {
-                    missHighlight.disabled = true;
-                    missHighlight.style.display = 'none';
+                    for (const key in childs) {
+                        //childs[key].disabled = true;
+                        //childs[key].style.display = 'none';
+                        childs[key].style.opacity = '0';
+                    }
                 }
             }, 485);
         }
     });
+
+    /*------------------------------------------------
+        公開設定にかかわる処理
+    ------------------------------------------------*/
+    var privacy = document.getElementById("privacy");
 
     /*------------------------------------------------
         フォームデータを送信
@@ -115,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.text())
         .then(data => {
-            console.log(data);
             // 必要に応じて、送信後の処理をここに追加
         })
         .catch(error => {
@@ -126,5 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // フォームの各入力要素にchangeイベントリスナーを追加
     document.querySelectorAll('#userSettingsForm input').forEach(input => {
         input.addEventListener('change', sendFormData);
+    });
+
+    // ドロップダウンメニューの内容を取得
+    const dropdown = document.getElementById('keyboardLayout-dropdown');
+    dropdown.addEventListener('change', function() {
+        const selectedValue = dropdown.value;
+        console.log('Selected layout:', selectedValue);
+        sendFormData(); // ドロップダウンの変更時にもフォームデータを送信
     });
 });

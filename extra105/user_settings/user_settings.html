@@ -34,7 +34,49 @@
                     </span>
                     <input type="text" name="minScore" id="minScore" class="minScore">
                 </div>
-            </div><br>
+            </div>
+
+            <!-- プライバシ -->
+            <div class="switch-container">
+                <div class="tooltip">
+                    <label class="switch">
+                        <input type="checkbox" name="privacy" id="privacy">
+                        <span class="slider round"></span>
+                    </label>
+                    <label>ランキングに非公開</label>
+                    <span class="tooltiptext">
+                        <strong>ランキングの公開</strong><br>
+                        有効にした場合、ランキングに自分のスコアが
+                        <span class="point">表示されなく</span>
+                        なります。 <br>
+                        <span class="attention">非推奨です。</span><br>
+                        特別な理由がない限り、有効にしないでください。
+                    </span>
+                </div>
+            </div>
+
+            <!-- キーボード配列 -->
+            <div class="switch-container" id="keyboardLayout-container">
+                <div class="tooltip" id="keyboardLayout-tooltip">
+                    <label class="switch">
+                        <input type="checkbox" name="keyboardLayout" id="keyboardLayout">
+                        <span class="slider round"></span>
+                    </label>
+                    <label>キー配列</label>
+                    <span class="tooltiptext">
+                        <strong>キーボードの配列</strong><br>
+                        キーボードの配列を選択できます。<br>
+                        また、有効にした場合、
+                        <span class="point">qwerty配列の入力を変換します。</span>
+                    </span>
+                    <select class="dropdown" name="keyboardLayout-dropdown" id="keyboardLayout-dropdown">
+                        <option value="qwerty">qwerty配列</option>
+                        <option value="dvorak">dvorak配列</option>
+                        <option value="colemak">colemak配列</option>
+                        <option value="oonishi">大西配列</option>
+                    </select>
+                </div>
+            </div>
 
             <!-- キーボードの表示 -->
             <div class="switch-container">
@@ -51,25 +93,45 @@
                         を表示します。
                     </span>
                 </div>
-            </div><br>
+            </div>
 
-            <!-- ミスキーのハイライト -->
-            <div class="switch-container" id="missHighlight-container">
-                <div class="tooltip" id="missHighlight-tooltip">
-                    <label class="switch" style="margin-left: 20px;">
-                        <input type="checkbox" name="missHighlight" id="missHighlight">
-                        <span class="slider round"></span>
-                    </label>
-                    <label>キーボードのミスハイライト</label>
-                    <span class="tooltiptext">
-                        <strong>キーボードのミスハイライト</strong><br>
-                        有効にした場合、
-                        <span class="attention">ミスしたキー</span>
-                        がキーボード上に
-                        <span class="point">ハイライトされます。</span>
-                    </span>
+            <div class="childs" id="childs-container">
+                <!-- ミスキーのハイライト -->
+                <div class="switch-container child" id="missHighlight-container">
+                    <div class="tooltip" id="missHighlight-tooltip">
+                        <label class="switch">
+                            <input type="checkbox" name="missHighlight" id="missHighlight">
+                            <span class="slider round"></span>
+                        </label>
+                        <label>キーボードのミスハイライト</label>
+                        <span class="tooltiptext">
+                            <strong>キーボードのミスハイライト</strong><br>
+                            有効にした場合、
+                            <span class="attention">ミスしたキー</span>
+                            がキーボード上に
+                            <span class="point">ハイライトされます。</span>
+                        </span>
+                    </div>
                 </div>
-            </div> <br>
+
+                <!-- ホームポジションのハイライト -->
+                <div class="switch-container child" id="homeHighlight-container">
+                    <div class="tooltip" id="homeHighlight-tooltip">
+                        <label class="switch">
+                            <input type="checkbox" name="homeHighlight" id="homeHighlight">
+                            <span class="slider round"></span>
+                        </label>
+                        <label>ホームポジションのハイライト</label>
+                        <span class="tooltiptext">
+                            <strong>ホームポジションのハイライト</strong><br>
+                            有効にした場合、人差し指の位置である
+                            <span class="point">ホームポジション</span> 
+                            がキーボード上に
+                            <span class="point">ハイライトされます。</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
 
             <button type="submit" class="confirm">保存</button>
         </form>

@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accuracy = floatval($_POST['accuracy']);
     $typing_speed = intval($_POST['typing_speed']);
     $top_mistakes = $_POST['top_mistakes'];
+    $is_display = $_POST['is_display'] ? 1 : 0;
     
     // IPアドレスの取得
     $ip_address = $_SERVER['REMOTE_ADDR'];
@@ -31,11 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datetime = new DateTime('now', new DateTimeZone('Asia/Tokyo'));
     $recorded_at = $datetime->format('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO game_results (username, score, correct_chars, mistakes, accuracy, typing_speed, top_mistakes, ip_address, recorded_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO game_results (username, score, correct_chars, mistakes, accuracy, typing_speed, top_mistakes, ip_address, recorded_at, isDisplay)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("siiidisss", $username, $score, $correct_chars, $mistakes, $accuracy, $typing_speed, $top_mistakes, $ip_address, $recorded_at);
+    $stmt->bind_param("siiidisssi", $username, $score, $correct_chars, $mistakes, $accuracy, $typing_speed, $top_mistakes, $ip_address, $recorded_at, $is_display);
 
     if ($stmt->execute()) {
         echo "結果が保存されました。";
