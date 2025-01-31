@@ -497,22 +497,29 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     function saveGameResults(_score, _correctChars, _mistakes, _isDisplay) {
-                        let accuracy = calculateAccuracy(_correctChars, _mistakes);
-                        let typingSpeed = calculateTypingSpeed(_correctChars, timeLimit);
-                        let topMistakes = getTopMistakes(mistakesCount);
-                        let xhr = new XMLHttpRequest();
-                        xhr.open("POST", "../save_results.php", true);
-                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        // リクエストが完了した際の処理
-                        xhr.onreadystatechange = function () {
-                            if (xhr.readyState === 4 && xhr.status === 200) {
-                                console.log(xhr.responseText);
-                            }
-                        };
-                        let params = "score=" + _score + "&correct_chars=" + _correctChars + "&mistakes=" + _mistakes +
-                            "&accuracy=" + accuracy + "&typing_speed=" + typingSpeed + "&top_mistakes=" + encodeURIComponent(topMistakes) +
-                            "&is_display=" + _isDisplay;
-                        xhr.send(params);
+                        let _accuracy = calculateAccuracy(_correctChars, _mistakes);
+                        let _typingSpeed = calculateTypingSpeed(_correctChars, timeLimit);
+                        let _topMistakes = getTopMistakes(mistakesCount);
+
+                        let params = {
+                            score: _score,
+                            correct_chars: _correctChars, 
+                            mistakes: _mistakes,
+                            accuracy: _accuracy, 
+                            typing_speed: _typingSpeed,
+                            top_mistakes: encodeURIComponent(_topMistakes), 
+                            is_display: isDisplay
+                        }
+
+                        fetch('../save_results.php', {
+                            method: 'POST',
+                            headers: {'Content-Type' : 'application/json'},
+                            body: JSON.stringify(params)
+                        })
+                        .then(response => response.json())
+                        .then(res => {
+                            console.log(res);
+                        })
                     }
 
                     /*------------------------------------------------
