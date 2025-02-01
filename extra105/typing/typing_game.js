@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             is_display: isDisplay
                         }
 
-                        fetch('../save_results.php', {
+                        fetch('save_results.php', {
                             method: 'POST',
                             headers: {'Content-Type' : 'application/json'},
                             body: JSON.stringify(params)
