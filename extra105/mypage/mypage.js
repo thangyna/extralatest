@@ -1,5 +1,6 @@
 var minScore = 1000000; // ここで特定の値を設定
 var keyboardPath;
+var maxCount;
 
 document.addEventListener('DOMContentLoaded', function () {
     // チャートの表示の初期化
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // スコアが特定の値以上のデータのみをフィルタリング
             window.data = data;
             window.filteredData = data.records.filter(record => record.score > minScore);
-            const maxCount = window.filteredData.length;
+            maxCount = window.filteredData.length;
             displayCountSlider.max = maxCount;
             displayCountSlider.value = maxCount; // スライダーの初期値を最大値に設定
             displayCountValue.textContent = maxCount; // 表示件数の初期値を最大値に設定
@@ -107,10 +108,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return date.toLocaleDateString(); // 日付のみを表示
         });
 
-        const scores = window.filteredData.map(record => record.score);
-        const correctChars = window.filteredData.map(record => record.correct_chars);
-        const mistakes = window.filteredData.map(record => record.mistakes);
-        const accuracy = window.filteredData.map(record => record.accuracy); // 正確度をパーセンテージに変換
+        const scores = limitedData.map(record => record.score);
+        const correctChars = limitedData.map(record => record.correct_chars);
+        const mistakes = limitedData.map(record => record.mistakes);
+        const accuracy = limitedData.map(record => record.accuracy); // 正確度をパーセンテージに変換
 
         const ctx1 = document.getElementById('scoreChart').getContext('2d');
         const ctx2 = document.getElementById('mistakesChart').getContext('2d');
