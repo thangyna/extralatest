@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (showKeyboard) {
                         const keyboardContainer = document.getElementById('keyboard-container');
                         keyboardContainer.innerHTML = html;
-                        if (!homeHighlight) {
+                        if (homeHighlight) {
                             homeKeys = document.getElementsByClassName('home');
                             for (let homeKey of homeKeys) {
-                                homeKey.style.borderColor = '#ccc';
+                                homeKey.style.borderColor = '#007bff;';
                             }
                         }
                     }
