@@ -523,6 +523,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ------------------------------------------------*/
                     // モーダルウィンドウを表示する関数
                     function showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay) {
+                        console.log("show modal");
                         document.getElementById('resultScore').innerText = "スコア: " + score;
                         document.getElementById('resultCorrectChars').innerText = "正しく打てた文字数: " + correctChars;
                         document.getElementById('resultMistakes').innerText = "間違った文字数: " + mistakes;
