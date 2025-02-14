@@ -44,6 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const scoreNumText = document.getElementById('scoreNum');  // Add this line
             const mistakesNumText = document.getElementById('mistakesNum');  // Add this line
 
+            // モーダルウィンドウの要素を取得
+            const resultModal = document.getElementById('resultModal');
+            const closeModal = document.getElementsByClassName('close')[0];
+
             fetch('../assets/keyboards/' + keyboardLayout + '.html')
                 .then(response => response.text())
                 .then(html => {
@@ -293,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             let topMistakes = getTopMistakes(mistakesCount);
                             saveGameResults(score, correctChars, mistakes, isDisplay);
                             reloadRanking();
+                            showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay);
                             alert(
                                 "ゲーム終了！\nスコア: " + score +
                                 "\n正しく打てた文字数: " + correctChars +
@@ -503,25 +508,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         let params = {
                             score: _score,
-                            correct_chars: _correctChars, 
+                            correct_chars: _correctChars,
                             mistakes: _mistakes,
-                            accuracy: _accuracy, 
+                            accuracy: _accuracy,
                             typing_speed: _typingSpeed,
-                            top_mistakes: encodeURIComponent(_topMistakes), 
+                            top_mistakes: encodeURIComponent(_topMistakes),
                             is_display: isDisplay
                         }
 
                         fetch('save_results.php', {
                             method: 'POST',
-                            headers: {'Content-Type' : 'application/json'},
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(params)
                         })
-                        .then(response => response.json())
-                        .then(res => {
-                            console.log(res);
-                        })
+                            .then(response => response.json())
+                            .then(res => {
+                                console.log(res);
+                            })
                     }
 
+                    /*------------------------------------------------
+                        ゲームの結果を表示する
+                    ------------------------------------------------*/
+                    // モーダルウィンドウを表示する関数
+                    function showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay) {
+                        document.getElementById('resultScore').innerText = "スコア: " + score;
+                        document.getElementById('resultCorrectChars').innerText = "正しく打てた文字数: " + correctChars;
+                        document.getElementById('resultMistakes').innerText = "間違った文字数: " + mistakes;
+                        document.getElementById('resultAccuracy').innerText = "正解率: " + accuracy + "%";
+                        document.getElementById('resultTypingSpeed').innerText = "打鍵数: " + typingSpeed + "/" + timeLimitStart + "秒";
+                        document.getElementById('resultTopMistakes').innerText = "間違えやすいキー: " + topMistakes.replace(/,/g, ', ');
+                        document.getElementById('resultIsDisplay').innerText = "公開: " + isDisplay;
+                        resultModal.style.display = "block";
+                    }
+
+                    closeModal.onclick = function () {
+                        resultModal.style.display = "none";
+                    }
                     /*------------------------------------------------
                         ウェブサイトのビジュアライズ
                     ------------------------------------------------*/
