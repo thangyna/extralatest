@@ -539,11 +539,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById('resultTypingSpeed').innerText = "打鍵数: " + typingSpeed + "/" + timeLimitStart + "秒";
                         document.getElementById('resultTopMistakes').innerText = "間違えやすいキー: " + topMistakes.replace(/,/g, ', ');
                         document.getElementById('resultIsDisplay').innerText = "公開: " + isDisplay;
-                        resultModal.style.display = "block";
+                        resultModal.classList.add("show");
                     }
 
                     closeModal.onclick = function () {
-                        resultModal.style.display = "none";
+                        resultModal.classList.remove("show");
+                        setTimeout(() => {
+                            resultModal.style.display = "none";
+                        }, 500);
+                    }
+                    window.onclick = function (event) {
+                        if (event.target == resultModal) {
+                            resultModal.classList.remove('show');
+                            setTimeout(() => {
+                                resultModal.style.display = "none";
+                            }, 500); // アニメーションの時間に合わせる
+                        }
                     }
                     /*------------------------------------------------
                         ウェブサイトのビジュアライズ
