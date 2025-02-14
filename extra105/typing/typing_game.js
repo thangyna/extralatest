@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         hideModal();
                     }
                     window.onclick = function (event) {
-                        hidemodal()
+                        hideModal()
                     }
 
                     /*------------------------------------------------
