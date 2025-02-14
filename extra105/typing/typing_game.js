@@ -298,15 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             saveGameResults(score, correctChars, mistakes, isDisplay);
                             reloadRanking();
                             showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay);
-                            alert(
-                                "ゲーム終了！\nスコア: " + score +
-                                "\n正しく打てた文字数: " + correctChars +
-                                "\n間違った文字数: " + mistakes +
-                                "\n正解率: " + accuracy +
-                                "%\n打鍵数: " + typingSpeed + "/" + timeLimitStart + "秒" +
-                                "\n間違えやすいキー: " + topMistakes.replace(/,/g, ', ') +
-                                "\n公開: " + isDisplay
-                            );
                         }
                         isPlaying = false;
                         setNextGame();
@@ -542,20 +533,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         resultModal.classList.add("show");
                     }
 
-                    closeModal.onclick = function () {
+                    function hideModal() {
                         resultModal.classList.remove("show");
                         setTimeout(() => {
                             resultModal.style.display = "none";
                         }, 500);
                     }
-                    window.onclick = function (event) {
-                        if (event.target == resultModal) {
-                            resultModal.classList.remove('show');
-                            setTimeout(() => {
-                                resultModal.style.display = "none";
-                            }, 500); // アニメーションの時間に合わせる
-                        }
+
+                    closeModal.onclick = function () {
+                        hideModal();
                     }
+                    window.onclick = function (event) {
+                        hidemodal()
+                    }
+
                     /*------------------------------------------------
                         ウェブサイトのビジュアライズ
                     ------------------------------------------------*/
@@ -662,6 +653,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 endGame(false);
                             }
                             else {
+                                hideModal();
                                 endGame(false);
                                 startGame();
                             }
