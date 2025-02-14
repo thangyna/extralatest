@@ -117,6 +117,8 @@ body {
     overflow: auto; /* スクロール可能 */
     background-color: rgb(0,0,0); /* 背景色 */
     background-color: rgba(0,0,0,0.4); /* 背景色の透明度 */
+    border-radius: 16px;
+    transition-duration: display 0.5s;
 }
 
 .modal-content {
