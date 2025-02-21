@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     function hideModal() {
                         resultModal.classList.remove("show");
                         setTimeout(() => {
-                            resultModal.style.display = "none";
+                            resultModal.classList.remove("show");
                         }, 500);
                     }
 
