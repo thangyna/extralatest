@@ -21,16 +21,36 @@
     <div class="mypage below-header">
         <div class="charts-container">
             <h3 id="chartTitle">タイピング成績</h3>
-            <div class="switch-container">
-                <label class="switch">
-                    <input type="checkbox" id="switch" checked>
-                    <span class="slider round"></span>
-                </label>
-                <label>グラフを切替</label>
+
+            <!-- スライダー -->
+            <div class="slider-container">
+                <label for="displayCountSlider">表示件数:</label>
+                <input type="range" id="displayCountSlider" min="1" max="100" value="10">
+                <span id="displayCountValue">10</span>
             </div>
-            <div class="charts">
-                <canvas id="scoreChart"></canvas>
-                <canvas id="mistakesChart" style="display: none;"></canvas>
+
+            <!-- カルーセル -->
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                    <div class="carousel-item">
+                        <canvas id="mistakesChart"></canvas>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-control" id="prevBtn">
+                        <img src="../assets/images/arrow.png" alt="prev">
+                    </button>
+                    <button class="carousel-control" id="nextBtn">
+                        <img src="../assets/images/arrow.png" alt="next">
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                </div>
             </div>
         </div>
         <div class="missHighlight-container">

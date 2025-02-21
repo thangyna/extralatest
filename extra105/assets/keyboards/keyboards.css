@@ -29,9 +29,6 @@
     user-select: none;
     transition: background-color 0.2s, border-color 0.2s, transform 0.05s; /* アニメーションを追加 */
 }
-.key.home {
-    border-color: #007bff;
-}
 .key.highlight {
     background-color: #d1e7ff;
     border-color: #007bff;

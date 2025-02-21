@@ -104,3 +104,53 @@ body {
 #scoreChart {
     margin-top: 30px;
 }
+
+/* モーダルウィンドウのスタイル */
+.modal {
+    display: none; /* デフォルトでは非表示 */
+    position: fixed; /* 固定位置 */
+    z-index: 1; /* 最前面に表示 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全幅 */
+    height: 100%; /* 全高 */
+    overflow: auto; /* スクロール可能 */
+    background-color: rgb(0,0,0); /* 背景色 */
+    background-color: rgba(0,0,0,0.4); /* 背景色の透明度 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 上下のマージン */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 幅 */
+    border-radius: 16px;
+    transform: translateY(-50px);
+    transition: transform 0.5s ease;
+}
+
+.modal-content.show {
+    transform: translateY(0);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
