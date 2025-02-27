@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var enabled = true;
     /*------------------------------------------------
         データを取得してフォームに反映
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('showKeyboard').checked = data.showKeyboard;
             document.getElementById('missHighlight').checked = data.missHighlight;
             document.getElementById('privacy').checked = data.privacy;
-            document.getElementById('keyboardLayout').checked = data.layout;
+            document.getElementById('keyboardLayout').checked = data.convertLayout;
             document.getElementById('keyboardLayout-dropdown').value = data.layout;
             document.getElementById('homeHighlight').checked = data.homeHighlight;
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var minScoreInput = document.getElementById('minScore');
 
     // 最少スコアの入力欄の有効/無効をチェックボックスの状態に応じて切り替え
-    useMinScoreCheckbox.addEventListener('change', function() {
+    useMinScoreCheckbox.addEventListener('change', function () {
         if (useMinScoreCheckbox.checked) {
             minScoreInput.disabled = false;
             minScoreInput.style.backgroundColor = '';
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // キーボードハイライトのチェックボックスの表示/非表示をチェックボックスの状態に応じて切り替え
-    showKeyboardCheckbox.addEventListener('change', function() {
+    showKeyboardCheckbox.addEventListener('change', function () {
         if (showKeyboardCheckbox.checked) {
             childsContainer.style.height = childsContainerHeight + 'px';
             for (const key in childs) {
@@ -137,13 +137,13 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
-        .then(data => {
-            // 必要に応じて、送信後の処理をここに追加
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.text())
+            .then(data => {
+                // 必要に応じて、送信後の処理をここに追加
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     // フォームの各入力要素にchangeイベントリスナーを追加
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ドロップダウンメニューの内容を取得
     const dropdown = document.getElementById('keyboardLayout-dropdown');
-    dropdown.addEventListener('change', function() {
+    dropdown.addEventListener('change', function () {
         const selectedValue = dropdown.value;
         console.log('Selected layout:', selectedValue);
         sendFormData(); // ドロップダウンの変更時にもフォームデータを送信
