@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (homeHighlight) {
                             homeKeys = document.getElementsByClassName('home');
                             for (let homeKey of homeKeys) {
-                                homeKey.style.borderColor = '#007bff;';
+                                homeKey.style.borderColor = '#007bff';
                             }
                         }
                     }
