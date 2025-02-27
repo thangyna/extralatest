@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
             let wordIndex = 0;  // 現在の問題のインデックス
             let shuffledWords = [];  // シャッフルされた問題のリスト
 
+            let showingModal = false;
+
             // ユーザ設定
             let useHeighlight = data.missHighlight;
             let isDisplay = !data.privacy;
@@ -532,15 +534,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById('resultTopMistakes').innerText = "間違えやすいキー: " + topMistakes.replace(/,/g, ', ');
                         document.getElementById('resultIsDisplay').innerText = "公開: " + isDisplay;
                         resultModal.classList.add("show");
+                        showingModal = true;
                     }
 
                     function hideModal() {
                         resultModal.classList.remove("show");
+                        showingModal = false;
                         setTimeout(() => {
                             resultModal.classList.remove("show");
                         }, 500);
                     }
 
+                    // バツボタンまたは、ウィンドウの外側がクリックされた時閉じる
                     closeModal.onclick = function () {
                         hideModal();
                     }
@@ -653,10 +658,17 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (isPlaying) {
                                 endGame(false);
                             }
-                            else {
+                            else if (showingModal) {
                                 hideModal();
+                            }
+                            else {
                                 endGame(false);
                                 startGame();
+                            }
+                        }
+                        else if (key === "Escape") {
+                            if (isPlaying) {
+                                endGame(false);
                             }
                         }
                         // プレイ中の場合
