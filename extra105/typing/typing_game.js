@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     }
 
-                    document.addEventListener("keypress", function (event) {
+                    document.addEventListener("keydown", function (event) {
                         let key = event.key;
                         // エンターキーが押された場合
                         if (key === "Enter") {
@@ -667,6 +667,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         }
                         else if (key === "Escape") {
+                            console.log("ゲームを終了");
                             if (isPlaying) {
                                 endGame(false);
                             }
