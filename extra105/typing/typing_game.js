@@ -557,21 +557,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     function reloadRanking() {
-                        /*------------------------------------------------
-                            ランキングを取得
-                        ------------------------------------------------*/
                         console.log("ランキングを更新");
                         fetch('typing_game.php')
                             .then(response => response.json())
                             .then(data => {
                                 // フォームにデータを反映
-                                // body
                                 rankingsList = document.getElementById('rankings');
                                 rankingsList.innerHTML = '';
 
-                                /*------------------------------------------------
-                                    ランキングを表示
-                                ------------------------------------------------*/
                                 // ランキングがない場合
                                 if (data.ranking.length === 0) {
                                     const noDataItem = document.createElement('li');
@@ -582,7 +575,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 else {
                                     data.ranking.forEach((item, index) => {
                                         const listItem = document.createElement('li');
-                                        listItem.textContent = `${item.username}: ${item.score}`;
+                                        // スコアにカンマを追加
+                                        const formattedScore = Number(item.score).toLocaleString();
+                                        listItem.textContent = `${item.username}: ${formattedScore}`;
                                         rankingsList.appendChild(listItem);
                                     });
                                 }
