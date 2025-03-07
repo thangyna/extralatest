@@ -499,9 +499,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                 console.log(xhr.responseText);
                             }
                         };
-                        let params = "score=" + _score + "&correct_chars=" + _correctChars + "&mistakes=" + _mistakes +
-                            "&accuracy=" + accuracy + "&typing_speed=" + typingSpeed + "&top_mistakes=" + encodeURIComponent(topMistakes) +
-                            "&is_display=" + _isDisplay;
+                        // スコアに3桁ごとのカンマを追加
+                        let formattedScore = _score.toLocaleString();
+                        let params = "score=" + _score + "&correct_chars=" + _correctChars.toLocaleString() + 
+                                    "&mistakes=" + _mistakes.toLocaleString() + 
+                                    "&accuracy=" + accuracy.toLocaleString() + 
+                                    "&typing_speed=" + typingSpeed.toLocaleString() + 
+                                    "&top_mistakes=" + encodeURIComponent(topMistakes) +
+                                    "&is_display=" + _isDisplay;
                         xhr.send(params);
                     }
 
