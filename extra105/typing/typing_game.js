@@ -653,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.addEventListener("keydown", function (event) {
                         let key = event.key;
                         // エンターキーが押された場合
-                        if (key === "Enter" || key === "Space") {
+                        if (key === "Enter" || key === " ") {
                             // プレイ中の場合
                             if (isPlaying) {
                                 endGame(false);
