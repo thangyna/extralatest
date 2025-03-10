@@ -11,6 +11,22 @@
     <!-- JavaScript -->
     <script src="../header/header.js" defer></script>
     <script src="admin.js" defer></script> <!-- admin.jsを追加 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('../user_settings/user_settings.php')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.admin);
+                    if (data.admin === 0) {
+                        window.location.href = '../login.php'; // リダイレクト先を指定
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = '../login.php'; // エラーが発生した場合もリダイレクト
+                });
+        });
+    </script>
 </head>
 
 <body>
