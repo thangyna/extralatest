@@ -98,5 +98,14 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("homeHighlight:" + data.homeHighlight);
             console.log("guest:" + data.guest);
             // console.log("exp:" + data.exp);
+
+            var admin = this.getElementById('admin');
+            var logout = this.getElementById('logout');
+            if (data.admin) {
+                admin.style.display = 'block';
+            }
+            if (data.guest) {
+                logout.style.display = 'none';
+            }
         });
 });

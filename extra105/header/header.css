@@ -36,7 +36,7 @@ body {
     color: inherit;
     font-weight: bold;
     margin: 0;
-    margin-right:auto;
+    margin-right: auto;
     text-align: left;
     z-index: 1001;
 }
@@ -65,7 +65,8 @@ body {
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 
-    transition: background-color 0.2s, border-color 0.2s, transform 0.05s; /* アニメーションを追加 */
+    transition: background-color 0.2s, border-color 0.2s, transform 0.05s;
+    /* アニメーションを追加 */
 }
 
 .nav-link:hover {
@@ -73,9 +74,12 @@ body {
 }
 
 .nav-link img {
-    width: 20px; /* 画像の幅を調整 */
-    height: 20px; /* 画像の高さを調整 */
-    vertical-align: middle; /* 画像をテキストの中央に揃える */
+    width: 20px;
+    /* 画像の幅を調整 */
+    height: 20px;
+    /* 画像の高さを調整 */
+    vertical-align: middle;
+    /* 画像をテキストの中央に揃える */
     user-select: none;
 }
 
@@ -90,14 +94,19 @@ body {
     cursor: pointer;
     position: relative;
     user-select: none;
-    transition: border-color 0.2s, background-color 0.2s; /* 枠線と影のアニメーションを追加 */
+    transition: border-color 0.2s, background-color 0.2s;
+    /* 枠線と影のアニメーションを追加 */
 }
 
 .user img {
-    width: 15px; /* 画像の幅を調整 */
-    height: 15px; /* 画像の高さを調整 */
-    vertical-align: middle; /* 画像をテキストの中央に揃える */
-    margin-left: 5px; /* 画像とテキストの間隔を調整 */
+    width: 15px;
+    /* 画像の幅を調整 */
+    height: 15px;
+    /* 画像の高さを調整 */
+    vertical-align: middle;
+    /* 画像をテキストの中央に揃える */
+    margin-left: 5px;
+    /* 画像とテキストの間隔を調整 */
     transition: 0.2s;
 }
 
@@ -126,9 +135,12 @@ body {
     border-radius: 5px;
     transition: visibility 0.3s, opacity 0.1s;
     position: absolute;
-    top: 50%; /* 変更: ユーザー名を囲っている円の中心から出現 */
-    left: 50%; /* 変更: ユーザー名を囲っている円の中心から出現 */
-    transform: translate(-50%, 0); /* 変更: 中心から下にかけて出現 */
+    top: 50%;
+    /* 変更: ユーザー名を囲っている円の中心から出現 */
+    left: 50%;
+    /* 変更: ユーザー名を囲っている円の中心から出現 */
+    transform: translate(-50%, 0);
+    /* 変更: 中心から下にかけて出現 */
     margin-top: 10px;
     z-index: 2000;
 }
@@ -138,12 +150,16 @@ body {
 }
 
 .user-menu a {
-    display: block; /* ブロック要素にする */
-    padding: 10px; /* パディングを追加 */
-    margin: 3px 10px; /* 上下のマージンを追加 */
+    display: block;
+    /* ブロック要素にする */
+    padding: 10px;
+    /* パディングを追加 */
+    margin: 3px 10px;
+    /* 上下のマージンを追加 */
     color: black;
     text-decoration: none;
-    transition: background-color 0.2s; /* 背景色のアニメーションを追加 */
+    transition: background-color 0.2s;
+    /* 背景色のアニメーションを追加 */
     text-align: left;
 }
 
@@ -154,7 +170,8 @@ body {
 .user.active .user-menu {
     visibility: visible;
     opacity: 1;
-    transform: translate(-50%, 10px); /* 変更: メニューが下にスライドして出現 */
+    transform: translate(-50%, 10px);
+    /* 変更: メニューが下にスライドして出現 */
 }
 
 /* 通知 */
@@ -169,31 +186,39 @@ body {
     z-index: 900;
     top: 0;
 
-    overflow-y: auto; /* スクロールバーを表示 */
+    overflow-y: auto;
+    /* スクロールバーを表示 */
 }
 
 /* スクロールバーのデザインをカスタマイズ */
 .notification::-webkit-scrollbar {
-    width: 12px; /* スクロールバーの幅 */
+    width: 12px;
+    /* スクロールバーの幅 */
 }
 
 .notification::-webkit-scrollbar-track {
-    background: #ffffff; /* スクロールバーのトラックの背景色 */
+    background: #ffffff;
+    /* スクロールバーのトラックの背景色 */
     margin-top: 80px;
 }
 
 .notification::-webkit-scrollbar-thumb {
-    background: #f2f2f2; /* スクロールバーのつまみの色 */
-    border-radius: 6px; /* スクロールバーのつまみの角を丸くする */
+    background: #f2f2f2;
+    /* スクロールバーのつまみの色 */
+    border-radius: 6px;
+    /* スクロールバーのつまみの角を丸くする */
 }
 
 .notification::-webkit-scrollbar-thumb:hover {
-    background: #ccc; /* スクロールバーのつまみをホバーしたときの色 */
+    background: #ccc;
+    /* スクロールバーのつまみをホバーしたときの色 */
 }
+
 .notification-content {
     display: block;
     width: 100%;
-    transition: background-color 0.2s; /* 背景色のアニメーションを追加 */
+    transition: background-color 0.2s;
+    /* 背景色のアニメーションを追加 */
 }
 
 .notification-content:hover {
@@ -201,27 +226,30 @@ body {
 }
 
 .notification-content h3 {
-    display: block; /* ブロック要素にする */
+    display: block;
+    /* ブロック要素にする */
     font-size: 16px;
     color: inherit;
     font-weight: bold;
     margin: 0 20px;
-    margin-right:auto;
+    margin-right: auto;
     text-align: left;
     z-index: 901;
-    
+
     text-align: left;
 }
 
 .notification-content span {
-    display: block; /* ブロック要素にする */
+    display: block;
+    /* ブロック要素にする */
     font-size: 15px;
     color: inherit;
-    margin-right:auto;
+    margin-right: auto;
     text-align: left;
     z-index: 901;
-    
-    margin: 3px 30px; /* 上下のマージンを追加 */
+
+    margin: 3px 30px;
+    /* 上下のマージンを追加 */
     margin-bottom: 10px;
     text-align: left;
 }
@@ -231,17 +259,28 @@ body {
         transform: translateX(120%);
         display: none;
     }
+
     100% {
         transform: translateX(0);
         display: block;
     }
 }
+
 @keyframes slideout {
     0% {
         transform: translateX(0px);
         display: block;
     }
+
     100% {
         transform: translateX(120%);
     }
+}
+
+#admin {
+    display: none;
+}
+
+#logout {
+    display: block;
 }
