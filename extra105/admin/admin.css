@@ -32,13 +32,18 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
+    /* 上下のマージンを減らす */
     padding: 20px;
     border: 1px solid #888;
     width: auto;
     max-width: 80%;
+    max-height: 90vh;
+    /* モーダルの最大高さを設定 */
     border-radius: 16px;
     text-align: center;
+    overflow-y: auto;
+    /* 縦方向のスクロールを有効に */
 }
 
 .modal-content h2 {
@@ -78,7 +83,7 @@
 
 /* フィードバックコンテンツのスタイル */
 #feedbackContent {
-    max-height: 400px;
+    max-height: 70vh;
     /* 最大高さを設定 */
     overflow-y: auto;
     /* 縦方向のスクロールを有効に */
