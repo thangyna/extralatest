@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("convertLayout:" + data.convertLayout);
             console.log("keyboardLayout:" + data.layout);
             console.log("homeHighlight:" + data.homeHighlight);
+            console.log("guest:" + data.guest);
             // console.log("exp:" + data.exp);
         });
 });

@@ -24,7 +24,8 @@ function getUserInfo()
 /*------------------------------------------------
     データ取得のsqlを構築, 実行
 ------------------------------------------------*/
-function createLoadSql($_username, $_col) {
+function createLoadSql($_username, $_col)
+{
     global $conn;
     // sql文を構築
     $sql = "SELECT $_col FROM users WHERE username = ?";
@@ -41,7 +42,8 @@ function createLoadSql($_username, $_col) {
 /*------------------------------------------------
     データ送信のsqlを構築, 実行
 ------------------------------------------------*/
-function createSaveSql($_username, $_col, $_type, $_value) {
+function createSaveSql($_username, $_col, $_type, $_value)
+{
     global $conn;
     // sql文を構築
     $sql = "UPDATE users SET $_col = ? WHERE username = ?";
@@ -70,47 +72,42 @@ $username = getUserInfo();
 // データの更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 最低スコアの使用
-    if (isset($_POST["useMinScore"])){
+    if (isset($_POST["useMinScore"])) {
         createSaveSql($username, "useMinScore", "i", $_POST["useMinScore"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "useMinScore", "i", 0);
     }
 
     // 最低スコア
-    if (isset($_POST["minScore"])){
+    if (isset($_POST["minScore"])) {
         createSaveSql($username, "minScore", "i", $_POST["minScore"]);
     }
 
     // キーボードの表示
-    if (isset($_POST["showKeyboard"])){
+    if (isset($_POST["showKeyboard"])) {
         createSaveSql($username, "showKeyboard", "i", $_POST["showKeyboard"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "showKeyboard", "i", 0);
     }
-    
+
     // キーボードのミス時のハイライト
-    if (isset($_POST["missHighlight"])){
+    if (isset($_POST["missHighlight"])) {
         createSaveSql($username, "missHighlight", "i", $_POST["missHighlight"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "missHighlight", "i", 0);
     }
 
     // ランキングへの表示
-    if (isset($_POST["privacy"])){
+    if (isset($_POST["privacy"])) {
         createSaveSql($username, "privacy", "i", $_POST["privacy"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "privacy", "i", 0);
     }
 
     // キー変換
-    if (isset($_POST["keyboardLayout"])){
+    if (isset($_POST["keyboardLayout"])) {
         createSaveSql($username, "convertLayout", "i", $_POST["keyboardLayout"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "convertLayout", "i", 0);
     }
 
@@ -120,10 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createSaveSql($username, "layout", "s", $layout);
     }
 
-    if (isset($_POST["homeHighlight"])){
+    if (isset($_POST["homeHighlight"])) {
         createSaveSql($username, "homeHighlight", "i", $_POST["homeHighlight"] == "on");
-    }
-    else {
+    } else {
         createSaveSql($username, "homeHighlight", "i", 0);
     }
 
@@ -136,20 +132,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $columns = [
     "username",
-    "admin", 
-    "useMinScore", 
-    "minScore", 
-    "showKeyboard", 
-    "exp", 
-    "missHighlight", 
-    "privacy", 
+    "admin",
+    "useMinScore",
+    "minScore",
+    "showKeyboard",
+    "exp",
+    "missHighlight",
+    "privacy",
     "convertLayout",
     "layout",
     "homeHighlight",
+    "guest",
 ];
 
 // データの取得, 出力
-$settings = createLoadSql( $username, implode(", ", $columns));
+$settings = createLoadSql($username, implode(", ", $columns));
 header('Content-Type: application/json');
 echo json_encode($settings);
 ?>

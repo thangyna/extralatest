@@ -506,7 +506,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             accuracy: _accuracy,
                             typing_speed: _typingSpeed,
                             top_mistakes: encodeURIComponent(_topMistakes),
-                            is_display: isDisplay
+                            is_display: isDisplay,
+                            guest: data.guest
                         }
 
                         fetch('save_results.php', {

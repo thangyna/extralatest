@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="ユーザ, 設定, PHP, HTML">
+    <meta name="author" content="ergodic">
+    <title>コントロールパネル</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../header/header.css">
+    <!-- JavaScript -->
+    <script src="../header/header.js" defer></script>
+    <script src="admin.js" defer></script> <!-- admin.jsを追加 -->
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header-container" id="header-container"></div>
+    <div class="data-list below-header">
+        <div class="switch-container">
+            <label>フィードバック</label>
+            <button id="showFeedbackButton" class="button">フィードバックを表示</button> <!-- idを追加 -->
+        </div>
+        <div class="switch-container">
+            <label>ゲストのプレイデータを削除</label>
+            <button id="deleteGuestDataButton" class="button-danger">削除</button> <!-- idを追加 -->
+        </div>
+        <div class="horizontal-bar"></div>
+        <div class="switch-container">
+            <label>取得ユーザ</label>
+            <select id="userDropdown" class="dropdown"></select> <!-- idを追加 -->
+        </div>
+        <div class="childs">
+            <button id="loginButton" class="button">ログイン</button> <!-- idを追加 -->
+        </div>
+    </div>
+
+    <!-- モーダルウィンドウ -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>注意</h2>
+            <p>この操作は取り消せません</p>
+            <button id="confirmDeleteButton" class="button-danger">削除</button>
+            <button id="cancelButton" class="button">キャンセル</button>
+        </div>
+    </div>
+
+    <!-- フィードバックモーダルウィンドウ -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div id="feedbackContent"></div>
+            <button id="closeFeedbackButton" class="button">閉じる</button>
+        </div>
+    </div>
+</body>
+
+</html>

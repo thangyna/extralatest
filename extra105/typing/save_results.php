@@ -24,10 +24,11 @@ function getUserInfo()
 /*------------------------------------------------
     sqlを構築, 実行
 ------------------------------------------------*/
-function saveResults($_username, $_data) {
+function saveResults($_username, $_data)
+{
     global $conn;
     // sql文を構築
-    $sql = "INSERT INTO game_results (username, score, correct_chars, mistakes, accuracy, typing_speed, top_mistakes, ip_address, recorded_at, isDisplay) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO game_results (username, score, correct_chars, mistakes, accuracy, typing_speed, top_mistakes, ip_address, recorded_at, isDisplay, guest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     // 値をバインドするための配列を準備
@@ -41,11 +42,12 @@ function saveResults($_username, $_data) {
         urldecode($_data->top_mistakes),
         $_SERVER['REMOTE_ADDR'],
         date('Y-m-d H:i:s'),
-        $_data->is_display
+        $_data->is_display,
+        $_data->guest
     ];
 
     // 型定義を準備
-    $types = "siiidssssi";
+    $types = "siiidssssii";
 
     // 配列の最初に型定義を追加
     array_unshift($params, $types);
@@ -69,7 +71,8 @@ function saveResults($_username, $_data) {
 }
 
 // 配列の参照を返すヘルパー関数
-function refValues($arr) {
+function refValues($arr)
+{
     $refs = [];
     foreach ($arr as $key => $value) {
         $refs[$key] = &$arr[$key];
