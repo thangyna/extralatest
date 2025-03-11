@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.correctMistakesChart = new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: highScoreLabels,
+                labels: labels,
                 datasets: [
                     {
                         label: '正解文字数',
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.higtScoreChart = new Chart(ctx3, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: highScoreLabels,
                 datasets: [
                     {
                         label: 'スコア',
