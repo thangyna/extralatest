@@ -139,9 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.correctMistakesChart) {
             window.correctMistakesChart.destroy();
         }
-        if (window.higtScoreChart) {
-            // window.higtScoreChart.destroy();
-        }
 
         window.scoreAccuracyChart = new Chart(ctx1, {
             type: 'line',
@@ -203,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.correctMistakesChart = new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: highScoreLabels,
                 datasets: [
                     {
                         label: '正解文字数',
