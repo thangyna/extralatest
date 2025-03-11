@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // モーダルウィンドウを表示する関数
                     function showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay) {
                         console.log("show modal");
-                        document.getElementById('resultScore').innerText = "スコア: " + score;
+                        document.getElementById('resultScore').innerText = "スコア: " + score.toLocalString();
                         document.getElementById('resultCorrectChars').innerText = "正しく打てた文字数: " + correctChars;
                         document.getElementById('resultMistakes').innerText = "間違った文字数: " + mistakes;
                         document.getElementById('resultAccuracy').innerText = "正解率: " + accuracy + "%";
@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 else {
                                     data.ranking.forEach((item, index) => {
                                         const listItem = document.createElement('li');
-                                        listItem.textContent = `${item.username}: ${item.score}`;
+                                        listItem.textContent = `${item.username}: ${item.score.toLocalString()}`;
                                         rankingsList.appendChild(listItem);
                                     });
                                 }
