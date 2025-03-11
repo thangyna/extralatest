@@ -98,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
             keyboardHighlight();
         });
 
+    function isHighScore(score, index, scores) {
+        return score === 0 || score > Math.max(...scores.slice(0, index));
+    }
+
     function updateCharts() {
         // 表示件数に基づいてデータを制限
         const limitedData = window.filteredData.slice(-displayCount);
@@ -113,14 +117,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const mistakes = limitedData.map(record => record.mistakes);
         const accuracy = limitedData.map(record => record.accuracy); // 正確度をパーセンテージに変換
 
+        const higtScores = scores.filter((score, index) => isHighScore(score, index, scores));
+
         const ctx1 = document.getElementById('scoreChart').getContext('2d');
         const ctx2 = document.getElementById('mistakesChart').getContext('2d');
+        const ctx3 = document.getElementById('higtScoreChart').getContext('2d');
 
         if (window.scoreAccuracyChart) {
             window.scoreAccuracyChart.destroy();
         }
         if (window.correctMistakesChart) {
             window.correctMistakesChart.destroy();
+        }
+        if (window.higtScoreChart) {
+            window.higtScoreChart.destroy();
         }
 
         window.scoreAccuracyChart = new Chart(ctx1, {
@@ -244,8 +254,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+        window.higtScoreChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'スコア',
+                        data: higtScores,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '日付'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'スコア'
+                        }
+                    }
+                }
+            }
+        });
     }
-
     /*------------------------------------------------
         ミスのキーハイライト
     ------------------------------------------------*/
