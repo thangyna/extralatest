@@ -117,7 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const mistakes = limitedData.map(record => record.mistakes);
         const accuracy = limitedData.map(record => record.accuracy); // 正確度をパーセンテージに変換
 
-        const higtScores = scores.filter((score, index) => isHighScore(score, index, scores));
+        // 最高スコア更新時のデータのみを抽出
+        const highScores = limitedData.filter((record, index, array) => {
+            return index === 0 || record.score > Math.max(...array.slice(0, index).map(r => r.score));
+        }).map(record => record.score);
+
+        const highScoreLabels = limitedData.filter((record, index, array) => {
+            return index === 0 || record.score > Math.max(...array.slice(0, index).map(r => r.score));
+        }).map(record => {
+            const date = new Date(record.date);
+            return date.toLocaleDateString(); // 日付のみを表示
+        });
 
         const ctx1 = document.getElementById('scoreChart').getContext('2d');
         const ctx2 = document.getElementById('mistakesChart').getContext('2d');
@@ -129,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.correctMistakesChart) {
             window.correctMistakesChart.destroy();
         }
-        if (window.higtScoreChart) {
-            window.higtScoreChart.destroy();
+        if (window.highScoreChart) {
+            window.highScoreChart.destroy();
         }
 
         window.scoreAccuracyChart = new Chart(ctx1, {
@@ -190,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
         window.correctMistakesChart = new Chart(ctx2, {
             type: 'line',
             data: {
@@ -254,16 +265,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        window.higtScoreChart = new Chart(ctx3, {
+
+        window.highScoreChart = new Chart(ctx3, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: highScoreLabels,
                 datasets: [
                     {
-                        label: 'スコア',
-                        data: higtScores,
-                        borderColor: 'rgb(75, 192, 192)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        label: '最高スコア',
+                        data: highScores,
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         fill: false
                     }
                 ]
