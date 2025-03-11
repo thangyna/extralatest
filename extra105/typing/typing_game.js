@@ -298,8 +298,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             let typingSpeed = calculateTypingSpeed(correctChars, timeLimitStart);
                             let topMistakes = getTopMistakes(mistakesCount);
                             saveGameResults(score, correctChars, mistakes, isDisplay);
-                            reloadRanking();
                             showModal(score, correctChars, mistakes, accuracy, typingSpeed, topMistakes, isDisplay);
+                            reloadRanking();
                         }
                         isPlaying = false;
                         setNextGame();
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // ウェブサイトの画面を設定
                         startButton.innerText = "スタート";
                         countdownText.innerText = "";
-                        japaneseWord.innerText = "前回のスコア: " + score;
+                        japaneseWord.innerText = "前回のスコア: " + score.toLocaleString();
                         kanaWord.innerText = "スタート/エンターキーで開始";
 
                         nextWord.style.display = "none";
