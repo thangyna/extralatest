@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const ctx1 = document.getElementById('scoreChart').getContext('2d');
         const ctx2 = document.getElementById('mistakesChart').getContext('2d');
-        const ctx3 = document.getElementById('higtScoreChart').getContext('2d');
+        const ctx3 = document.getElementById('highScoreChart').getContext('2d');
 
         if (window.scoreAccuracyChart) {
             window.scoreAccuracyChart.destroy();
