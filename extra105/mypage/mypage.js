@@ -117,7 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const mistakes = limitedData.map(record => record.mistakes);
         const accuracy = limitedData.map(record => record.accuracy); // 正確度をパーセンテージに変換
 
-        const higtScores = scores.filter((score, index) => isHighScore(score, index, scores));
+        // 最高スコア更新時のデータのみを抽出
+        const highScoreData = limitedData.filter((record, index, array) => {
+            return index === 0 || record.score > Math.max(...array.slice(0, index).map(r => r.score));
+        });
+
+        const highScores = highScoreData.map(record => record.score);
+        const highScoreLabels = highScoreData.map(record => {
+            const date = new Date(record.date);
+            return date.toLocaleDateString(); // 日付のみを表示
+        });
+
 
         const ctx1 = document.getElementById('scoreChart').getContext('2d');
         const ctx2 = document.getElementById('mistakesChart').getContext('2d');
