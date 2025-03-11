@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 datasets: [
                     {
                         label: 'スコア',
-                        data: higtScores,
+                        data: highScores,
                         borderColor: 'rgb(75, 192, 192)',
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         fill: false
