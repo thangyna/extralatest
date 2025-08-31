@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.admin) {
                 admin.style.display = 'block';
             }
-            // 
+            // ゲストのログアウトボタンを非表示
             //if (data.guest) {
             //    logout.style.display = 'none';
             //}
