@@ -104,8 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.admin) {
                 admin.style.display = 'block';
             }
-            if (data.guest) {
-                logout.style.display = 'none';
-            }
+            // 
+            //if (data.guest) {
+            //    logout.style.display = 'none';
+            //}
         });
 });
